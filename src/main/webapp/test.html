@@ -21,12 +21,12 @@
     <form METHOD ="POST" style="font-size: large;" action="/register">
         <div>
             <label>First Name:</label>
-            <input type="text" value="maha" required>
+            <input type="text" value="maha" minlength="3" maxlength="10" length="" required>
         </div>
         <br>
         <div>
             <label>Last Name:</label>
-            <input type="text" value="maha" required>
+            <input type="text" value="maha" minlength="3" maxlength="10" required>
         </div>
         <br>
         <div>
@@ -36,17 +36,19 @@
         <br>
         <div>
             <label>Password:</label>
-            <input type="password" value="12" required>
+            <input type="password" id="pass" onblur="passwordValidator()" required>
+            <label id="invalidPassword" style="display: none">Min 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character(@$!%*?&)</label>
         </div>
         <br>
         <div>
             <label>Confirm Password:</label>
-            <input type="password" value="12" required>
+            <input type="password" id="passConf" onblur="passwordConfirmation()" required>
+            <label id="invalidConf" style="display: none">Password Doesn't Match</label>
         </div>
         <br>
         <div>
             <label>Phone:</label>
-            <input type="number" id="phoneField" name="phoneField" pattern="^(\\+2)?01\\d{9}$" onblur="phoneValidator()" required>
+            <input type="number" id="phoneField" name="phoneField" onblur="phoneValidator()" required>
             <label id="invalidPhone" style="display: none">Must be 11 digits and being with 01</label>
         </div>
         <br>
