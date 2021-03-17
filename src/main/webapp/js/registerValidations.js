@@ -2,7 +2,7 @@
 function phoneValidator() {
     let inputtxt = $("#phoneField").val();
     console.log(inputtxt)
-    var regex = /^01[0125]\\d{8}$/;
+    var regex =/^(\+2)?01\d{9}$/
     if(inputtxt.match(regex)) {
         console.log("valid phone format");
         $("#invalidPhone").hide();
