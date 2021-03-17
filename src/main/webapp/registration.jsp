@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Login</title>
+    <title>Registration</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -20,7 +20,7 @@
     <%--  login form links   --%>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="login/css/style.css">
+    <link rel="stylesheet" href="forms/css/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -35,7 +35,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="customValidations/registerValidations.js"></script>
 </head>
 
 
@@ -59,7 +59,7 @@
 <%--        <button type="submit" class="btn hvr-hover">Login</button>--%>
 <%--    </form>--%>
 <%--</div>--%>
-<jsp:include page="forms/loginForm.jsp"/>
+<jsp:include page="forms/registrationForm.jsp"/>
 
 <jsp:include page="footer.jsp"/>
 
@@ -83,6 +83,5 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
-
 </body>
 </html>

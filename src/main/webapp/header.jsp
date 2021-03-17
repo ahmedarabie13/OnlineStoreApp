@@ -1,10 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title>Title</title>--%>
+<%--</head>--%>
+<%--<body>--%>
 <!-- Start Main Top -->
 <div class="main-top">
     <div class="container-fluid">
@@ -166,6 +166,6 @@
 </div>
 <!-- End Top Search -->
 
-</body>
-</html>
+<%--</body>--%>
+<%--</html>--%>
 

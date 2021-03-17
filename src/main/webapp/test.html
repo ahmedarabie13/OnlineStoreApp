@@ -1,0 +1,63 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: maha
+  Date: 16/03/2021
+  Time: 11:25 pm
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+    <script src="customValidations/registerValidations.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<!DOCTYPE html>
+<body style='text-align: center;'>
+<h1>Registeration form</h1>
+<h2>Please enter the user details</h2>
+<div>
+    <form METHOD ="POST" style="font-size: large;" action="/register">
+        <div>
+            <label>First Name:</label>
+            <input type="text" value="maha" minlength="3" maxlength="10" length="" required>
+        </div>
+        <br>
+        <div>
+            <label>Last Name:</label>
+            <input type="text" value="maha" minlength="3" maxlength="10" required>
+        </div>
+        <br>
+        <div>
+            <label>Email:</label>
+            <input type="email" value="maha@g" required>
+        </div>
+        <br>
+        <div>
+            <label>Password:</label>
+            <input type="password" id="pass" onblur="passwordValidator()" required>
+            <label id="invalidPassword" style="display: none">Min 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character(@$!%*?&)</label>
+        </div>
+        <br>
+        <div>
+            <label>Confirm Password:</label>
+            <input type="password" id="passConf" onblur="passwordConfirmation()" required>
+            <label id="invalidConf" style="display: none">Password Doesn't Match</label>
+        </div>
+        <br>
+        <div>
+            <label>Phone:</label>
+            <input type="number" id="phoneField" name="phoneField" onblur="phoneValidator()" required>
+            <label id="invalidPhone" style="display: none">Must be 11 digits and being with 01</label>
+        </div>
+        <br>
+        <div>
+            <input type="reset" value="Reset">
+            <input type="submit" value="Submit button">
+        </div>
+    </form>
+</div>
+</body>
+</body>
+</html>
