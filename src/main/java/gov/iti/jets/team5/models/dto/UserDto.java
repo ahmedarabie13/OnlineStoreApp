@@ -1,6 +1,6 @@
 package gov.iti.jets.team5.models.dto;
 
-public class UserAuthDto {
+public class UserDto {
     private String userName;
     private String password;
     private String firstName;
@@ -8,19 +8,19 @@ public class UserAuthDto {
     private String email;
     private String phone;
 
-    public UserAuthDto(String firstName, String lastName, String email, String phone, String password){
+    public UserDto(String firstName, String lastName, String email, String phone, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
     }
-    public UserAuthDto(String userName, String password) {
+    public UserDto(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
-    public UserAuthDto() {
+    public UserDto() {
     }
 
     public String getUserName() {

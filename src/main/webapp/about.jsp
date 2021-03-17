@@ -15,9 +15,26 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+<%--    <!-- Site Icons -->--%>
+<%--    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">--%>
+<%--    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">--%>
+
+<%--    <!-- Bootstrap CSS -->--%>
+<%--    <link rel="stylesheet" href="css/bootstrap.min.css">--%>
+<%--    <!-- Site CSS -->--%>
+<%--    <link rel="stylesheet" href="css/style.css">--%>
+<%--    <!-- Responsive CSS -->--%>
+<%--    <link rel="stylesheet" href="css/responsive.css">--%>
+<%--    <!-- Custom CSS -->--%>
+<%--    <link rel="stylesheet" href="css/custom.css">--%>
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <%--  login form links   --%>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="forms/css/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -241,7 +258,7 @@
 <script src="js/jquery.superslides.min.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script src="js/inewsticker.js"></script>
-<script src="js/bootsnav.js."></script>
+<script src="js/bootsnav.js"></script>
 <script src="js/images-loded.min.js"></script>
 <script src="js/isotope.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
