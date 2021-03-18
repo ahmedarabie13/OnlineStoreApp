@@ -51,7 +51,9 @@
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span
                                     class="fa fa-envelope"></span></div>
-                            <input type="text" name="email" style="padding-left: 60px" class="form-control rounded-left" placeholder="Email" required>
+                            <input type="text" name="email" style="padding-left: 60px" class="form-control rounded-left" placeholder="Email" id="email" onblur="emailValidator()" required>
+                            <span id="invalidEmail" style="display: none; font-size: small; color: red">Invalid Email Format</span>
+                            <span id="emailExist" style="display: none; font-size: small; color: red">Email Already Registered</span>
                         </div>
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span

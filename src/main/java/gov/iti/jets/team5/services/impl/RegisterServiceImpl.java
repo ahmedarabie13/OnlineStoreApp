@@ -15,8 +15,13 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public Boolean isRegistered(UserDto userDto) {
-        return null;
+    public Boolean isRegistered(String email) {
+        //todo real db check
+        if(email.equals("maha@gmail.com")){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
