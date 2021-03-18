@@ -10,10 +10,28 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "Register", urlPatterns = "/register")
+//@WebServlet(name = "register", urlPatterns = "/zft")
+@WebServlet("/zft")
 public class RegisterServlet extends HttpServlet {
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("text/html");
+        System.out.println("inside1");
+        RegisterService registerService = RegisterServiceImpl.getInstance();
+        String email = request.getParameter("email");
+        System.out.println("Form email is: " + email);
+        Boolean registered = registerService.isRegistered(email);
+        System.out.println(registered);
+        PrintWriter out = response.getWriter();
+        if(registered){
+            out.write("true");
+        } else {
+            out.write("false");
+        }
+        out.close();
+    }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RegisterService registerService = RegisterServiceImpl.getInstance();
         UserDto userDto = new UserDto();
