@@ -9,7 +9,11 @@ public class RegisterServiceImpl implements RegisterService {
 
     public static RegisterService getInstance() {
         if (registerServiceInstance == null) {
-            registerServiceInstance = new RegisterServiceImpl();
+            synchronized (RegisterServiceImpl.class) {
+                if (registerServiceInstance == null) {
+                    registerServiceInstance = new RegisterServiceImpl();
+                }
+            }
         }
         return registerServiceInstance;
     }
@@ -17,7 +21,7 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public Boolean isRegistered(String email) {
         //todo real db check
-        if(email.equals("maha@gmail.com")){
+        if (email.equals("maha@gmail.com")) {
             return true;
         } else {
             return false;
