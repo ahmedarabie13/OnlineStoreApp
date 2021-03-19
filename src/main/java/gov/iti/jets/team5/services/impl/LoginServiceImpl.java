@@ -1,5 +1,6 @@
 package gov.iti.jets.team5.services.impl;
 
+import gov.iti.jets.team5.models.dto.UserAuthDto;
 import gov.iti.jets.team5.models.dto.UserDto;
 import gov.iti.jets.team5.services.LoginService;
 
@@ -8,17 +9,21 @@ public class LoginServiceImpl implements LoginService {
 
     public static LoginService getInstance() {
         if (loginServiceInstance == null) {
-            loginServiceInstance = new LoginServiceImpl();
+            synchronized (LoginServiceImpl.class) {
+                if (loginServiceInstance == null) {
+                    loginServiceInstance = new LoginServiceImpl();
+                }
+            }
         }
         return loginServiceInstance;
     }
 
     @Override
-    public Boolean isUserAuthed(UserDto userDto) {
+    public Boolean isUserAuthed(UserAuthDto userAuthDto) {
         //todo: check across database
-        String storedUserName = "Ahmed";
+        String storedEmail = "a@a.com";
         String storedPassword = "1420";
-        if (userDto.getUserName().equals(storedUserName) && userDto.getPassword().equals(storedPassword)) {
+        if (userAuthDto.getEmail().equals(storedEmail) && userAuthDto.getPassword().equals(storedPassword)) {
             return true;
         } else {
             return false;
