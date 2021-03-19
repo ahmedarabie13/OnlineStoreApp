@@ -283,4 +283,7 @@
 <script src="js/custom.js"></script>
 </body>
 
+<%--for the error $(...).slider is not a function--%>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 </html>
