@@ -281,6 +281,7 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
 </body>
 
 <%--for the error $(...).slider is not a function--%>

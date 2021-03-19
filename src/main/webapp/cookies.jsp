@@ -92,5 +92,7 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<%--for the error $(...).slider is not a function--%>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>
 </html>

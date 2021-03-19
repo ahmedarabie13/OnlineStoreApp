@@ -25,15 +25,13 @@ public class CookiesFilter implements Filter {
         String path = ((HttpServletRequest) request).getRequestURL().toString();
         System.out.println("servlet: " + servletPath);
         if (servletPath.equals("/cookies.jsp")) {
-            System.out.println("starts wala?");
+            //System.out.println("starts wala?");
             chain.doFilter(request, response);
         } else {
-            System.out.println("-------------------> ");
             String [] extension = servletPath.split("\\.");
             if(extension.length > 0){
-                System.out.println("-------------------> " + extension[0]);
-                if(extension[1].equals("jsp")){
-                    System.out.println("-------------------> " + extension[1]);
+                if(extension[extension.length-1].equals("jsp")){
+                    System.out.println("-------------------> " + extension[extension.length-1]);
                     if (request.getParameter("checkCookie") == null) {
                         System.out.println("checkCookie is null hence the 1nd visit");
                         ((HttpServletResponse) response).addCookie(cookie);
@@ -57,6 +55,8 @@ public class CookiesFilter implements Filter {
                             chain.doFilter(request,response);
                         }
                     }
+                } else {
+                    chain.doFilter(request, response);
                 }
             }
         }
