@@ -30,6 +30,11 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
+<%--    <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>--%>
+<%--    <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>--%>
+<%--    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>--%>
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
