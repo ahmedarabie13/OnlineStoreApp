@@ -68,7 +68,7 @@
                         </c:if>
                         <div class="form-group mt-4">
                             <div class="w-100 text-center">
-                                <p class="mb-1">Don't have an account? <a href="#">Sign Up</a></p>
+                                <p class="mb-1">Don't have an account? <a href="registration.jsp">Sign Up</a></p>
 <%--                                <p><a href="#">Forgot Password</a></p>--%>
                             </div>
                         </div>

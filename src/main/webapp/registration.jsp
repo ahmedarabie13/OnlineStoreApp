@@ -36,6 +36,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="customValidations/registerValidations.js"></script>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 
 
@@ -63,10 +64,11 @@
 
 <jsp:include page="footer.jsp"/>
 
-<script src="login/js/jquery.min.js"></script>
-<script src="login/js/popper.js"></script>
-<script src="login/js/bootstrap.min.js"></script>
-<script src="login/js/main.js"></script>
+<script src="forms/js/jquery.min.js"></script>
+<script src="forms/js/popper.js"></script>
+<script src="forms/js/bootstrap.min.js"></script>
+<%--<script src="login/js/main.js"></script>--%>
+<script src="forms/js/main.js"></script>
 <!-- ALL JS FILES -->
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -83,5 +85,9 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+
+<%--for the error $(...).slider is not a function--%>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 </body>
 </html>

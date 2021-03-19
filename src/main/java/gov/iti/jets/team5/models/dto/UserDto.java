@@ -70,4 +70,8 @@ public class UserDto {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String toString(){
+        return ("FirstName: " + firstName + ", LastName: " + lastName + ", Email: " + email + ", phone: " + phone + ", password" + password);
+    }
 }
