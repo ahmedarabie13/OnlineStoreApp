@@ -49,7 +49,7 @@
                             <div class="icon d-flex align-items-center justify-content-center"><span
                                     class="fa fa-user"></span></div>
                             <input type="text" name="lastName" style="padding-left: 60px" class="form-control rounded-left" placeholder="Last Name" minlength="3" maxlength="15" id="ln" onblur="lnValidator()">
-                            <span id="shortLnLength" style="display: none; font-size: small; color: red">3 Characters Maximum</span>
+                            <span id="shortLnLength" style="display: none; font-size: small; color: red">3 Characters Minimum</span>
                             <span id="longLnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
                         </div>
                         <div class="form-group">
