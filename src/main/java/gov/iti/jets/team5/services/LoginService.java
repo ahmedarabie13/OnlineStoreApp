@@ -5,4 +5,6 @@ import gov.iti.jets.team5.models.dto.UserDto;
 
 public interface LoginService {
     Boolean isUserAuthed(UserAuthDto userAuthDto);
-}
+    UserAuthDto getCurrentUserCredentials(int userId);
+    Boolean isUserIdExists(int userId);
+    }
