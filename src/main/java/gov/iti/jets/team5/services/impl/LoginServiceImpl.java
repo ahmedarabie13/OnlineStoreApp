@@ -23,7 +23,9 @@ public class LoginServiceImpl implements LoginService {
         //todo: check across database
         String storedEmail = "a@a.com";
         String storedPassword = "1420";
+        int storedId = 13;
         if (userAuthDto.getEmail().equals(storedEmail) && userAuthDto.getPassword().equals(storedPassword)) {
+            userAuthDto.setId(storedId);
             return true;
         } else {
             return false;

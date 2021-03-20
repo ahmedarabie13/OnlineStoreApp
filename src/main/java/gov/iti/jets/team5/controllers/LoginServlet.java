@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
 
         if (loginService.isUserAuthed(userAuthDto)) {
             request.getSession().setAttribute("userAuth", userAuthDto);
+            //todo: refactor cookie against user id
             Cookies.addCookie("LoggedEmail", userAuthDto.getEmail(), MONTH, response);
             request.getRequestDispatcher("index.jsp").forward(request,response);
             //todo: create new session & redirect to homePage with the session
