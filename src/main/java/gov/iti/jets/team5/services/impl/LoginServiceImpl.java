@@ -31,4 +31,28 @@ public class LoginServiceImpl implements LoginService {
             return false;
         }
     }
+
+    @Override
+    public UserAuthDto getCurrentUserCredentials(int userId) {
+        //todo check if exists
+        String storedEmail = "a@a.com";
+        String storedPassword = "1420";
+        if(isUserIdExists(13)){ // if the id exists
+            return new UserAuthDto(storedEmail,storedPassword,userId);
+        }else {
+            return null;
+        }
+    }
+
+   public Boolean isUserIdExists(int userId){
+        // todo: check over database
+       if(userId==13){
+           return true;
+       }
+       else {
+           return false;
+       }
+   }
+
+
 }

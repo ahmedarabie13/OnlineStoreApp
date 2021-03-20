@@ -5,6 +5,8 @@ import gov.iti.jets.team5.models.dto.UserDto;
 import gov.iti.jets.team5.services.LoginService;
 import gov.iti.jets.team5.services.impl.LoginServiceImpl;
 import gov.iti.jets.team5.utils.Cookies;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,8 +18,7 @@ import java.io.IOException;
 @WebServlet(name = "Login", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
-    public static final int MONTH = 60 * 60 * 24 * 30;
-
+    private static final int MONTH = 60 * 60 * 24 * 30;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LoginService loginService = LoginServiceImpl.getInstance();
         UserAuthDto userAuthDto = new UserAuthDto();
@@ -25,11 +26,9 @@ public class LoginServlet extends HttpServlet {
         userAuthDto.setPassword(request.getParameter("password"));
 
         if (loginService.isUserAuthed(userAuthDto)) {
-            request.getSession().setAttribute("userAuth", userAuthDto);
-            //todo: refactor cookie against user id
-            Cookies.addCookie("LoggedEmail", userAuthDto.getEmail(), MONTH, response);
+            request.getServletContext().setAttribute("currentUser", userAuthDto);
+            Cookies.addCookie("c_user", String.valueOf(userAuthDto.getId()), MONTH, response);
             request.getRequestDispatcher("index.jsp").forward(request,response);
-            //todo: create new session & redirect to homePage with the session
 
         } else {
 

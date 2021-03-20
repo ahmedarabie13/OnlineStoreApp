@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<html>--%>
@@ -29,44 +30,64 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="login-box">
-                    <a href="registration.jsp"><button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Register</button></a>
-                    <a href="login.jsp"><button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign In</button></a>
-<%--                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">--%>
-<%--                        <option>Register Here</option>--%>
-<%--                        <option>Sign In</option>--%>
-<%--                    </select>--%>
-                </div>
-<%--                <div class="text-slid-box">--%>
-<%--                    <div id="offer-box" class="carouselTicker">--%>
-<%--                        <ul class="offer-box">--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> Off 50%! Shop Now--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <i class="fab fa-opencart"></i> Off 50%! Shop Now--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <c:choose>
+
+<%--                    <c:when test="${empty sessionScope.userAuth}">--%>
+                    <c:when test="${applicationScope.currentUser==null}">
+                        <div class="login-box">
+                            <a href="registration.jsp">
+                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Register</button>
+                            </a>
+                            <a href="login.jsp">
+                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign In</button>
+                            </a>
+                        </div>
+                    </c:when>
+<%--                    <c:when test="${! empty sessionScope.userAuth}">--%>
+                    <c:when test="${applicationScope.currentUser != null}">
+                        <div class="login-box">
+                            <a href="logout">
+                                <button  style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign Out</button>
+                            </a>
+                        </div>
+                    </c:when>
+
+                </c:choose>
+                <%--                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">--%>
+                <%--                        <option>Register Here</option>--%>
+                <%--                        <option>Sign In</option>--%>
+                <%--                    </select>--%>
+
+                <%--                <div class="text-slid-box">--%>
+                <%--                    <div id="offer-box" class="carouselTicker">--%>
+                <%--                        <ul class="offer-box">--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> Off 50%! Shop Now--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30--%>
+                <%--                            </li>--%>
+                <%--                            <li>--%>
+                <%--                                <i class="fab fa-opencart"></i> Off 50%! Shop Now--%>
+                <%--                            </li>--%>
+                <%--                        </ul>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
         </div>
     </div>
@@ -84,14 +105,14 @@
                         aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.jsp"><img src="images/logo.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="main"><img src="images/logo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main">Home</a></li>
                     <li class="nav-item active"><a class="nav-link" href="about.jsp">About Us</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
