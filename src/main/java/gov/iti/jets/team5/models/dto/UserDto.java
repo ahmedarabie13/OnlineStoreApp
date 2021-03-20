@@ -15,6 +15,7 @@ public class UserDto {
         this.phone = phone;
         this.password = password;
     }
+
     public UserDto(String userName, String password) {
         this.userName = userName;
         this.password = password;
