@@ -16,6 +16,8 @@ import java.io.IOException;
 @WebServlet(name = "Login", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
+    public static final int MONTH = 60 * 60 * 24 * 30;
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LoginService loginService = LoginServiceImpl.getInstance();
         UserAuthDto userAuthDto = new UserAuthDto();
@@ -24,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
         if (loginService.isUserAuthed(userAuthDto)) {
             request.getSession().setAttribute("userAuth", userAuthDto);
-            Cookies.addCookie("LoggedEmail", userAuthDto.getEmail(), 60 * 60 * 24 * 30, response);
+            Cookies.addCookie("LoggedEmail", userAuthDto.getEmail(), MONTH, response);
             request.getRequestDispatcher("index.jsp").forward(request,response);
             //todo: create new session & redirect to homePage with the session
 

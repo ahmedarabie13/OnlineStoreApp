@@ -1,5 +1,7 @@
 package gov.iti.jets.team5.handlers;
 
+import gov.iti.jets.team5.models.enums.ProductCategory;
+import gov.iti.jets.team5.models.enums.ProductStatus;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
@@ -11,9 +13,11 @@ import java.io.IOException;
 public class ProductTagHandler extends SimpleTagSupport {
     private String productName;
     private String productImageURL;
-    private Image productImage;
     private Double productPrice;
-    private String productStatus;
+    private ProductStatus productStatus;
+    private String productDescription;
+    private double productRating;
+    private ProductCategory productCategory;
 
     @Override
     public void doTag() throws JspException, IOException {
@@ -39,6 +43,7 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<div class=\"why-text\" >");
         out.println("<h4 >" + productName + "</h4 >");
         out.println("<h5 > $" + productPrice + "</h5 >");
+//        out.println("<h5 > Rating " + productRating + "</h5 >");
         out.println("</div >");
         out.println("</div >");
         out.println("</div >");
@@ -62,14 +67,6 @@ public class ProductTagHandler extends SimpleTagSupport {
         this.productImageURL = productImageURL;
     }
 
-    public Image getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(Image productImage) {
-        this.productImage = productImage;
-    }
-
     public Double getProductPrice() {
         return productPrice;
     }
@@ -78,11 +75,35 @@ public class ProductTagHandler extends SimpleTagSupport {
         this.productPrice = productPrice;
     }
 
-    public String getProductStatus() {
+    public ProductStatus getProductStatus() {
         return productStatus;
     }
 
-    public void setProductStatus(String productStatus) {
+    public void setProductStatus(ProductStatus productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public double getProductRating() {
+        return productRating;
+    }
+
+    public void setProductRating(double productRating) {
+        this.productRating = productRating;
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 }

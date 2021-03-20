@@ -52,7 +52,7 @@ function emailValidator(){
         console.log("valid email format");
         $("#invalidEmail").hide();
         let jsonEmail = {"email": email}
-        $.get("zft", jsonEmail , emailCallBack);
+        $.post("emailRegistered", jsonEmail , emailCallBack);
         function emailCallBack(responseJson, status, xhr){
             if(status === "success" && responseJson === "false"){
                 console.log("email doesn't exist")
@@ -84,12 +84,64 @@ function emailValidator(){
         $("#invalidEmail").show();
         return;
     }
+}
 
-    function getXMLHttpReq(){
-        if(window.XMLHttpRequest){
-            return new XMLHttpRequest();
-        } else if(window.ActiveXObject){
-            return new ActiveXObject(Microsoft.XMLHTTP);
-        }
+function getXMLHttpReq(){
+    if(window.XMLHttpRequest){
+        return new XMLHttpRequest();
+    } else if(window.ActiveXObject){
+        return new ActiveXObject(Microsoft.XMLHTTP);
     }
+}
+
+function fnValidator(){
+    let fn = $("#fn").val()
+    if(fn.length < 3){
+        console.log("firstname < 3 chars")
+        $("#shortFnLength").show();
+    } else if(fn.length > 15){
+        console.log("firstname > 15 chars")
+        $("#longFnLength").show();
+    } else {
+        console.log("valid firstname chars length")
+        $("#longFnLength").hide();
+        $("#shortFnLength").hide();
+    }
+}
+
+function lnValidator(){
+    let ln = $("#ln").val()
+    if(ln.length < 3){
+        console.log("lastname < 3 chars")
+        $("#shortLnLength").show();
+    } else if(ln.length > 15){
+        console.log("lastname > 15 chars")
+        $("#longLnLength").show();
+    } else {
+        console.log("valid lastname chars length")
+        $("#longLnLength").hide();
+        $("#shortLnLength").hide();
+    }
+}
+
+function checkValidations(){
+    //$("form").submit(function (e) {
+        console.log("here1")
+        var validationFailed = false;
+        console.log("here2" + validationFailed)
+        if($("#invalidPhone").is(":visible") || $("#invalidPassword").is(":visible") || $("#invalidConf").is(":visible")
+            || $("#invalidEmail").is(":visible") || $("#emailExist").is(":visible") || $("#shortFnLength").is(":visible") || $("#shortLnLength").is(":visible")){
+            validationFailed = true;
+            console.log("here3" + validationFailed)
+        } else if($("#fn").val() === "" || $("#ln").val() === "" || $("#email").val() === ""
+            || $("#phoneField").val() === "" || $("#pass").val() === "" || $("#passConf").val() === ""){
+            validationFailed = true;
+            console.log("here4" + validationFailed)
+        }
+        if (validationFailed) {
+            console.log("here5" + validationFailed)
+            //$("#regForm").preventDefault();
+            return false;
+        }
+    //});
 }

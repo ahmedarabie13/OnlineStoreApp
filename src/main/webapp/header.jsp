@@ -30,10 +30,12 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
+                    <a href="registration.jsp"><button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Register</button></a>
+                    <a href="login.jsp"><button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign In</button></a>
+<%--                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">--%>
+<%--                        <option>Register Here</option>--%>
+<%--                        <option>Sign In</option>--%>
+<%--                    </select>--%>
                 </div>
 <%--                <div class="text-slid-box">--%>
 <%--                    <div id="offer-box" class="carouselTicker">--%>
@@ -94,7 +96,7 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.jsp">Sidebar Shop</a></li>
+                            <li><a href="shop">Sidebar Shop</a></li>
                             <li><a href="shop-detail.jsp">Shop Detail</a></li>
                             <li><a href="cart.jsp">Cart</a></li>
                             <li><a href="checkout.jsp">Checkout</a></li>
