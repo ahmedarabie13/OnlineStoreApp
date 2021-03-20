@@ -1,6 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="Product" uri="/WEB-INF/tlds/ProductTagLib.tld" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -176,14 +174,7 @@
             </div>
         </div>
 
-        <div class="row special-list">
-            <c:forEach begin="1" end="9" var="cnt">
-                <Product:Product productName="Vegetarian"
-                                 productImageURL="images/gallery-img-0${cnt}.jpg"
-                                 productPrice="2${cnt}.1"
-                                 productStatus="New"/>
-            </c:forEach>
-
+        <div class="row container special-list" id="productsList">
         </div>
     </div>
 </div>
@@ -281,6 +272,8 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+
+<script src="customValidations/products.js"></script>
 <script src="js/jquery.nicescroll.min.js"></script>
 </body>
 

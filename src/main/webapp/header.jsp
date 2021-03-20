@@ -96,7 +96,7 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.jsp">Sidebar Shop</a></li>
+                            <li><a href="shop">Sidebar Shop</a></li>
                             <li><a href="shop-detail.jsp">Shop Detail</a></li>
                             <li><a href="cart.jsp">Cart</a></li>
                             <li><a href="checkout.jsp">Checkout</a></li>
