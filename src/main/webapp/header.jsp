@@ -32,22 +32,26 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <c:choose>
 
-<%--                    <c:when test="${empty sessionScope.userAuth}">--%>
                     <c:when test="${applicationScope.currentUser==null}">
                         <div class="login-box">
                             <a href="registration.jsp">
-                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Register</button>
+                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">
+                                    Register
+                                </button>
                             </a>
                             <a href="login.jsp">
-                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign In</button>
+                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign
+                                    In
+                                </button>
                             </a>
                         </div>
                     </c:when>
-<%--                    <c:when test="${! empty sessionScope.userAuth}">--%>
                     <c:when test="${applicationScope.currentUser != null}">
                         <div class="login-box">
                             <a href="logout">
-                                <button  style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign Out</button>
+                                <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign
+                                    Out
+                                </button>
                             </a>
                         </div>
                     </c:when>
@@ -135,11 +139,23 @@
             <div class="attr-nav">
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                    <li class="side-menu"><a href="#">
-                        <i class="fa fa-shopping-bag"></i>
-                        <span class="badge">3</span>
-                        <p>My Cart</p>
-                    </a></li>
+                    <c:choose>
+
+                        <c:when test="${applicationScope.currentUser!=null}">
+                            <li class="side-menu"><a href="#">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge">3</span>
+                                <p>My Cart</p>
+                            </a></li>
+                        </c:when><c:when test="${applicationScope.currentUser==null}">
+                            <li class="side"><a href="#">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge"></span>
+<%--                                <p>My Cart</p>--%>
+                            </a></li>
+                        </c:when>
+                    </c:choose>
+
                 </ul>
             </div>
             <!-- End Atribute Navigation -->

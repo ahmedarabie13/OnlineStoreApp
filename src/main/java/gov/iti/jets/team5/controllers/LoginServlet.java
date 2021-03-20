@@ -1,12 +1,9 @@
 package gov.iti.jets.team5.controllers;
 
 import gov.iti.jets.team5.models.dto.UserAuthDto;
-import gov.iti.jets.team5.models.dto.UserDto;
 import gov.iti.jets.team5.services.LoginService;
 import gov.iti.jets.team5.services.impl.LoginServiceImpl;
 import gov.iti.jets.team5.utils.Cookies;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,13 +26,10 @@ public class LoginServlet extends HttpServlet {
             request.getServletContext().setAttribute("currentUser", userAuthDto);
             Cookies.addCookie("c_user", String.valueOf(userAuthDto.getId()), MONTH, response);
             request.getRequestDispatcher("index.jsp").forward(request,response);
-
         } else {
-
             //todo: redirect with error parameters
             request.setAttribute("Error","true");
             request.getRequestDispatcher("login.jsp").forward(request,response);
-
         }
     }
 }
