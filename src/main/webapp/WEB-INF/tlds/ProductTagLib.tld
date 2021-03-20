@@ -24,12 +24,6 @@
             <rtexprvalue>true</rtexprvalue>
             <type>java.lang.String</type>
         </attribute>
-        <!--        <attribute>-->
-        <!--            <name>productImage</name>-->
-        <!--            <required>true</required>-->
-        <!--            <rtexprvalue>true</rtexprvalue>-->
-        <!--            <type>java.awt.Image</type>-->
-        <!--        </attribute>-->
         <attribute>
             <name>productPrice</name>
             <required>true</required>
@@ -38,9 +32,27 @@
         </attribute>
         <attribute>
             <name>productStatus</name>
-            <required>true</required>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>gov.iti.jets.team5.models.enums.ProductStatus</type>
+        </attribute>
+        <attribute>
+            <name>productDescription</name>
+            <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>productRating</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>double</type>
+        </attribute>
+        <attribute>
+            <name>productCategory</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>gov.iti.jets.team5.models.enums.ProductCategory</type>
         </attribute>
     </tag>
 </taglib>
