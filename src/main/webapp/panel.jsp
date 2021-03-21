@@ -54,7 +54,15 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+        p{
+            color: #b0b435;
+        }
+        p:hover {
+            background-color: #777620;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -62,15 +70,16 @@
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-lg-8 col-md-8 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="offer-box-products">
-                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit">Please
-                        Enable Your Cookies to Continue</p>
-                    <img class="img-fluid" src="images/cookiess.jpg" alt=""/>
+                    <p style="text-align-all: center; height: 500px; font-size: xx-large; align-content: center; font-style: inherit">Manage Products</p>
                 </div>
             </div>
-            <div class="col-2"></div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="offer-box-products">
+                    <p style="font-size: xx-large; height: 500px; font-style: inherit">View Customers</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
