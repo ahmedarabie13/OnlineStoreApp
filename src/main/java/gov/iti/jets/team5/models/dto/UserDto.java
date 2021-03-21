@@ -1,5 +1,7 @@
 package gov.iti.jets.team5.models.dto;
 
+import java.util.Date;
+
 public class UserDto {
     private String userName;
     private String password;
@@ -7,6 +9,12 @@ public class UserDto {
     private String lastName;
     private String email;
     private String phone;
+    private String job;
+    private String dateOfBirth;
+    private String street;
+    private String City;
+
+
 
     public UserDto(String firstName, String lastName, String email, String phone, String password){
         this.firstName = firstName;
@@ -15,6 +23,8 @@ public class UserDto {
         this.phone = phone;
         this.password = password;
     }
+
+
 
     public UserDto(String userName, String password) {
         this.userName = userName;
@@ -70,6 +80,37 @@ public class UserDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
     }
 
     public String toString(){
