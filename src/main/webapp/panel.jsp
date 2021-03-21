@@ -55,10 +55,10 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        p{
+        .custom{
             color: #b0b435;
         }
-        p:hover {
+        .custom:hover {
             background-color: #777620;
             color: white;
         }
@@ -71,13 +71,13 @@
     <div class="container" align="center">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <p style="text-align-all: center; height: 500px; font-size: xx-large; align-content: center; font-style: inherit">Manage Products</p>
+                <div class="offer-box-products custom" style="height: 500px; padding: 200px">
+                    <p style="text-align-all: center; font-size: xx-large; align-content: center; font-style: inherit">Manage Products</p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <p style="font-size: xx-large; height: 500px; font-style: inherit">View Customers</p>
+                <div class="offer-box-products custom" style="height: 500px; padding: 200px">
+                    <p style="font-size: xx-large; font-style: inherit">View Customers</p>
                 </div>
             </div>
         </div>
