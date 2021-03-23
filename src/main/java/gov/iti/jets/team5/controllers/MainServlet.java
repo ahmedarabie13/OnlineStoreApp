@@ -19,8 +19,8 @@ public class MainServlet extends HttpServlet {
         LoginService loginService = new LoginServiceImpl();
         if (!(currentUserId.equals("") || currentUserId == null)) {
             if (loginService.isUserIdExists(Integer.parseInt(currentUserId))) {
-                if(getServletContext().getAttribute("currentUser")==null)
-                    request.setAttribute("currentUser", loginService.getCurrentUserCredentials(Integer.parseInt(currentUserId)));
+                if(request.getSession().getAttribute("currentUser")==null)
+                    request.getSession().setAttribute("currentUser", loginService.getCurrentUserCredentials(Integer.parseInt(currentUserId)));
             }
         }
         response.sendRedirect("index.jsp");

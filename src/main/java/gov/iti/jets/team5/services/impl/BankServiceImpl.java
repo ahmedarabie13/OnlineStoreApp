@@ -17,7 +17,7 @@ public class BankServiceImpl implements BankService {
         //todo: get the credit card Balance from db
         Double storedBalance = 1200.5;
         if(totalOrderPrice<=storedBalance){
-            //todo: update the price in db as the transaction done
+            //todo: update the balance in db as the transaction done
             Double newBalance = storedBalance-totalOrderPrice;
             return true;
         }

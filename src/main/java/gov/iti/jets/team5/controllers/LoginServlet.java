@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         userAuthDto.setPassword(request.getParameter("password"));
 
         if (loginService.isUserAuthed(userAuthDto)) {
-            request.getServletContext().setAttribute("currentUser", userAuthDto);
+            request.getSession().setAttribute("currentUser", userAuthDto);
             Cookies.addCookie("c_user", String.valueOf(userAuthDto.getId()), MONTH, response);
             request.getRequestDispatcher("index.jsp").forward(request,response);
         } else {

@@ -32,7 +32,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <c:choose>
 
-                    <c:when test="${applicationScope.currentUser==null}">
+                    <c:when test="${sessionScope.currentUser==null}">
                         <div class="login-box">
                             <a href="registration.jsp">
                                 <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">
@@ -46,7 +46,7 @@
                             </a>
                         </div>
                     </c:when>
-                    <c:when test="${applicationScope.currentUser != null}">
+                    <c:when test="${sessionScope.currentUser != null}">
                         <div class="login-box">
                             <a href="logout">
                                 <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign
@@ -141,13 +141,13 @@
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                     <c:choose>
 
-                        <c:when test="${applicationScope.currentUser!=null}">
+                        <c:when test="${sessionScope.currentUser!=null}">
                             <li class="side-menu"><a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
                                 <p>My Cart</p>
                             </a></li>
-                        </c:when><c:when test="${applicationScope.currentUser==null}">
+                        </c:when><c:when test="${sessionScope.currentUser==null}">
                             <li class="side"><a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge"></span>

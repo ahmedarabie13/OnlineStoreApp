@@ -34,4 +34,13 @@ metadata-complete= "false">
 		<url-pattern>/my-account.jsp</url-pattern>
 		<url-pattern>/wishlist.jsp</url-pattern>
 	</filter-mapping>
+	<filter>
+		<filter-name>PreventLogInAndRegisterFilter</filter-name>
+		<filter-class>gov.iti.jets.team5.utils.filters.PreventLogInAndRegisterFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PreventLogInAndRegisterFilter</filter-name>
+		<url-pattern>/login.jsp</url-pattern>
+		<url-pattern>/registration.jsp</url-pattern>
+	</filter-mapping>
 </web-app>
