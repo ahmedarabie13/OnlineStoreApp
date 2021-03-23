@@ -34,13 +34,12 @@ public class EditProfileServlet extends HttpServlet {
         Boolean isUpdated = editProfileService.updateUser(userDto);
 
         if(isUpdated){
-            out.print("Vaild");
+            out.print("Valid");
 
         } else {
 
             out.print("Not Vaild");
-          //  request.setAttribute("failedToUpdate","true");
-           // request.getRequestDispatcher("editprofile.jsp").forward(request,response);
+
         }
     }
 }

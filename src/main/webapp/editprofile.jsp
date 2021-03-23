@@ -56,7 +56,7 @@
     <script src="customValidations/editProfile.js"></script>
 </head>
 
-<body>
+<body onload="disable()">
 <jsp:include page="header.jsp"/>
 
 <!-- Start All Title Box -->
@@ -75,144 +75,183 @@
 </div>
 <!-- End All Title Box -->
 <section class="ftco-section">
-<div class="container">
-    <div class="row gutters">
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
-                            </div>
-                            <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
-                            <p></p>  <button class="btn btn-primary"><b>Upload</b></button>
+    <div class="container">
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                </div>
+                                <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>
+                                    <p></p>
+                                    <button class="btn btn-primary"><b>Upload</b></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+
+
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-right">
+                            <button onclick="enable()" type="button" class="btn btn-light" width="50%"><i
+                                    class="fa fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <form action="editProfile" method="post" id="edit-form">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary">Personal Details</h6>
+
+                            </div>
+
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                        <div class="form-group">
+                                            <label for="fn">First Name</label>
+                                            <input type="text" class="form-control" name="firstName"
+                                                   placeholder="Enter First name" id="fn" onblur="fnValidator()">
+                                            <span id="shortFnLength"
+                                                  style="display: none; font-size: small; color: red">3 Characters Minimum</span>
+                                            <span id="longFnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="ln">Last Name</label>
+                                            <input type="text" class="form-control" name="lastName"
+                                                   placeholder="Enter Last Name" id="ln" onblur="lnValidator()">
+                                            <span id="shortLnLength"
+                                                  style="display: none; font-size: small; color: red">3 Characters Minimum</span>
+                                            <span id="longLnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email"
+                                                   placeholder="Enter email ID" id="email" onblur="emailValidator()">
+                                            <span id="invalidEmail" style="display: none; font-size: small; color: red">Invalid Email Format</span>
+                                            <span id="emailExist" style="display: none; font-size: small; color: red">Email Already Registered</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="phoneField">Phone</label>
+                                            <input type="text" class="form-control" name="phone"
+                                                   placeholder="Enter phone number" id="phoneField"
+                                                   onblur="phoneValidator()">
+                                            <span id="invalidPhone" style="display: none; font-size: small; color: red">Must be 11 digits and being with 01</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="job">Job</label>
+                                            <input type="text" class="form-control" name="job" id="job"
+                                                   placeholder="Enter Your Job">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Birthday</label>
+                                            <input type="date" name="bod" id="dob" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="Street">Street</label>
+                                                <input type="name" name="Street" class="form-control" id="Street"
+                                                       placeholder="Enter Street">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="ciTy">City</label>
+                                                <input list="cities" id="ciTy" name="city" class="form-control" placeholder="Enter City"
+                                                       form="edit-form">
+                                                <datalist id="cities">
+                                                    <option value="Alexandria">Alexandria</option>
+                                                    <option value="Aswan">Aswan</option>
+                                                    <option value="Cairo">Cairo</option>
+                                                    <option value="Damietta">Damietta</option>
+                                                    <option value="Minya">Minya</option>
+                                                    <option value="Sharqia">Sharqia</option>
+                                                    <option value="Luxor">Luxor</option>
+                                                    <option value="Giza">Giza</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mt-3 mb-2 text-primary">Password</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="pass">New Password</label>
+                                                <input name="password" type="password" class="form-control" id="pass"
+                                                       placeholder="Enter New Password" onblur="passwordValidator()">
+                                                <span id="invalidPassword"
+                                                      style="display: none; font-size: small; color: red">Min 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character(@$!%*?&)</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="passConf">Confirm New Password</label>
+                                                <input type="password" class="form-control"
+                                                       placeholder="Confirm New Password"
+                                                       id="passConf" onblur="passwordConfirmation()">
+                                                <span id="invalidConf"
+                                                      style="display: none; font-size: small; color: red">Password Doesn't Match</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="text-right">
+
+                                                <span id="updated"
+                                                      style="display: none; font-size: small; color: green">Updated Successfully</span>
+                                                <span id="failed" style="display: none; font-size: small; color: red">Failed To Update </span>
+                                                <input type="button" class="btn btn-primary rounded submit"
+                                                       value="Update"
+                                                       onclick="updateProfile()">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-    <form action="editProfile" method="post" id="edit-form" onsubmit="return checkValidations()">
-    <div class="card h-100">
-        <div class="card-body">
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary">Personal Details</h6>
-                </div>
-
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                  <label for="fn">First Name</label>
-               <input type="text" class="form-control" name="firstName"  placeholder="Enter First name"  id="fn" onblur="fnValidator()">
-              <span id="shortFnLength" style="display: none; font-size: small; color: red">3 Characters Minimum</span>
-             <span id="longFnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
-             </div>
-
-                </div>
-
-
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="ln">Last Name</label>
-                        <input type="text" class="form-control" name="lastName"  placeholder="Enter Last Name" id="ln" onblur="lnValidator()">
-                        <span id="shortLnLength" style="display: none; font-size: small; color: red">3 Characters Minimum</span>
-                        <span id="longLnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
-                    </div>
-                </div>
-
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email"  placeholder="Enter email ID" id="email" onblur="emailValidator()">
-                        <span id="invalidEmail" style="display: none; font-size: small; color: red">Invalid Email Format</span>
-                        <span id="emailExist" style="display: none; font-size: small; color: red">Email Already Registered</span>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="phoneField">Phone</label>
-                        <input type="text" class="form-control" name="phone"  placeholder="Enter phone number" id="phoneField" onblur="phoneValidator()">
-                        <span id="invalidPhone" style="display: none; font-size: small; color: red">Must be 11 digits and being with 01</span>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="job">Job</label>
-                        <input type="text" class="form-control" name="job" id="job" placeholder="Enter Your Job">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Birthday</label>
-                        <input type="date" name="bod" id="dob" class="form-control" >
-                    </div>
-                </div>
-            </div>
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="Street">Street</label>
-                        <input type="name" name ="Street" class="form-control" id="Street" placeholder="Enter Street">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="ciTy">City</label>
-                        <input list="cities" id="ciTy" name="city" class="form-control" form="edit-form">
-                        <datalist id="cities">
-                            <option value="Alexandria">Alexandria</option>
-                            <option value="Aswan">Aswan</option>
-                            <option value="Cairo">Cairo</option>
-                            <option value="Damietta">Damietta</option>
-                            <option value="Minya">Minya</option>
-                            <option value="Sharqia">Sharqia</option>
-                            <option value="Luxor">Luxor</option>
-                            <option value="Giza">Giza</option>
-                            </datalist >
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="pass">New Password</label>
-                        <input name="password" type="text" class="form-control" id="pass" placeholder="Enter New Password" onblur="passwordValidator()">
-                        <span id="invalidPassword" style="display: none; font-size: small; color: red">Min 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character(@$!%*?&)</span>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="passConf">Confirm New Password</label>
-                        <input type="text" class="form-control" id="cPassword" placeholder="Confirm New Password" id="passConf" onblur="passwordConfirmation()">
-                        <span id="invalidConf" style="display: none; font-size: small; color: red">Password Doesn't Match</span>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="text-right" >
-
-                        <span id="updated" style="display: none; font-size: small; color: green">Updated Successfully</span>
-                        <input type="button" class="btn btn-primary rounded submit" value="Update" onclick="updateProfile()">
-
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
     </div>
-
-
-</div>
-
-</div>
-</div>
 
 
     </div>
