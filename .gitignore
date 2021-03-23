@@ -50,3 +50,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 credential
+
+# hibernate
+*.properties
+hibernate.cfg.xml

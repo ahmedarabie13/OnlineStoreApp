@@ -16,6 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <hibernate.version>6.0.0.Alpha2</hibernate.version>
     </properties>
 
     <dependencies>
@@ -51,12 +52,16 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.23</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.29.Final</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>webApp</finalName>
-        <pluginManagement>
+<!--        <pluginManagement>-->
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -116,7 +121,39 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.hibernate.tool</groupId>
+                    <artifactId>hibernate-tools-maven</artifactId>
+                    <version>${hibernate.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.hibernate.tool</groupId>
+                            <artifactId>hibernate-tools-orm</artifactId>
+                            <version>${hibernate.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>8.0.22</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <id>entity-generation</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>hbm2java</goal>
+                            </goals>
+                            <configuration>
+                                <ejb3>true</ejb3>
+                                <jdk5>true</jdk5>
+                                <packageName>dbEntities</packageName>
+                                <outputDirectory>${project.basedir}/src/main/java/gov/iti/jets/team5/models</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
-        </pluginManagement>
+<!--        </pluginManagement>-->
     </build>
 </project>
