@@ -18,6 +18,10 @@ import java.io.IOException;
 public class CheckoutServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("checkout.jsp").forward(request,response);
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //getting the services
         BankService bankService = new BankServiceImpl();
         ProductService productService = new ProductServiceImpl();
@@ -31,17 +35,17 @@ public class CheckoutServlet extends HttpServlet {
                         return (product.getProductPrice() * orderDto.getProducts().get(product));
                     }
             ).reduce(0.0, Double::sum);
-            bankService.withdraw(creditCardDto, totalOrderPrice);
-            productService.updateProductsAfterCheckout(orderDto);
+           if( bankService.withdraw(creditCardDto, totalOrderPrice)){
+
+               productService.updateProductsAfterCheckout(orderDto);
+           }else {
+
+           }
 
         } else {
             request.setAttribute("Error", "true");
             request.getRequestDispatcher("checkout.jsp").forward(request, response);
         }
-
-    }
-
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 

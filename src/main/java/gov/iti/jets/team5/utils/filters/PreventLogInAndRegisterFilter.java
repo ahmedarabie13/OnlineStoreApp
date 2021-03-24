@@ -12,7 +12,8 @@ public class PreventLogInAndRegisterFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         UserAuthDto currentUser = (UserAuthDto) ((HttpServletRequest) request).getSession().getAttribute("currentUser");
         if (currentUser != null) {
-            ((HttpServletResponse) response).sendRedirect("index.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+//            ((HttpServletResponse) response).sendRedirect("index.jsp");
             return;
         } else {
             chain.doFilter(request, response);

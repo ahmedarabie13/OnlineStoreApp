@@ -29,10 +29,10 @@ metadata-complete= "false">
 	</filter>
 	<filter-mapping>
 		<filter-name>LoggedInFilter</filter-name>
-		<url-pattern>/cart.jsp</url-pattern>
-		<url-pattern>/checkout.jsp</url-pattern>
-		<url-pattern>/my-account.jsp</url-pattern>
-		<url-pattern>/wishlist.jsp</url-pattern>
+		<url-pattern>/cart</url-pattern>
+		<url-pattern>/checkout</url-pattern>
+		<url-pattern>/myAccount</url-pattern>
+		<url-pattern>/wishlist</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>PreventLogInAndRegisterFilter</filter-name>
@@ -40,7 +40,7 @@ metadata-complete= "false">
 	</filter>
 	<filter-mapping>
 		<filter-name>PreventLogInAndRegisterFilter</filter-name>
-		<url-pattern>/login.jsp</url-pattern>
-		<url-pattern>/registration.jsp</url-pattern>
+		<url-pattern>/login</url-pattern>
+		<url-pattern>/register</url-pattern>
 	</filter-mapping>
 </web-app>

@@ -13,7 +13,6 @@ import java.io.IOException;
 public class LogOutServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("logged out babe");
         request.getSession().invalidate();
         request.getSession().setAttribute("currentUser",null);
         Cookies.addCookie("c_user",null,0,response);
