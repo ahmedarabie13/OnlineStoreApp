@@ -3,6 +3,7 @@ package gov.iti.jets.team5.services.impl;
 import gov.iti.jets.team5.models.dto.UserDto;
 import gov.iti.jets.team5.repositories.UserRepository;
 import gov.iti.jets.team5.services.RegisterService;
+import jakarta.jws.soap.SOAPBinding;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -13,10 +14,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     private static RegisterServiceImpl registerServiceInstance = null;
 
-    //todo maybe moved to a class that generates sessions for the services classes
-    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-    SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    Session session = sessionFactory.openSession();
+    UserRepository us = UserRepository.getInstance();
 
     public static RegisterService getInstance() {
         System.out.println("inside3 get instance");
@@ -37,24 +35,23 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public boolean isRegistered(String email) {
-        //boolean isRegistered = UserRepository.isRegistered(email, session);
+        boolean isRegistered = us.isRegistered(email);
         //todo real db check
-        if (email.equals("maha@gmail.com")) {
-            return true;
-        } else {
-            return false;
-        }
-//        if (isRegistered) {
+//        if (email.equals("maha@gmail.com")) {
 //            return true;
 //        } else {
 //            return false;
 //        }
+        if (isRegistered) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean registerUser(UserDto userDto) {
-        //todo go and register the user in the db
-        //todo either to send the object itself or the attributes in it? according to hibernate
-        return true;
+        boolean userIsRegistered = us.registerUser(userDto);
+        return userIsRegistered;
     }
 }
