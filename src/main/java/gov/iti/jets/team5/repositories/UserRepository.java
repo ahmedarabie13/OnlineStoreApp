@@ -36,17 +36,12 @@ public class UserRepository {
                 .setParameter("email", enteredEmail);
         List<Integer> rows = q.list();
         System.out.println("rows.get(0): " + rows.get(0));
-//        boolean result = (rows.get(0) == 0) ? false : true;
+        boolean result = (Integer.parseInt(String.valueOf(rows.get(0))) == 0) ? false : true;
         System.out.println("BOO");
         session.close();
-        if(rows.get(0) == 0){
-            System.out.println("BOO");
-            return false;
-        } else {
-            System.out.println("WOO");
-            return true;
-        }
-//        return result;
+        System.out.println("WOO");
+        System.out.println(result + " The result");
+        return result;
     }
 
     public boolean registerUser(UserDto userDto){
@@ -64,9 +59,11 @@ public class UserRepository {
             userToRegister.setUserRole("user");
             session.persist(userToRegister);
             session.getTransaction().commit();
+            session.beginTransaction();
             PotentialOrders userActiveCart = new PotentialOrders();
             userActiveCart.setUserData(userToRegister);
             userActiveCart.setActive(true);
+            session.persist(userActiveCart);
             session.getTransaction().commit();
             session.close();
             return true;
