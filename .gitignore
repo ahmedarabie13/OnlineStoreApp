@@ -54,3 +54,4 @@ credential
 # hibernate
 *.properties
 hibernate.cfg.xml
+persistence.xml

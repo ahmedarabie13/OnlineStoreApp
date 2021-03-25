@@ -2,19 +2,27 @@ package gov.iti.jets.team5.repositories;
 
 import gov.iti.jets.team5.models.dbEntities.PotentialOrders;
 import gov.iti.jets.team5.models.dto.UserDto;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.query.Query;
+//import org.hibernate.Session;
+//import org.hibernate.SessionFactory;
+//import org.hibernate.boot.MetadataSources;
+//import org.hibernate.boot.registry.StandardServiceRegistry;
+//import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+//import org.hibernate.query.Query;
 import gov.iti.jets.team5.models.dbEntities.UserData;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.List;
 
 public class UserRepository {
 
     private static UserRepository userRepositoryInstance = null;
+
+    //todo make EntityManagerFactory singleton
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpaTest");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static UserRepository getInstance() {
         if (userRepositoryInstance == null) {
@@ -28,27 +36,23 @@ public class UserRepository {
     }
 
     public boolean isRegistered(String enteredEmail){
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-        SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Query q = session.createQuery("select count(*) from UserData u where u.email = :email")
+        //entityManager.getTransaction().begin();
+        Query q = entityManager.createQuery("select count(*) from UserData u where u.email = :email")
                 .setParameter("email", enteredEmail);
-        List<Integer> rows = q.list();
+        List<Integer> rows = q.getResultList();
         System.out.println("rows.get(0): " + rows.get(0));
         boolean result = (Integer.parseInt(String.valueOf(rows.get(0))) == 0) ? false : true;
-        System.out.println("BOO");
-        session.close();
-        System.out.println("WOO");
+        //entityManager.getTransaction().commit();
+        //System.out.println("BOO");
+        //entityManager.close();
+        //System.out.println("WOO");
         System.out.println(result + " The result");
         return result;
+
     }
 
     public boolean registerUser(UserDto userDto){
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-        SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+        entityManager.getTransaction().begin();
         try {
             UserData userToRegister = new UserData();
             userToRegister.setFirstName(userDto.getFirstName());
@@ -57,15 +61,14 @@ public class UserRepository {
             userToRegister.setPhone(userDto.getPhone());
             userToRegister.setPassword(userDto.getPassword());
             userToRegister.setUserRole("user");
-            session.persist(userToRegister);
-            session.getTransaction().commit();
-            session.beginTransaction();
+            entityManager.persist(userToRegister);
+            entityManager.getTransaction().commit();
+            entityManager.getTransaction().begin();
             PotentialOrders userActiveCart = new PotentialOrders();
             userActiveCart.setUserData(userToRegister);
             userActiveCart.setActive(true);
-            session.persist(userActiveCart);
-            session.getTransaction().commit();
-            session.close();
+            entityManager.persist(userActiveCart);
+            entityManager.getTransaction().commit();
             return true;
         } catch (Exception e){
             e.printStackTrace();
