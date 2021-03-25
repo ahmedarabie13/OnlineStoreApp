@@ -32,21 +32,21 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <c:choose>
 
-                    <c:when test="${applicationScope.currentUser==null}">
+                    <c:when test="${sessionScope.currentUser==null}">
                         <div class="login-box">
-                            <a href="registration.jsp">
+                            <a href="register">
                                 <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">
                                     Register
                                 </button>
                             </a>
-                            <a href="login.jsp">
+                            <a href="login">
                                 <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign
                                     In
                                 </button>
                             </a>
                         </div>
                     </c:when>
-                    <c:when test="${applicationScope.currentUser != null}">
+                    <c:when test="${sessionScope.currentUser != null}">
                         <div class="login-box">
                             <a href="logout">
                                 <button style="background-color: #b0b435; color: whitesmoke; border-radius: 5px">Sign
@@ -117,20 +117,20 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item"><a class="nav-link" href="main">Home</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="about.jsp">About Us</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="about">About Us</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
                             <li><a href="shop">Sidebar Shop</a></li>
-                            <li><a href="shop-detail.jsp">Shop Detail</a></li>
-                            <li><a href="cart.jsp">Cart</a></li>
-                            <li><a href="checkout.jsp">Checkout</a></li>
-                            <li><a href="my-account.jsp">My Account</a></li>
-                            <li><a href="wishlist.jsp">Wishlist</a></li>
+                            <li><a href="shopDetail">Shop Detail</a></li>
+                            <li><a href="cart">Cart</a></li>
+                            <li><a href="checkout">Checkout</a></li>
+                            <li><a href="myAccount">My Account</a></li>
+                            <li><a href="wishlist">Wishlist</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.jsp">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.jsp">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactUs">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -141,13 +141,13 @@
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                     <c:choose>
 
-                        <c:when test="${applicationScope.currentUser!=null}">
+                        <c:when test="${sessionScope.currentUser!=null}">
                             <li class="side-menu"><a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
                                 <p>My Cart</p>
                             </a></li>
-                        </c:when><c:when test="${applicationScope.currentUser==null}">
+                        </c:when><c:when test="${sessionScope.currentUser==null}">
                             <li class="side"><a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge"></span>

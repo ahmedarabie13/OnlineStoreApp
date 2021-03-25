@@ -36,4 +36,8 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("registration.jsp").forward(request,response);
         }
     }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("registration.jsp").forward(request,response);
+    }
 }
