@@ -34,31 +34,38 @@ public class ShopControllerServlet extends HttpServlet {
         }
     }
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        String pageNumber = request.getParameter("page");
-//
-//        if (pageNumber != null) {
-//            System.out.println(pageNumber);
-//            int startIndex = (int) Double.parseDouble(pageNumber);
-//
-//            request.setAttribute("products", products.subList(startIndex * 10 , startIndex * 10 + 10));
-//        } else {
-//            request.setAttribute("products", products.subList(0, 10));
-//        }
-//
-//        request.setAttribute("totalCount", productsCount);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String pageNumberStr = request.getParameter("page");
+
         ProductService productService = ProductServiceImpl.getInstance();
-        List<ProductDto> productsList = productService.fetchProducts();
-        System.out.println(productsList.size() + " <--------productsss");
+        List<ProductDto> productsList;
+
+        int pageNumber = 1;
+        if (pageNumberStr != null) {
+            System.out.println(pageNumberStr);
+            pageNumber = (int) Double.parseDouble(pageNumberStr);
+
+            productsList = productService.fetchProducts(pageNumber);
+            System.out.println(productsList.size() + " <--------productsss");
+        } else {
+            productsList = productService.fetchProducts(1);
+        }
+
         request.setAttribute("products", productsList);
+        request.setAttribute("totalCount", productsCount);
+        request.setAttribute("currentPage", (float) pageNumber);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
         requestDispatcher.forward(request, response);
     }
+
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        ProductService productService = ProductServiceImpl.getInstance();
+//        List<ProductDto> productsList = productService.fetchProducts();
+//        System.out.println(productsList.size() + " <--------productsss");
+//        request.setAttribute("products", productsList);
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
+//        requestDispatcher.forward(request, response);
+//    }
 }

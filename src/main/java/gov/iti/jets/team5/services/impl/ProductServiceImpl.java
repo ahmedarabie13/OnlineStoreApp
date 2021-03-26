@@ -45,8 +45,13 @@ public class ProductServiceImpl implements ProductService {
         return true;
     }
 
+
+    //    @Override
+//    public List<ProductDto> fetchProducts() {
+//        return ps.fetchProducts();
+//    }
     @Override
-    public List<ProductDto> fetchProducts() {
-        return ps.fetchProducts();
+    public List<ProductDto> fetchProducts(int pageNumber) {
+        return ps.fetchProducts(pageNumber);
     }
 }

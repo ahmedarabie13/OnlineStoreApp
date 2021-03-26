@@ -9,7 +9,8 @@ import java.util.List;
 public interface ProductService {
 //    isOrder
     Boolean updateProductsAfterCheckout(OrderDto orderDto);
-    List<ProductDto> fetchProducts();
+//    List<ProductDto> fetchProducts();
 
+    List<ProductDto> fetchProducts(int pageNumber);
 }
 

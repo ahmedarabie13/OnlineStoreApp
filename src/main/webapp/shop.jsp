@@ -354,9 +354,25 @@
     <div class="col-lg-12">
         <div class="special-menu text-center">
             <div class="button-group">
-                <a class="submit-button btn hvr-hover" href="shop">1</a>
+                <c:choose>
+                    <c:when test="${requestScope.currentPage == 1.0}">
+                        <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>
+                    </c:when>
+                    <c:when test="${requestScope.currentPage != 1.0}">
+                        <a class="submit-button btn hvr-hover" href="shop">1</a>
+                    </c:when>
+                </c:choose>
                 <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">
-                    <a class="submit-button btn hvr-hover" href="shop?page=${pageNumber/10}">${pageNumber/10}</a>
+                    <c:choose>
+                        <c:when test="${requestScope.currentPage == (pageNumber / 10)}">
+                            <a class="submit-button btn hvr-hover" style="background-color: #856404;"
+                               href="shop?page=${pageNumber/10}">${pageNumber/10}</a>
+                        </c:when>
+                        <c:when test="${requestScope.currentPage != (pageNumber / 10)}">
+                            <a class="submit-button btn hvr-hover"
+                               href="shop?page=${pageNumber/10}">${pageNumber/10}</a>
+                        </c:when>
+                    </c:choose>
                 </c:forEach>
             </div>
         </div>

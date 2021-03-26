@@ -29,10 +29,32 @@ public class ProductRepository {
         return productRepositoryInstance;
     }
 
-    public List<ProductDto> fetchProducts(){
-        Query q = entityManager.createQuery("from Product");
-        List<Product> products = q.getResultList();
+//    public List<ProductDto> fetchProducts(){
+//        Query q = entityManager.createQuery("from Product");
+//        List<Product> products = q.getResultList();
+//        List<ProductDto> theProducts = new ArrayList<>();
+//        for (Product p : products) {
+//            ProductDto productDto = new ProductDto();
+//            productDto.setProductID(String.valueOf(p.getId()));
+//            productDto.setProductName(p.getProductName());
+//            productDto.setProductImageURL("images/products/MeatlessPieces.png");
+//            productDto.setProductPrice(p.getPrice().doubleValue());
+//            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
+//            theProducts.add(productDto);
+//        }
+//        System.out.println("Returned Product List Size: " + products.size());
+//        return theProducts;
+//    }
+    public List<ProductDto> fetchProducts(int pageNumber){
+        Query query = entityManager.createQuery("from Product");
+
+        int pageSize = 10;
+        query.setFirstResult((pageNumber - 1) * pageSize);
+        query.setMaxResults(pageSize);
+
+        List<Product> products = query.getResultList();
         List<ProductDto> theProducts = new ArrayList<>();
+
         for (Product p : products) {
             ProductDto productDto = new ProductDto();
             productDto.setProductID(String.valueOf(p.getId()));
