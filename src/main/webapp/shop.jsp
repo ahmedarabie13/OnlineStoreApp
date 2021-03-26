@@ -65,7 +65,7 @@
             <div class="col-lg-12">
                 <h2>Shop</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
+                    <li class="breadcrumb-item"><a href="main">Home</a></li>
                     <li class="breadcrumb-item active">Shop</li>
                 </ul>
             </div>

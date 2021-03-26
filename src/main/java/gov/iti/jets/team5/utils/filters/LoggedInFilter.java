@@ -17,7 +17,7 @@ public class LoggedInFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("entering the LoggedInFilter filter (1)");
-        UserAuthDto currentUser = (UserAuthDto) (request).getServletContext().getAttribute("currentUser");
+        UserAuthDto currentUser = (UserAuthDto) ((HttpServletRequest)request).getSession().getAttribute("currentUser");
         if(currentUser == null){
             System.out.println("no userAuth object on the session scope hence not logged in");
             ((HttpServletResponse) response).sendRedirect("login.jsp");

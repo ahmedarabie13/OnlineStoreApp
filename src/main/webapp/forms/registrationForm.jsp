@@ -104,7 +104,7 @@
                         </c:if>
                         <div class="form-group mt-4">
                             <div class="w-100 text-center">
-                                <p class="mb-1">Already have an account? <a href="login.jsp">Sign In</a></p>
+                                <p class="mb-1">Already have an account? <a href="login">Sign In</a></p>
                                 <%--                                <p><a href="#">Forgot Password</a></p>--%>
                             </div>
                         </div>

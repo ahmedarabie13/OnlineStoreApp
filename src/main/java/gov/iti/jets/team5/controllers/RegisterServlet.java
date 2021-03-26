@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
         Boolean userRegistered = registerService.registerUser(userDto);
 
         if(userRegistered){
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
             //System.out.println("Inside the servlet");
         } else {
             //System.out.println("Here!!!");
@@ -35,5 +35,9 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("RegistrationFailed","true");
             request.getRequestDispatcher("registration.jsp").forward(request,response);
         }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("registration.jsp").forward(request,response);
     }
 }
