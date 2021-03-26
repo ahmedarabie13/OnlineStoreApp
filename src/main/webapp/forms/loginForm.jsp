@@ -37,16 +37,19 @@
 <%--                            </p>--%>
 <%--                        </div>--%>
                     </div>
-                    <form action="login" class="login-form" method="post">
+                    <form action="login" class="login-form" method="post" onsubmit="return checkLogValidations()">
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span
                                     class="fa fa-envelope"></span></div>
-                            <input type="text" name="email" style="padding-left: 60px" class="form-control rounded-left" placeholder="Email" required>
+                            <input type="text" name="email" style="padding-left: 60px" class="form-control rounded-left" placeholder="Email" id="logEmail" onblur="loginEmailVal()">
+                            <span id="blankEmail" style="display: none; font-size: small; color: red">Please Enter Your Email</span>
+                            <span id="invalidEmail" style="display: none; font-size: small; color: red">Invalid Email Format</span>
                         </div>
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span
                                     class="fa fa-lock"></span></div>
-                            <input type="password" name="password" style="padding-left: 60px" class="form-control rounded-left" placeholder="Password" required>
+                            <input type="password" name="password" style="padding-left: 60px" class="form-control rounded-left" placeholder="Password" id="logPass" onblur="loginPassVal()">
+                            <span id="blankPass" style="display: none; font-size: small; color: red">Please Enter Your Password</span>
                         </div>
                         <div class="form-group d-flex align-items-center">
                             <div class="w-100">

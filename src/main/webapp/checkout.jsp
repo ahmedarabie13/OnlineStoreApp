@@ -50,6 +50,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        .customPadding{
+            padding-left: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -167,22 +172,14 @@
                             <input type="text" class="form-control" id="address2" placeholder="">
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-5 mb-3">
-                                <label for="country">Country *</label>
-                                <select class="wide w-100" id="country">
-                                    <option value="Choose..." data-display="Select">Choose...</option>
-                                    <option value="United States">United States</option>
-                                </select>
-                                <div class="invalid-feedback"> Please select a valid country.</div>
+                            <hr class="mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="same-address">
+                                <label class="custom-control-label customPadding" for="same-address">Shipping address is the same as my billing address</label>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="state">State *</label>
-                                <select class="wide w-100" id="state">
-                                    <option data-display="Select">Choose...</option>
-                                    <option>California</option>
-                                </select>
-                                <div class="invalid-feedback"> Please provide a valid state.</div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="save-info">
+                                <label class="custom-control-label customPadding" for="save-info">Save this information for next time</label>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="zip">Zip *</label>
@@ -191,25 +188,21 @@
                             </div>
                         </div>
 
-                        <hr class="mb-4">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="same-address">
-                            <label class="custom-control-label" for="same-address">Shipping address is the same as my
-                                billing address</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="save-info">
-                            <label class="custom-control-label" for="save-info">Save this information for next
-                                time</label>
-                        </div>
-
-                        <hr class="mb-4">
-                        <div class="title"><span>Payment</span></div>
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
-                                       checked required>
-                                <label class="custom-control-label" for="credit">Credit card</label>
+                            <hr class="mb-4">
+                            <div class="title"> <span>Payment</span> </div>
+                            <div class="d-block my-3">
+                                <div class="custom-control custom-radio">
+                                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                    <label class="custom-control-label customPadding" for="credit">Credit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                    <label class="custom-control-label customPadding" for="debit">Debit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                    <label class="custom-control-label customPadding" for="paypal">Paypal</label>
+                                </div>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
@@ -263,13 +256,27 @@
                         <hr class="mb-1">
                     </form>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-6 mb-3">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="shipping-method-box">
-                            <div class="title-left">
-                                <h3>Shipping Method</h3>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="shipping-method-box">
+                                <div class="title-left">
+                                    <h3>Shipping Method</h3>
+                                </div>
+                                                                <!-- maybe only charged delivery?? -->
+                                <div class="mb-4">
+                                    <div class="custom-control custom-radio">
+                                        <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
+                                        <label class="custom-control-label customPadding" for="shippingOption1">Standard Delivery</label> <span class="float-right font-weight-bold">FREE</span> </div>
+                                    <div class="ml-4 mb-2 small">(3-7 business days)</div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
+                                        <label class="custom-control-label customPadding" for="shippingOption2">Express Delivery</label> <span class="float-right font-weight-bold">$10.00</span> </div>
+                                    <div class="ml-4 mb-2 small">(2-4 business days)</div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
+                                        <label class="custom-control-label customPadding" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">$20.00</span> </div>
+                                </div>
                             </div>
                             <!-- maybe only charged delivery?? -->
                             <div class="mb-4">
