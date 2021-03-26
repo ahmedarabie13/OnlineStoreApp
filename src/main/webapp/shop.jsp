@@ -354,7 +354,7 @@
     <div class="col-lg-12">
         <div class="special-menu text-center">
             <div class="button-group">
-                <a class="submit-button btn hvr-hover" href="shop">1.0</a>
+                <a class="submit-button btn hvr-hover" href="shop">1</a>
                 <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">
                     <a class="submit-button btn hvr-hover" href="shop?page=${pageNumber/10}">${pageNumber/10}</a>
                 </c:forEach>

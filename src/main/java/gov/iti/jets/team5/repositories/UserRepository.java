@@ -9,6 +9,7 @@ import gov.iti.jets.team5.models.dto.UserDto;
 //import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 //import org.hibernate.query.Query;
 import gov.iti.jets.team5.models.dbEntities.UserData;
+import gov.iti.jets.team5.utils.factory.AppSessionFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,8 +21,7 @@ public class UserRepository {
 
     private static UserRepository userRepositoryInstance = null;
 
-    //todo make EntityManagerFactory singleton
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpaTest");
+    EntityManagerFactory entityManagerFactory = AppSessionFactory.getInstance();
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static UserRepository getInstance() {

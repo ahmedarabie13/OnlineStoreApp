@@ -2,6 +2,8 @@ package gov.iti.jets.team5.models.dbEntities;
 // Generated 24 Mar 2021, 21:32:50 by Hibernate Tools 6.0.0.Alpha2
 
 
+import gov.iti.jets.team5.models.enums.ProductStatus;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +27,7 @@ public class Product implements java.io.Serializable {
     private BigDecimal price;
     private String sellerName;
     private Integer sold;
+    private String status;
     private Set<Category> categories = new HashSet<Category>(0);
     private Set<CartItems> cartItemses = new HashSet<CartItems>(0);
 
@@ -157,7 +160,14 @@ public class Product implements java.io.Serializable {
         this.cartItemses = cartItemses;
     }
 
+    @Column(name = "productStatus", nullable = false, length = 20)
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String  status) {
+        this.status = status;
+    }
 }
 
 

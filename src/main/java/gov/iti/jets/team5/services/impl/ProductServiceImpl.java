@@ -2,11 +2,31 @@ package gov.iti.jets.team5.services.impl;
 
 import gov.iti.jets.team5.dao.ProductDao;
 import gov.iti.jets.team5.dao.daoImpl.ProductDaoImpl;
+import gov.iti.jets.team5.models.dbEntities.Product;
 import gov.iti.jets.team5.models.dto.OrderDto;
-import gov.iti.jets.team5.models.dto.UserAuthDto;
+import gov.iti.jets.team5.models.dto.ProductDto;
+import gov.iti.jets.team5.repositories.ProductRepository;
 import gov.iti.jets.team5.services.ProductService;
+import gov.iti.jets.team5.services.RegisterService;
+
+import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
+
+    private static ProductServiceImpl productServiceInstance = null;
+
+    ProductRepository ps = ProductRepository.getInstance();
+
+    public static ProductService getInstance() {
+        if (productServiceInstance == null) {
+            synchronized (ProductServiceImpl.class) {
+                if (productServiceInstance == null) {
+                    productServiceInstance = new ProductServiceImpl();
+                }
+            }
+        }
+        return productServiceInstance;
+    }
 
     @Override
     public Boolean updateProductsAfterCheckout(OrderDto orderDto) {
@@ -23,5 +43,10 @@ public class ProductServiceImpl implements ProductService {
         });
 
         return true;
+    }
+
+    @Override
+    public List<ProductDto> fetchProducts() {
+        return ps.fetchProducts();
     }
 }

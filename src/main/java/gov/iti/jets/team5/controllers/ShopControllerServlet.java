@@ -1,7 +1,10 @@
 package gov.iti.jets.team5.controllers;
 
+import gov.iti.jets.team5.models.dbEntities.Product;
 import gov.iti.jets.team5.models.dto.ProductDto;
 import gov.iti.jets.team5.models.enums.ProductStatus;
+import gov.iti.jets.team5.services.ProductService;
+import gov.iti.jets.team5.services.impl.ProductServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,20 +34,30 @@ public class ShopControllerServlet extends HttpServlet {
         }
     }
 
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        String pageNumber = request.getParameter("page");
+//
+//        if (pageNumber != null) {
+//            System.out.println(pageNumber);
+//            int startIndex = (int) Double.parseDouble(pageNumber);
+//
+//            request.setAttribute("products", products.subList(startIndex * 10 , startIndex * 10 + 10));
+//        } else {
+//            request.setAttribute("products", products.subList(0, 10));
+//        }
+//
+//        request.setAttribute("totalCount", productsCount);
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
+//        requestDispatcher.forward(request, response);
+//    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String pageNumber = request.getParameter("page");
-
-        if (pageNumber != null) {
-            System.out.println(pageNumber);
-            int startIndex = (int) Double.parseDouble(pageNumber);
-
-            request.setAttribute("products", products.subList(startIndex * 10 , startIndex * 10 + 10));
-        } else {
-            request.setAttribute("products", products.subList(0, 10));
-        }
-
-        request.setAttribute("totalCount", productsCount);
+        ProductService productService = ProductServiceImpl.getInstance();
+        List<ProductDto> productsList = productService.fetchProducts();
+        System.out.println(productsList.size() + " <--------productsss");
+        request.setAttribute("products", productsList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
         requestDispatcher.forward(request, response);
     }
