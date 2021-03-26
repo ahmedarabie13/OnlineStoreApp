@@ -62,12 +62,15 @@
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="offer-box-products">
-                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit">Please Enable Your Cookies to Continue</p>
+                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit">Please
+                        Enable Your Cookies to Continue</p>
                     <img class="img-fluid" src="images/cookiess.jpg" alt=""/>
                 </div>
             </div>
+            <div class="col-2"></div>
         </div>
     </div>
 </div>

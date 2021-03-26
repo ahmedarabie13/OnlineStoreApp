@@ -51,4 +51,10 @@ public class ProductDaoImpl implements ProductDao {
     public boolean deleteProduct(ProductEntity productEntity) {
         return false;
     }
+
+//    @Override
+//    public Integer getProductQuantity(ProductEntity productEntity) {
+//        return null;
+//    }
+
 }

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoggedInFilter implements Filter {
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.println("LoggedInFilter Filter is initialized");
@@ -16,8 +17,8 @@ public class LoggedInFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("entering the LoggedInFilter filter (1)");
-        UserAuthDto userAuth = (UserAuthDto) ((HttpServletRequest) request).getSession().getAttribute("userAuth");
-        if(userAuth == null){
+        UserAuthDto currentUser = (UserAuthDto) ((HttpServletRequest)request).getSession().getAttribute("currentUser");
+        if(currentUser == null){
             System.out.println("no userAuth object on the session scope hence not logged in");
             ((HttpServletResponse) response).sendRedirect("login.jsp");
             return;

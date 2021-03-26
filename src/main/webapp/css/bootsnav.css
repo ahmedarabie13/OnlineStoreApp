@@ -339,13 +339,13 @@ ul.cart-list > li.total > span{
 
 /* Side Menu
 =================================*/
-body{
-    -webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
+/*body{*/
+/*    -webkit-transition: all 0.3s ease-in-out;*/
+/*	-moz-transition: all 0.3s ease-in-out;*/
+/*	-o-transition: all 0.3s ease-in-out;*/
+/*	-ms-transition: all 0.3s ease-in-out;*/
+/*	transition: all 0.3s ease-in-out;*/
+/*}*/
 
 body.on-side{
     margin-left: -280px;

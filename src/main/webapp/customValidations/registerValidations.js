@@ -56,10 +56,12 @@ function emailValidator(){
         function emailCallBack(responseJson, status, xhr){
             if(status === "success" && responseJson === "false"){
                 console.log("email doesn't exist")
+                $("#invalidEmail").hide();
                 $("#emailExist").hide();
                 return
             } else {
                 console.log("email does exist")
+                $("#invalidEmail").hide();
                 $("#emailExist").show();
                 return
             }
@@ -82,6 +84,7 @@ function emailValidator(){
     else {
         console.log("invalid email format");
         $("#invalidEmail").show();
+        $("#emailExist").hide();
         return;
     }
 }
@@ -144,4 +147,44 @@ function checkValidations(){
             return false;
         }
     //});
+}
+
+function loginEmailVal(){
+    let eRegex =/(^[A-Za-z0-9._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,6}$)| [ \t\n]*/
+    let logEmail = $("#logEmail").val()
+    if(logEmail === ""){
+        console.log("Empty email field")
+        $("#blankEmail").show();
+        $("#invalidEmail").hide();
+        return
+    } else if(!logEmail.match(eRegex)){
+        console.log("Wrong email format")
+        $("#invalidEmail").show();
+        $("#blankEmail").hide();
+        return;
+    } else {
+        $("#invalidEmail").hide();
+        $("#blankEmail").hide();
+        return;
+    }
+}
+
+function loginPassVal(){
+    let logPass = $("#logPass").val();
+    if(logPass === ""){
+        console.log("Empty password field")
+        $("#blankPass").show();
+    } else {
+        $("#blankPass").hide();
+    }
+}
+
+function checkLogValidations(){
+    var validationFailed = false;
+    if($("#invalidEmail").is(":visible") || $("#blankPass").is(":visible") || $("#blankEmail").is(":visible")){
+        validationFailed = true;
+    }
+    if (validationFailed) {
+        return false;
+    }
 }
