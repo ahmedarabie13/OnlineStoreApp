@@ -50,6 +50,11 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        .customPadding{
+            padding-left: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -190,11 +195,11 @@
                             <hr class="mb-4">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="same-address">
-                                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+                                <label class="custom-control-label customPadding" for="same-address">Shipping address is the same as my billing address</label>
                             </div>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="save-info">
-                                <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                                <label class="custom-control-label customPadding" for="save-info">Save this information for next time</label>
                             </div>
 
                             <hr class="mb-4">
@@ -202,15 +207,15 @@
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
                                     <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="credit">Credit card</label>
+                                    <label class="custom-control-label customPadding" for="credit">Credit card</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="debit">Debit card</label>
+                                    <label class="custom-control-label customPadding" for="debit">Debit card</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                    <label class="custom-control-label customPadding" for="paypal">Paypal</label>
                                 </div>
                             </div>
 
@@ -265,15 +270,15 @@
                                 <div class="mb-4">
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
-                                        <label class="custom-control-label" for="shippingOption1">Standard Delivery</label> <span class="float-right font-weight-bold">FREE</span> </div>
+                                        <label class="custom-control-label customPadding" for="shippingOption1">Standard Delivery</label> <span class="float-right font-weight-bold">FREE</span> </div>
                                     <div class="ml-4 mb-2 small">(3-7 business days)</div>
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption2">Express Delivery</label> <span class="float-right font-weight-bold">$10.00</span> </div>
+                                        <label class="custom-control-label customPadding" for="shippingOption2">Express Delivery</label> <span class="float-right font-weight-bold">$10.00</span> </div>
                                     <div class="ml-4 mb-2 small">(2-4 business days)</div>
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">$20.00</span> </div>
+                                        <label class="custom-control-label customPadding" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">$20.00</span> </div>
                                 </div>
                             </div>
                         </div>
