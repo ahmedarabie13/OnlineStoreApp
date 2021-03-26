@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
         Boolean userRegistered = registerService.registerUser(userDto);
 
         if(userRegistered){
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
             //System.out.println("Inside the servlet");
         } else {
             //System.out.println("Here!!!");

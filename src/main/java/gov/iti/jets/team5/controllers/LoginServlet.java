@@ -16,6 +16,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     private static final int MONTH = 60 * 60 * 24 * 30;
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LoginService loginService = LoginServiceImpl.getInstance();
         UserAuthDto userAuthDto = new UserAuthDto();
@@ -25,14 +26,21 @@ public class LoginServlet extends HttpServlet {
         if (loginService.isUserAuthed(userAuthDto)) {
             request.getSession().setAttribute("currentUser", userAuthDto);
             Cookies.addCookie("c_user", String.valueOf(userAuthDto.getId()), MONTH, response);
-            request.getRequestDispatcher("index.jsp").forward(request,response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+//            response.sendRedirect("main");
         } else {
             //todo: redirect with error parameters
-            request.setAttribute("Error","true");
-            request.getRequestDispatcher("login.jsp").forward(request,response);
+//            request.setAttribute("Error","true");
+//            request.getRequestDispatcher("login.jsp").forward(request,response);
+            response.sendRedirect("login?Error=true");
         }
     }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request,response);
+        if (request.getParameter("Error") != null) {
+            request.setAttribute("Error","true");
+//            request.getRequestDispatcher("login.jsp").forward(request,response);
+        }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }
