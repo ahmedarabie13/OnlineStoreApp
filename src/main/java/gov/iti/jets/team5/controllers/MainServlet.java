@@ -23,8 +23,7 @@ public class MainServlet extends HttpServlet {
                     request.getSession().setAttribute("currentUser", loginService.getCurrentUserCredentials(Integer.parseInt(currentUserId)));
             }
         }
-        request.getRequestDispatcher("index.jsp").forward(request,response);
-//        response.sendRedirect("index.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

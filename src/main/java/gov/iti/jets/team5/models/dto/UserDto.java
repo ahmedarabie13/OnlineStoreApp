@@ -13,6 +13,7 @@ public class UserDto {
     private String dateOfBirth;
     private String street;
     private String City;
+    private String userRole;
 
 
 
@@ -115,5 +116,13 @@ public class UserDto {
 
     public String toString(){
         return ("FirstName: " + firstName + ", LastName: " + lastName + ", Email: " + email + ", phone: " + phone + ", password" + password);
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }
