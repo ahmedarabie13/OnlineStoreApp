@@ -19,6 +19,7 @@ public class RegisteredEmailServlet extends HttpServlet {
         response.setContentType("text/html");
         System.out.println("inside1");
         RegisterService registerService = RegisterServiceImpl.getInstance();
+        System.out.println("inside2");
         String email = request.getParameter("email");
         System.out.println("Form email is: " + email);
         Boolean registered = registerService.isRegistered(email);
