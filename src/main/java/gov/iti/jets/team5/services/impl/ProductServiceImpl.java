@@ -5,6 +5,7 @@ import gov.iti.jets.team5.dao.daoImpl.ProductDaoImpl;
 import gov.iti.jets.team5.models.dbEntities.Product;
 import gov.iti.jets.team5.models.dto.OrderDto;
 import gov.iti.jets.team5.models.dto.ProductDto;
+import gov.iti.jets.team5.repositories.CategoryRepository;
 import gov.iti.jets.team5.repositories.ProductRepository;
 import gov.iti.jets.team5.services.ProductService;
 import gov.iti.jets.team5.services.RegisterService;
@@ -53,5 +54,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> fetchProducts(int pageNumber) {
         return ps.fetchProducts(pageNumber);
+    }
+
+    @Override
+    public List<ProductDto> fetchCatProducts(int category, int pageNumber) {
+        return ps.fetchCatProducts(category, pageNumber);
+    }
+
+    @Override
+    public long fetchNumOfProducts() {
+        return ps.fetchNumOfProducts();
     }
 }

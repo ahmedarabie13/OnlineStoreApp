@@ -18,6 +18,7 @@ public class ProductTagHandler extends SimpleTagSupport {
     private String productDescription;
     private double productRating;
     private ProductCategory productCategory;
+    private int productId;
 
     @Override
     public void doTag() throws JspException, IOException {
@@ -105,5 +106,13 @@ public class ProductTagHandler extends SimpleTagSupport {
 
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

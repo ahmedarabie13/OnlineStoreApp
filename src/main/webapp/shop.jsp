@@ -1,6 +1,6 @@
 <%@ taglib prefix="Product" uri="/WEB-INF/tlds/ProductTagLib.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -112,9 +112,8 @@
                     <div class="product-categorie-box">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                <div class="row container special-list">
+                                <div class="row container special-list" id="productsDiv">
                                     <c:forEach items="${requestScope.products}" var="product">
-
                                         <Product:Product productName="${product.productName}"
                                                          productImageURL="${product.productImageURL}"
                                                          productPrice="${product.productPrice}"
@@ -122,6 +121,7 @@
                                         />
                                     </c:forEach>
                                 </div>
+<%--                                <c:out value="${param.page}"/>--%>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <div class="list-view-box">
@@ -287,48 +287,50 @@
                         </div>
                         <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men"
                              data-children=".sub-men">
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1"
-                                   data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Snacks & Nuts
-                                    <small class="text-muted">(100)</small>
-                                </a>
-                                <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action active">Nuts
-                                            <small class="text-muted">(50)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Dates<small
-                                                class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Dried Fruits<small
-                                                class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Biscuits<small
-                                                class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Chocolates<small
-                                                class="text-muted">(20)</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men2"
-                                   data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables
-                                    <small class="text-muted">(50)</small>
-                                </a>
-                                <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small
-                                                class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small
-                                                class="text-muted">(20)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small
-                                                class="text-muted">(20)</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                    class="text-muted">(150) </small></a>
-                            <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                    class="text-muted">(11)</small></a>
-                            <a href="#" class="list-group-item list-group-item-action"> Grocery <small
-                                    class="text-muted">(22)</small></a>
+<%--                            <div class="list-group-collapse sub-men">--%>
+<%--                                <a class="list-group-item list-group-item-action" href="#sub-men1"--%>
+<%--                                   data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Dairies--%>
+<%--                                    <small class="text-muted">(100)</small>--%>
+<%--                                </a>--%>
+<%--                                <div class="collapse show" id="sub-men1" data-parent="#list-group-men">--%>
+<%--                                    <div class="list-group">--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action active">Nuts--%>
+<%--                                            <small class="text-muted">(50)</small></a>--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Dates<small--%>
+<%--                                                class="text-muted">(10)</small></a>--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Dried Fruits<small--%>
+<%--                                                class="text-muted">(10)</small></a>--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Biscuits<small--%>
+<%--                                                class="text-muted">(10)</small></a>--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Chocolates<small--%>
+<%--                                                class="text-muted">(20)</small></a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="list-group-collapse sub-men">--%>
+<%--                                <a class="list-group-item list-group-item-action" href="#sub-men2"--%>
+<%--                                   data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables--%>
+<%--                                    <small class="text-muted">(50)</small>--%>
+<%--                                </a>--%>
+<%--                                <div class="collapse" id="sub-men2" data-parent="#list-group-men">--%>
+<%--                                    <div class="list-group">--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small--%>
+<%--                                                class="text-muted">(10)</small></a>--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small--%>
+<%--                                                class="text-muted">(20)</small></a>--%>
+<%--                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small--%>
+<%--                                                class="text-muted">(20)</small></a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+                            <c:forEach items="${requestScope.categories}" var="category">
+                                <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action" id="catId" name="${category.id}">${category.name}</a>
+                            </c:forEach>
+<%--                            <a href="shop?cat=dairies" class="list-group-item list-group-item-action category"> Dairies </a>--%>
+<%--                            <a href="shop?cat=veges" class="list-group-item list-group-item-action category"> Vegetables </a>--%>
+<%--                            <a href="shop?cat=fruits" class="list-group-item list-group-item-action category"> Fruits </a>--%>
+<%--                            <a href="shop?cat=vegan" class="list-group-item list-group-item-action category"> Vegan </a>--%>
+<%--                            <a href="shop?cat=snacks" class="list-group-item list-group-item-action category"> Snacks</a>--%>
                         </div>
                     </div>
                     <div class="filter-price-left">
@@ -355,22 +357,45 @@
         <div class="special-menu text-center">
             <div class="button-group">
                 <c:choose>
-                    <c:when test="${requestScope.currentPage == 1.0}">
-                        <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>
+                    <c:when test="${requestScope.currentPage == 1}">
+<%--                        <c:if test="${not empty param.cat}">--%>
+<%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop?cat${param.cat}=">1</a>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${empty param.cat}">--%>
+                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>
+<%--                        </c:if>--%>
                     </c:when>
-                    <c:when test="${requestScope.currentPage != 1.0}">
-                        <a class="submit-button btn hvr-hover" href="shop">1</a>
+                    <c:when test="${requestScope.currentPage != 1}">
+<%--                        <c:if test="${not empty param.cat}">--%>
+<%--                            <a class="submit-button btn hvr-hover" href="shop?cat${param.cat}">1</a>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${empty param.cat}">--%>
+                            <a class="submit-button btn hvr-hover" href="shop">1</a>
+<%--                        </c:if>--%>
                     </c:when>
                 </c:choose>
-                <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">
+                <c:forEach begin="20" end="${requestScope.totalCount}" step="9" var="pageNumber">
+                    <fmt:parseNumber var="pageNum" value="${pageNumber/9}" integerOnly="true" />
                     <c:choose>
-                        <c:when test="${requestScope.currentPage == (pageNumber / 10)}">
-                            <a class="submit-button btn hvr-hover" style="background-color: #856404;"
-                               href="shop?page=${pageNumber/10}">${pageNumber/10}</a>
+                        <c:when test="${requestScope.currentPage == (pageNum)}">
+                            <c:if test="${not empty param.cat}">
+                                <a class="submit-button btn hvr-hover" style="background-color: #856404;"
+                                   href="shop?page=${pageNum}&cat=${param.cat}">${pageNum}</a>
+                            </c:if>
+                            <c:if test="${empty param.cat}">
+                                <a class="submit-button btn hvr-hover" style="background-color: #856404;"
+                                   href="shop?page=${pageNum}">${pageNum}</a>
+                            </c:if>
                         </c:when>
-                        <c:when test="${requestScope.currentPage != (pageNumber / 10)}">
-                            <a class="submit-button btn hvr-hover"
-                               href="shop?page=${pageNumber/10}">${pageNumber/10}</a>
+                        <c:when test="${requestScope.currentPage != (pageNum)}">
+                            <c:if test="${not empty param.cat}">
+                                <a class="submit-button btn hvr-hover"
+                                href="shop?page=${pageNum}&cat=${param.cat}">${pageNum}</a>
+                            </c:if>
+                            <c:if test="${empty param.cat}">
+                                <a class="submit-button btn hvr-hover"
+                                   href="shop?page=${pageNum}">${pageNum}</a>
+                            </c:if>
                         </c:when>
                     </c:choose>
                 </c:forEach>
@@ -407,6 +432,7 @@
 
 <%--for the error $(...).slider is not a function--%>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="customValidations/cat.js"></script>
 </body>
 
 </html>
