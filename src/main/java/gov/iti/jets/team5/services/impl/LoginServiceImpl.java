@@ -2,6 +2,7 @@ package gov.iti.jets.team5.services.impl;
 
 import gov.iti.jets.team5.models.dto.UserAuthDto;
 import gov.iti.jets.team5.models.dto.UserDto;
+import gov.iti.jets.team5.repositories.UserRepository;
 import gov.iti.jets.team5.services.LoginService;
 
 public class LoginServiceImpl implements LoginService {
@@ -21,38 +22,35 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Boolean isUserAuthed(UserAuthDto userAuthDto) {
         //todo: check across database
-        String storedEmail = "a@a.com";
-        String storedPassword = "1420";
-        int storedId = 13;
-        if (userAuthDto.getEmail().equals(storedEmail) && userAuthDto.getPassword().equals(storedPassword)) {
-            userAuthDto.setId(storedId);
-            return true;
-        } else {
-            return false;
+
+        System.out.println("before service");
+        UserAuthDto storedUser = UserRepository.getInstance().getUserAuth(userAuthDto.getEmail());
+        System.out.println("after service");
+        if (storedUser != null) {
+            if (userAuthDto.getEmail().equals(storedUser.getEmail()) && userAuthDto.getPassword().equals(storedUser.getPassword())) {
+                userAuthDto.setId(storedUser.getId());
+                return true;
+            }
         }
+        return false;
     }
 
     @Override
-    public UserAuthDto getCurrentUserCredentials(int userId) {
+    public UserDto getCurrentUserCredentials(int userId) {
         //todo check if exists
-        String storedEmail = "a@a.com";
-        String storedPassword = "1420";
-        if(isUserIdExists(13)){ // if the id exists
-            return new UserAuthDto(storedEmail,storedPassword,userId);
-        }else {
-            return null;
-        }
+        return UserRepository.getInstance().getUserById(userId);
+//        String storedEmail = "a@a.com";
+//        String storedPassword = "1420";
+//        if (isUserIdExists(13)) { // if the id exists
+//            return new UserAuthDto(storedEmail, storedPassword, userId);
+//        } else {
+//            return null;
+//        }
     }
-
-   public Boolean isUserIdExists(int userId){
-        // todo: check over database
-       if(userId==13){
-           return true;
-       }
-       else {
-           return false;
-       }
-   }
+    @Override
+    public Boolean isUserIdExists(int userId) {
+        return UserRepository.getInstance().isUserExist(userId);
+    }
 
 
 }
