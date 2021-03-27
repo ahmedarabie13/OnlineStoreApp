@@ -1,6 +1,7 @@
 package gov.iti.jets.team5.repositories;
 
 import gov.iti.jets.team5.models.dbEntities.PotentialOrders;
+import gov.iti.jets.team5.models.dto.UserAuthDto;
 import gov.iti.jets.team5.models.dto.UserDto;
 //import org.hibernate.Session;
 //import org.hibernate.SessionFactory;
@@ -10,6 +11,8 @@ import gov.iti.jets.team5.models.dto.UserDto;
 //import org.hibernate.query.Query;
 import gov.iti.jets.team5.models.dbEntities.UserData;
 import gov.iti.jets.team5.utils.factory.AppSessionFactory;
+import gov.iti.jets.team5.utils.mappers.UserDtoMapper;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,8 +24,8 @@ public class UserRepository {
 
     private static UserRepository userRepositoryInstance = null;
 
-    EntityManagerFactory entityManagerFactory = AppSessionFactory.getInstance();
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private EntityManagerFactory entityManagerFactory = AppSessionFactory.getInstance();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static UserRepository getInstance() {
         if (userRepositoryInstance == null) {
@@ -35,7 +38,8 @@ public class UserRepository {
         return userRepositoryInstance;
     }
 
-    public boolean isRegistered(String enteredEmail){
+
+    public boolean isRegistered(String enteredEmail) {
         //entityManager.getTransaction().begin();
         Query q = entityManager.createQuery("select count(*) from UserData u where u.email = :email")
                 .setParameter("email", enteredEmail);
@@ -51,7 +55,7 @@ public class UserRepository {
 
     }
 
-    public boolean registerUser(UserDto userDto){
+    public boolean registerUser(UserDto userDto) {
         entityManager.getTransaction().begin();
         try {
             UserData userToRegister = new UserData();
@@ -70,8 +74,48 @@ public class UserRepository {
             entityManager.persist(userActiveCart);
             entityManager.getTransaction().commit();
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+            return false;
+        }
+    }
+
+    public UserAuthDto getUserAuth(String email) {
+        entityManager.getTransaction().begin();
+        var list = entityManager.createQuery("from UserData u where u.email = :email")
+                .setParameter("email", email).getResultList();
+        UserAuthDto userAuthDto = null;
+        if (list.size() == 1) {
+            UserData userData = (UserData) list.get(0);
+            System.out.println(userData);
+            userAuthDto = new UserAuthDto(userData.getEmail(), userData.getPassword(), userData.getId());
+        }
+        entityManager.getTransaction().commit();
+        return userAuthDto;
+
+
+    }
+
+    public UserDto getUserById(int id) {
+        entityManager.getTransaction().begin();
+        UserData userData = entityManager.find(UserData.class, id);
+        UserDto userDto = null;
+        if (userData != null) {
+            UserDtoMapper userDtoMapper = new UserDtoMapper();
+            userDto = userDtoMapper.getDto(userData);
+        }
+        entityManager.getTransaction().commit();
+        return userDto;
+    }
+
+    public Boolean isUserExist(int id) {
+        entityManager.getTransaction().begin();
+        UserData userData = entityManager.find(UserData.class, id);
+        entityManager.getTransaction().commit();
+        if (userData != null) {
+            return true;
+        }
+        else {
             return false;
         }
     }
