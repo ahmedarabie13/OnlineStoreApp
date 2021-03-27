@@ -17,4 +17,8 @@ public enum ProductStatus implements Serializable {
     public String toString() {
         return productStatus;
     }
+
+    public String getProductStatus() {
+        return productStatus;
+    }
 }
