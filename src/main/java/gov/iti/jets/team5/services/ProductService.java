@@ -14,6 +14,6 @@ public interface ProductService {
 
     List<ProductDto> fetchProducts(int pageNumber);
     List<ProductDto> fetchCatProducts(int category, int pageNumber);
-    long fetchNumOfProducts();
+    long fetchNumOfProducts(String categoryId);
 }
 

@@ -79,9 +79,20 @@ public class ProductRepository {
                 .setParameter("category", category);
         List<Category> returnedCatObj = query.getResultList();
         Set<Product> catProducts = returnedCatObj.get(0).getProducts();
+        List<Product> catProductsList = new ArrayList<>(catProducts);
         List<ProductDto> theProducts = new ArrayList<>();
-//        for(int i = (pageNumber - 1) * pageSize; i <= pageSize; i++){
-//            Product item = catProducts.
+        int size = Math.min(pageSize, catProductsList.size());
+        for(int i = (pageNumber - 1) * pageSize; i < size; i++){
+            Product item = catProductsList.get(i);
+            ProductDto productDto = new ProductDto();
+            productDto.setProductID(String.valueOf(item.getId()));
+            productDto.setProductName(item.getProductName());
+            productDto.setProductImageURL("images/products/MeatlessPieces.png");
+            productDto.setProductPrice(item.getPrice().doubleValue());
+            productDto.setProductStatus(ProductStatus.valueOf(item.getStatus()));
+            theProducts.add(productDto);
+        }
+//        for (Product p : catProducts) {
 //            ProductDto productDto = new ProductDto();
 //            productDto.setProductID(String.valueOf(p.getId()));
 //            productDto.setProductName(p.getProductName());
@@ -89,25 +100,26 @@ public class ProductRepository {
 //            productDto.setProductPrice(p.getPrice().doubleValue());
 //            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
 //            theProducts.add(productDto);
+//            System.out.println("$$$$$$$ " + p.getProductName() );
 //        }
-        for (Product p : catProducts) {
-            ProductDto productDto = new ProductDto();
-            productDto.setProductID(String.valueOf(p.getId()));
-            productDto.setProductName(p.getProductName());
-            productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(p.getPrice().doubleValue());
-            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
-            theProducts.add(productDto);
-            System.out.println("$$$$$$$ " + p.getProductName() );
-        }
         return theProducts;
     }
 
-    public long fetchNumOfProducts(){
-        Query q = entityManager.createQuery("select count(*) from Product");
-        var productsNum = q.getResultList();
-        System.out.println("number of products: " + (long) productsNum.get(0));
-        return (long) productsNum.get(0);
+    public long fetchNumOfProducts(String categoryId){
+        if(categoryId == null){
+            Query q = entityManager.createQuery("select count(*) from Product");
+            var productsNum = q.getResultList();
+            System.out.println("number of products: " + (long) productsNum.get(0));
+            return (long) productsNum.get(0);
+        } else {
+            int catId = Integer.parseInt(categoryId);
+            Query q = entityManager.createQuery("from Category c where c.id = :cid")
+                    .setParameter("cid", catId);
+            List<Category> cats = q.getResultList();
+            Category theCat = cats.get(0);
+            System.out.println("number of products with cat: " + (long) theCat.getProducts().size());
+            return (long) theCat.getProducts().size();
+        }
     }
 
 }

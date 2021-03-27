@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public long fetchNumOfProducts() {
-        return ps.fetchNumOfProducts();
+    public long fetchNumOfProducts(String categoryId) {
+        return ps.fetchNumOfProducts(categoryId);
     }
 }

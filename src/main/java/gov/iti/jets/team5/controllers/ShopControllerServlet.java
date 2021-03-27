@@ -94,8 +94,11 @@ public class ShopControllerServlet extends HttpServlet {
 
         request.setAttribute("products", productsList);
         //todo actual products count
-        long productsCount = productService.fetchNumOfProducts();
+        long productsCount = productService.fetchNumOfProducts(category);
+        int num = (int) (Math.round((productsCount/10) + 0.5));
+        System.out.println(num + " ROUNDDD");
         request.setAttribute("totalCount", productsCount);
+        request.setAttribute("numOfPages", num);
         request.setAttribute("currentPage", pageNumber);
 
         CategoryService categoryService = CategoryServiceImpl.getInstance();
