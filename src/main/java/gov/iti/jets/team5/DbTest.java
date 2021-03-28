@@ -11,8 +11,10 @@ import gov.iti.jets.team5.models.dbEntities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class DbTest {
@@ -58,7 +60,7 @@ public class DbTest {
         Set<Category> catsF = new HashSet<>(); catsF.add(cat3);
         Set<Category> catsS = new HashSet<>(); catsS.add(cat5);
 
-        entityManager.getTransaction().begin();
+//        entityManager.getTransaction().begin();
         Product p1 = new Product();
         p1.setProductName("Meatless Pieces");
         p1.setProductDescription("Vegan Meatless Meat balls Made with Soy Beans");
@@ -180,9 +182,13 @@ public class DbTest {
 //        entityManager.persist(p7); entityManager.persist(p8);
 //        entityManager.persist(p9); entityManager.persist(p10);
 
-        entityManager.persist(p11);
-        entityManager.getTransaction().commit();
+//        entityManager.persist(p11);
+//        entityManager.getTransaction().commit();
 
+//        Query q = entityManager.createQuery("from Product p where p.id = :pid")
+//                .setParameter("pid", 90);
+//        List<Product> pro = q.getResultList();
+//        System.out.println(pro);
         entityManager.close();
     }
 }

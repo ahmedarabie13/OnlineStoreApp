@@ -118,6 +118,7 @@
                                                          productImageURL="${product.productImageURL}"
                                                          productPrice="${product.productPrice}"
                                                          productStatus="${product.productStatus}"
+                                                         productId="${product.productID}"
                                         />
                                     </c:forEach>
                                 </div>
@@ -327,11 +328,6 @@
                             <c:forEach items="${requestScope.categories}" var="category">
                                 <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action" id="catId" name="${category.id}">${category.name}</a>
                             </c:forEach>
-<%--                            <a href="shop?cat=dairies" class="list-group-item list-group-item-action category"> Dairies </a>--%>
-<%--                            <a href="shop?cat=veges" class="list-group-item list-group-item-action category"> Vegetables </a>--%>
-<%--                            <a href="shop?cat=fruits" class="list-group-item list-group-item-action category"> Fruits </a>--%>
-<%--                            <a href="shop?cat=vegan" class="list-group-item list-group-item-action category"> Vegan </a>--%>
-<%--                            <a href="shop?cat=snacks" class="list-group-item list-group-item-action category"> Snacks</a>--%>
                         </div>
                     </div>
                     <div class="filter-price-left">

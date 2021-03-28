@@ -79,23 +79,24 @@ public class ShopControllerServlet extends HttpServlet {
         if (pageNumberStr != null) {
             if(category != null){
                 pageNumber = Integer.parseInt(pageNumberStr);
-                productsList = productService.fetchCatProducts(Integer.parseInt(category), pageNumber);
-                System.out.println(productsList.size() + " <--------productsssCategoriesss");
+                productsList = productService.fetchCatProducts(category, pageNumber);
+                if(productsList == null){
+                    response.sendRedirect("404.jsp");
+                }
             }else {
                 System.out.println(pageNumberStr);
                 pageNumber = (int) Double.parseDouble(pageNumberStr);
 
                 productsList = productService.fetchProducts(pageNumber);
-                System.out.println(productsList.size() + " <--------productsss");
+                System.out.println(productsList.size() + " <--------productsss/catss");
             }
         } else {
             productsList = productService.fetchProducts(1);
         }
 
         request.setAttribute("products", productsList);
-        //todo actual products count
         long productsCount = productService.fetchNumOfProducts(category);
-        int num = (int) (Math.round((productsCount/10) + 0.5));
+        int num = (int) (Math.round((productsCount/9) + 0.5));
         System.out.println(num + " ROUNDDD");
         request.setAttribute("totalCount", productsCount);
         request.setAttribute("numOfPages", num);
@@ -108,13 +109,4 @@ public class ShopControllerServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
         requestDispatcher.forward(request, response);
     }
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        ProductService productService = ProductServiceImpl.getInstance();
-//        List<ProductDto> productsList = productService.fetchProducts();
-//        System.out.println(productsList.size() + " <--------productsss");
-//        request.setAttribute("products", productsList);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
 }

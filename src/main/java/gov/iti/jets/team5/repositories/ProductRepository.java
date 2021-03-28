@@ -72,37 +72,35 @@ public class ProductRepository {
         return theProducts;
     }
 
-    public List<ProductDto> fetchCatProducts(int category, int pageNumber){
-        System.out.println("$$$$$$$ 1");
-        int pageSize = 10;
-        Query query = entityManager.createQuery("from Category cat where cat.id = :category")
-                .setParameter("category", category);
-        List<Category> returnedCatObj = query.getResultList();
-        Set<Product> catProducts = returnedCatObj.get(0).getProducts();
-        List<Product> catProductsList = new ArrayList<>(catProducts);
-        List<ProductDto> theProducts = new ArrayList<>();
-        int size = Math.min(pageSize, catProductsList.size());
-        for(int i = (pageNumber - 1) * pageSize; i < size; i++){
-            Product item = catProductsList.get(i);
-            ProductDto productDto = new ProductDto();
-            productDto.setProductID(String.valueOf(item.getId()));
-            productDto.setProductName(item.getProductName());
-            productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(item.getPrice().doubleValue());
-            productDto.setProductStatus(ProductStatus.valueOf(item.getStatus()));
-            theProducts.add(productDto);
+    public List<ProductDto> fetchCatProducts(String category, int pageNumber){
+        try{
+            int categoryId = Integer.parseInt(category);
+            int pageSize = 10;
+            Query query = entityManager.createQuery("from Category cat where cat.id = :category")
+                    .setParameter("category", categoryId);
+            List<Category> returnedCatObj = query.getResultList();
+            if(returnedCatObj.isEmpty()){
+                return null;
+            } else {
+                Set<Product> catProducts = returnedCatObj.get(0).getProducts();
+                List<Product> catProductsList = new ArrayList<>(catProducts);
+                List<ProductDto> theProducts = new ArrayList<>();
+                int size = Math.min(pageSize, catProductsList.size());
+                for(int i = (pageNumber - 1) * pageSize; i < size; i++){
+                    Product item = catProductsList.get(i);
+                    ProductDto productDto = new ProductDto();
+                    productDto.setProductID(String.valueOf(item.getId()));
+                    productDto.setProductName(item.getProductName());
+                    productDto.setProductImageURL("images/products/MeatlessPieces.png");
+                    productDto.setProductPrice(item.getPrice().doubleValue());
+                    productDto.setProductStatus(ProductStatus.valueOf(item.getStatus()));
+                    theProducts.add(productDto);
+                }
+                return theProducts;
+            }
+        } catch (NumberFormatException e ){
+            return null;
         }
-//        for (Product p : catProducts) {
-//            ProductDto productDto = new ProductDto();
-//            productDto.setProductID(String.valueOf(p.getId()));
-//            productDto.setProductName(p.getProductName());
-//            productDto.setProductImageURL("images/products/MeatlessPieces.png");
-//            productDto.setProductPrice(p.getPrice().doubleValue());
-//            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
-//            theProducts.add(productDto);
-//            System.out.println("$$$$$$$ " + p.getProductName() );
-//        }
-        return theProducts;
     }
 
     public long fetchNumOfProducts(String categoryId){
@@ -122,4 +120,19 @@ public class ProductRepository {
         }
     }
 
+    public Product fetchProductData(String productId) {
+        try {
+            int id = Integer.parseInt(productId);
+            Query q = entityManager.createQuery("from Product p where p.id = :pid")
+                    .setParameter("pid", id);
+            List<Product> product = q.getResultList();
+            if(product.isEmpty()){
+                return null;
+            } else {
+                return product.get(0);
+            }
+        } catch (NumberFormatException e){
+            return null;
+        }
+    }
 }
