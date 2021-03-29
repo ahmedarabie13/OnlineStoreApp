@@ -62,6 +62,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductDto> fetchProductsByFilter(int pageNumber, int filterStart, int filterEnd) {
+        return ps.fetchProductsByFilter(pageNumber, filterStart, filterEnd);
+    }
+
+    @Override
+    public List<ProductDto> fetchProductsByFilterAndCategory(int pageNumber, String category, int filterStart, int filterEnd) {
+        return ps.fetchProductsByFilterAndCategory(pageNumber, category, filterStart, filterEnd);
+    }
+
+    @Override
     public long fetchNumOfProducts() {
         return ps.fetchNumOfProducts();
     }
