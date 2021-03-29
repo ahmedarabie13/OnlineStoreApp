@@ -110,13 +110,20 @@ public class ProductRepository {
             System.out.println("number of products: " + (long) productsNum.get(0));
             return (long) productsNum.get(0);
         } else {
-            int catId = Integer.parseInt(categoryId);
-            Query q = entityManager.createQuery("from Category c where c.id = :cid")
-                    .setParameter("cid", catId);
-            List<Category> cats = q.getResultList();
-            Category theCat = cats.get(0);
-            System.out.println("number of products with cat: " + (long) theCat.getProducts().size());
-            return (long) theCat.getProducts().size();
+            try{
+                int catId = Integer.parseInt(categoryId);
+                Query q = entityManager.createQuery("from Category c where c.id = :cid")
+                        .setParameter("cid", catId);
+                List<Category> cats = q.getResultList();
+                if(cats.isEmpty()){
+                    return -1;
+                }
+                Category theCat = cats.get(0);
+                System.out.println("number of products with cat: " + (long) theCat.getProducts().size());
+                return (long) theCat.getProducts().size();
+            } catch (NumberFormatException e){
+                return -1;
+            }
         }
     }
 

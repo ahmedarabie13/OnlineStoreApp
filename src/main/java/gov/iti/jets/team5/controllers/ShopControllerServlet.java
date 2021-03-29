@@ -75,29 +75,47 @@ public class ShopControllerServlet extends HttpServlet {
         String pageNumberStr = request.getParameter("page");
         String category = request.getParameter("cat");
         System.out.println(category + " <--------categoryId");
+        long productsCount = productService.fetchNumOfProducts(category);
+        if(productsCount < 0){
+            response.sendRedirect("404.jsp");
+            return;
+        }
         int pageNumber = 1;
         if (pageNumberStr != null) {
-            if(category != null){
+            try {
                 pageNumber = Integer.parseInt(pageNumberStr);
-                productsList = productService.fetchCatProducts(category, pageNumber);
-                if(productsList == null){
+                if(pageNumber > productsCount || pageNumber < 1){
                     response.sendRedirect("404.jsp");
+                    return;
                 }
-            }else {
-                System.out.println(pageNumberStr);
-                pageNumber = (int) Double.parseDouble(pageNumberStr);
+                if(category != null){
+                    productsList = productService.fetchCatProducts(category, pageNumber);
+                    if(productsList == null){
+                        response.sendRedirect("404.jsp");
+                        return;
+                    }
+                    request.setAttribute("products", productsList);
+                }else {
+                    System.out.println(pageNumberStr);
+                    pageNumber = (int) Double.parseDouble(pageNumberStr);
 
-                productsList = productService.fetchProducts(pageNumber);
-                System.out.println(productsList.size() + " <--------productsss/catss");
+                    productsList = productService.fetchProducts(pageNumber);
+                    System.out.println(productsList.size() + " <--------productsss/catss");
+                    request.setAttribute("products", productsList);
+                }
+            } catch(NumberFormatException e) {
+                response.sendRedirect("404.jsp");
+                return;
             }
         } else {
             productsList = productService.fetchProducts(1);
+            request.setAttribute("products", productsList);
         }
-
-        request.setAttribute("products", productsList);
-        long productsCount = productService.fetchNumOfProducts(category);
+        if(productsCount < 0 ){
+            response.sendRedirect("404.jsp");
+            return;
+        }
         int num = (int) (Math.round((productsCount/9) + 0.5));
-        System.out.println(num + " ROUNDDD");
         request.setAttribute("totalCount", productsCount);
         request.setAttribute("numOfPages", num);
         request.setAttribute("currentPage", pageNumber);
