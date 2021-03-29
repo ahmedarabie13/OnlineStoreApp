@@ -13,12 +13,13 @@ public interface ProductService {
 //    List<ProductDto> fetchProducts();
 
     List<ProductDto> fetchProducts(int pageNumber);
-    List<ProductDto> fetchCatProducts(int category, int pageNumber);
 
     List<ProductDto> fetchProductsByFilter(int pageNumber, int filterStart, int filterEnd);
 
     List<ProductDto> fetchProductsByFilterAndCategory(int pageNumber, String category, int filterStart, int filterEnd);
+    List<ProductDto> fetchCatProducts(String category, int pageNumber);
+    long fetchNumOfProducts(String categoryId);
+    Product fetchProductData(String productId);
 
-    long fetchNumOfProducts();
 }
 

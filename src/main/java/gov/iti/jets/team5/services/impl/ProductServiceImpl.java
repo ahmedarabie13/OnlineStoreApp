@@ -57,11 +57,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> fetchCatProducts(int category, int pageNumber) {
+    public List<ProductDto> fetchCatProducts(String category, int pageNumber) {
         return ps.fetchCatProducts(category, pageNumber);
     }
 
     @Override
+
     public List<ProductDto> fetchProductsByFilter(int pageNumber, int filterStart, int filterEnd) {
         return ps.fetchProductsByFilter(pageNumber, filterStart, filterEnd);
     }
@@ -71,8 +72,13 @@ public class ProductServiceImpl implements ProductService {
         return ps.fetchProductsByFilterAndCategory(pageNumber, category, filterStart, filterEnd);
     }
 
+
+    public long fetchNumOfProducts(String categoryId) {
+        return ps.fetchNumOfProducts(categoryId);
+    }
+
     @Override
-    public long fetchNumOfProducts() {
-        return ps.fetchNumOfProducts();
+    public Product fetchProductData(String productId) {
+        return ps.fetchProductData(productId);
     }
 }

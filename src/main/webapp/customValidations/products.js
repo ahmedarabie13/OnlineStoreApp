@@ -4,6 +4,9 @@ var currentCategory;
 var currentPageNumber;
 
 function setParameters(startPrice, endPrice, category, pageNumber) {
+    console.log(startPrice);
+    console.log(endPrice);
+
     currentCategory = category;
     if (category != null)
         currentPageNumber = pageNumber;

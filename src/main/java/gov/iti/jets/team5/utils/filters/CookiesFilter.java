@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 //@WebFilter(urlPatterns = {"/*"})
 public class CookiesFilter implements Filter {
@@ -56,6 +57,12 @@ public class CookiesFilter implements Filter {
                         }
                     }
                 } else {
+                    Cookie [] cookiesList = ((HttpServletRequest) request).getCookies();
+                    for (Cookie c: cookiesList) {
+                        if(c.getName().equals("test")){
+                            c.setMaxAge(0);
+                        }
+                    }
                     chain.doFilter(request, response);
                 }
             }
