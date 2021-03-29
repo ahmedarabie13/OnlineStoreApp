@@ -142,7 +142,7 @@
                     <c:choose>
 
                         <c:when test="${sessionScope.currentUser!=null}">
-                            <li class="side-menu"><a href="#">
+                            <li class="side-menu"><a onclick="fetchCartItems()">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
                                 <p>My Cart</p>
@@ -164,26 +164,35 @@
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
-                <ul class="cart-list">
-                    <li>
-                        <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt=""/></a>
-                        <h6><a href="#">Delica omtantur </a></h6>
-                        <p>1x - <span class="price">$80.00</span></p>
-                    </li>
-                    <li>
-                        <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt=""/></a>
-                        <h6><a href="#">Omnes ocurreret</a></h6>
-                        <p>1x - <span class="price">$60.00</span></p>
-                    </li>
-                    <li>
-                        <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt=""/></a>
-                        <h6><a href="#">Agam facilisis</a></h6>
-                        <p>1x - <span class="price">$40.00</span></p>
-                    </li>
-                    <li class="total">
-                        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                        <span class="float-right"><strong>Total</strong>: $180.00</span>
-                    </li>
+                <ul class="cart-list" id="cartItems">
+<%--                <c:if test="${! empty sessionScope.currentUser}" >--%>
+
+<%--                        <c:forEach items='${sessionScope.cartItems}' var="cartItem">--%>
+<%--                            <li>--%>
+<%--                                <a class="photo"><img src="${cartItem.product.photo}" class="cart-thumb" alt=""/></a>--%>
+<%--                                <h6><a >${cartItem.product.productName}</a></h6>--%>
+<%--                                <p>${cartItem.quantity}x - <span class="price">$${cartItem.product.price}</span></p>--%>
+<%--                            </li>--%>
+<%--                        </c:forEach>--%>
+
+
+<%--                </c:if>--%>
+<%--                    <li>--%>
+<%--                        <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt=""/></a>--%>
+<%--                        <h6><a href="#">Omnes ocurreret</a></h6>--%>
+<%--                        <p>1x - <span class="price">$60.00</span></p>--%>
+<%--                    </li>--%>
+<%--                    <li>--%>
+<%--                        <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt=""/></a>--%>
+<%--                        <h6><a href="#">Agam facilisis</a></h6>--%>
+<%--                        <p>1x - <span class="price">$40.00</span></p>--%>
+<%--                    </li>--%>
+
+
+<%--                    <li class="total">--%>
+<%--                        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>--%>
+<%--                        <span class="float-right"><strong>Total</strong>: $180.00</span>--%>
+<%--                    </li>--%>
                 </ul>
             </li>
         </div>
@@ -203,6 +212,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    function fetchCartItems(){
+        console.log("fetching cart Items")
+        let jsonData ={};
+        $.post("cart",jsonData,done);
+        function done(data){
+            console.log(data);
+            <%--$('#cartItems').empty();--%>
+            <%--$('#cartItems').append("<c:forEach items='${sessionScope.cartItems}' var='cartItem'>\n" +--%>
+            <%--    "                            <li>\n" +--%>
+            <%--    "                                <a class=\"photo\"><img src=\"${cartItem.product.photo}\" class=\"cart-thumb\" alt=\"\"/></a>\n" +--%>
+            <%--    "                                <h6><a >${cartItem.product.productName}</a></h6>\n" +--%>
+            <%--    "                                <p>${cartItem.quantity}x - <span class=\"price\">$${cartItem.product.price}</span></p>\n" +--%>
+            <%--    "                            </li>\n" +--%>
+            <%--    "                        </c:forEach>"+--%>
+            <%--    "<li class=\"total\">\n" +--%>
+            <%--    "                        <a href=\"#\" class=\"btn btn-default hvr-hover btn-cart\">VIEW CART</a>\n" +--%>
+            <%--    "                        <span class=\"float-right\"><strong>Total</strong>: $180.00</span>\n" +--%>
+            <%--    "                    </li>");--%>
+            // $('#cartItems').append(="pla";
+
+            console.log("done fetching");
+        }
+    }
+</script>
 <!-- End Top Search -->
 
 <%--</body>--%>

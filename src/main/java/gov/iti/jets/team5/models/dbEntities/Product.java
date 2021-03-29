@@ -168,6 +168,21 @@ public class Product implements java.io.Serializable {
     public void setStatus(String  status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                ", photo='" + photo + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", sellerName='" + sellerName + '\'' +
+                ", sold=" + sold +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
 
 

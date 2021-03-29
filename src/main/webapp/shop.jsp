@@ -51,6 +51,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<%--<!--    <script src="customValidations/products.js"></script>-->--%>
     <![endif]-->
 
 </head>
@@ -118,6 +119,7 @@
                                                          productImageURL="${product.productImageURL}"
                                                          productPrice="${product.productPrice}"
                                                          productStatus="${product.productStatus}"
+                                                         productId="${product.productID}"
                                         />
                                     </c:forEach>
                                 </div>
@@ -429,6 +431,26 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<script>
+    function addToCart(productId){
+        console.log("added id: "+productId+" to cart");
+        let jsonData = {"productId":productId};
+        // $.ajax({
+        //     url: 'cart',
+        //     type: 'POST',
+        //     contentType: 'application/json',
+        //     data: jsonData,
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         console.log("sent to Cart Servlet")
+        //     }
+        // });
+        $.post("addToCart",jsonData,done);
+        function done(){
+            console.log("done");
+        }
+    }
+</script>
 
 <%--for the error $(...).slider is not a function--%>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
