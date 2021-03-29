@@ -54,8 +54,15 @@
     <![endif]-->
 
 </head>
+<%--setParameters(${param.filterStart},${param.filterEnd}, ${param.currentCategory}, ${param.currentPage})--%>
+<%--<body onload="setParameters('<%= request.getAttribute("filterStart")%>',--%>
+<body onload="setParameters('<%= request.getAttribute("filterStart")%>',
+        '<%= request.getAttribute("filterEnd")%>' ,
+        '<%= request.getAttribute("currentCategory")%>', '<%= request.getAttribute("currentPage")%>')">
+<%--<body onload="setParameters(${requestScope.filterStart},--%>
+<%--${requestScope.filterEnd} ,--%>
+<%--${requestScope.currentCategory}, ${requestScope.currentPage})">--%>
 
-<body>
 <jsp:include page="header.jsp"/>
 
 <!-- Start All Title Box -->
@@ -122,7 +129,7 @@
                                         />
                                     </c:forEach>
                                 </div>
-<%--                                <c:out value="${requestScope.numOfPages}"/>--%>
+
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <div class="list-view-box">
@@ -288,46 +295,15 @@
                         </div>
                         <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men"
                              data-children=".sub-men">
-<%--                            <div class="list-group-collapse sub-men">--%>
-<%--                                <a class="list-group-item list-group-item-action" href="#sub-men1"--%>
-<%--                                   data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Dairies--%>
-<%--                                    <small class="text-muted">(100)</small>--%>
-<%--                                </a>--%>
-<%--                                <div class="collapse show" id="sub-men1" data-parent="#list-group-men">--%>
-<%--                                    <div class="list-group">--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action active">Nuts--%>
-<%--                                            <small class="text-muted">(50)</small></a>--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Dates<small--%>
-<%--                                                class="text-muted">(10)</small></a>--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Dried Fruits<small--%>
-<%--                                                class="text-muted">(10)</small></a>--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Biscuits<small--%>
-<%--                                                class="text-muted">(10)</small></a>--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Chocolates<small--%>
-<%--                                                class="text-muted">(20)</small></a>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="list-group-collapse sub-men">--%>
-<%--                                <a class="list-group-item list-group-item-action" href="#sub-men2"--%>
-<%--                                   data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables--%>
-<%--                                    <small class="text-muted">(50)</small>--%>
-<%--                                </a>--%>
-<%--                                <div class="collapse" id="sub-men2" data-parent="#list-group-men">--%>
-<%--                                    <div class="list-group">--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small--%>
-<%--                                                class="text-muted">(10)</small></a>--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small--%>
-<%--                                                class="text-muted">(20)</small></a>--%>
-<%--                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small--%>
-<%--                                                class="text-muted">(20)</small></a>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                             <a href="shop?page=1" class="list-group-item list-group-item-action">All</a>
                             <c:forEach items="${requestScope.categories}" var="category">
-                                <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action" id="catId" name="${category.id}">${category.name}</a>
+                                <%--                                <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action"--%>
+<%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
+                                <a href="shop?page=1&cat=${category.id}"
+                                   class="list-group-item list-group-item-action"
+                                   id="catId" name="${category.id}">${category.name}</a>
                             </c:forEach>
+
                         </div>
                     </div>
                     <div class="filter-price-left">
@@ -339,7 +315,7 @@
                             <p>
                                 <input type="text" id="amount" readonly
                                        style="border:0; color:#fbb714; font-weight:bold;">
-                                <button class="btn hvr-hover" type="submit">Filter</button>
+                                <button class="btn hvr-hover" onclick="filter()">Filter</button>
                             </p>
                         </div>
                     </div>
@@ -353,38 +329,61 @@
     <div class="col-lg-12">
         <div class="special-menu text-center">
             <div class="button-group">
-<%--                <c:choose>--%>
-<%--                    <c:when test="${requestScope.currentPage == 1}">--%>
-<%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${requestScope.currentPage != 1}">--%>
-<%--                            <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
-<%--                    </c:when>--%>
-<%--                </c:choose>--%>
-<%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">--%>
-<%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/10}" integerOnly="true" />--%>
-                    <c:forEach begin="1" end="${requestScope.numOfPages}" step="1" var="pageNumber">
-                    <fmt:parseNumber var="pageNum" value="${pageNumber}" integerOnly="true" />
-<%--                    <fmt:formatNumber var="pageNum" type="number" maxFractionDigits="2" minFractionDigits="2" value="${pageNumber/10}"/>--%>
+                <%--<<<<<<< HEAD--%>
+                <%--                <c:choose>--%>
+                <%--                    <c:when test="${requestScope.currentPage == 1}">--%>
+                <%--                        &lt;%&ndash;                        <c:if test="${not empty param.cat}">&ndash;%&gt;--%>
+                <%--                        &lt;%&ndash;                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop?cat${param.cat}=">1</a>&ndash;%&gt;--%>
+                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
+                <%--                        &lt;%&ndash;                        <c:if test="${empty param.cat}">&ndash;%&gt;--%>
+                <%--                        <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
+                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
+                <%--                    </c:when>--%>
+                <%--                    <c:when test="${requestScope.currentPage != 1}">--%>
+                <%--                        &lt;%&ndash;                        <c:if test="${not empty param.cat}">&ndash;%&gt;--%>
+                <%--                        &lt;%&ndash;                            <a class="submit-button btn hvr-hover" href="shop?cat${param.cat}">1</a>&ndash;%&gt;--%>
+                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
+                <%--                        &lt;%&ndash;                        <c:if test="${empty param.cat}">&ndash;%&gt;--%>
+                <%--                        <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
+                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
+                <%--                    </c:when>--%>
+                <%--                </c:choose>--%>
+                <%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="9" var="pageNumber">--%>
+                <%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/9}" integerOnly="true"/>--%>
+                <%--=======--%>
+                <%--                <c:choose>--%>
+                <%--                    <c:when test="${requestScope.currentPage == 1}">--%>
+                <%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
+                <%--                    </c:when>--%>
+                <%--                    <c:when test="${requestScope.currentPage != 1}">--%>
+                <%--                            <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
+                <%--                    </c:when>--%>
+                <%--                </c:choose>--%>
+                <%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">--%>
+                <%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/10}" integerOnly="true" />--%>
+                <c:forEach begin="1" end="${requestScope.numOfPages}" step="1" var="pageNumber">
+                    <fmt:parseNumber var="pageNum" value="${pageNumber}" integerOnly="true"/>
+                    <%--                    <fmt:formatNumber var="pageNum" type="number" maxFractionDigits="2" minFractionDigits="2" value="${pageNumber/10}"/>--%>
+                    <%-->>>>>>> dev--%>
                     <c:choose>
                         <c:when test="${requestScope.currentPage == (pageNum)}">
                             <c:if test="${not empty param.cat}">
                                 <a class="submit-button btn hvr-hover" style="background-color: #856404;"
-                                   href="shop?page=${pageNum}&cat=${param.cat}">${pageNum}</a>
+                                   href="shop?page=${pageNum}&cat=${param.cat}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}">${pageNum}</a>
                             </c:if>
                             <c:if test="${empty param.cat}">
                                 <a class="submit-button btn hvr-hover" style="background-color: #856404;"
-                                   href="shop?page=${pageNum}">${pageNum}</a>
+                                   href="shop?page=${pageNum}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}">${pageNum}</a>
                             </c:if>
                         </c:when>
                         <c:when test="${requestScope.currentPage != (pageNum)}">
                             <c:if test="${not empty param.cat}">
                                 <a class="submit-button btn hvr-hover"
-                                href="shop?page=${pageNum}&cat=${param.cat}">${pageNum}</a>
+                                   href="shop?page=${pageNum}&cat=${param.cat}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}">${pageNum}</a>
                             </c:if>
                             <c:if test="${empty param.cat}">
                                 <a class="submit-button btn hvr-hover"
-                                   href="shop?page=${pageNum}">${pageNum}</a>
+                                   href="shop?page=${pageNum}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}">${pageNum}</a>
                             </c:if>
                         </c:when>
                     </c:choose>
@@ -419,6 +418,8 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<script src="customValidations/products.js"></script>
+
 
 <%--for the error $(...).slider is not a function--%>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
