@@ -75,27 +75,49 @@ public class ShopControllerServlet extends HttpServlet {
         String pageNumberStr = request.getParameter("page");
         String category = request.getParameter("cat");
         System.out.println(category + " <--------categoryId");
+        long productsCount = productService.fetchNumOfProducts(category);
+        if(productsCount < 0){
+            response.sendRedirect("404.jsp");
+            return;
+        }
         int pageNumber = 1;
         if (pageNumberStr != null) {
-            if(category != null){
+            try {
                 pageNumber = Integer.parseInt(pageNumberStr);
-                productsList = productService.fetchCatProducts(Integer.parseInt(category), pageNumber);
-                System.out.println(productsList.size() + " <--------productsssCategoriesss");
-            }else {
-                System.out.println(pageNumberStr);
-                pageNumber = (int) Double.parseDouble(pageNumberStr);
+                if(pageNumber > productsCount || pageNumber < 1){
+                    response.sendRedirect("404.jsp");
+                    return;
+                }
+                if(category != null){
+                    productsList = productService.fetchCatProducts(category, pageNumber);
+                    if(productsList == null){
+                        response.sendRedirect("404.jsp");
+                        return;
+                    }
+                    request.setAttribute("products", productsList);
+                }else {
+                    System.out.println(pageNumberStr);
+                    pageNumber = (int) Double.parseDouble(pageNumberStr);
 
-                productsList = productService.fetchProducts(pageNumber);
-                System.out.println(productsList.size() + " <--------productsss");
+                    productsList = productService.fetchProducts(pageNumber);
+                    System.out.println(productsList.size() + " <--------productsss/catss");
+                    request.setAttribute("products", productsList);
+                }
+            } catch(NumberFormatException e) {
+                response.sendRedirect("404.jsp");
+                return;
             }
         } else {
             productsList = productService.fetchProducts(1);
+            request.setAttribute("products", productsList);
         }
-
-        request.setAttribute("products", productsList);
-        //todo actual products count
-        long productsCount = productService.fetchNumOfProducts();
+        if(productsCount < 0 ){
+            response.sendRedirect("404.jsp");
+            return;
+        }
+        int num = (int) (Math.round((productsCount/9) + 0.5));
         request.setAttribute("totalCount", productsCount);
+        request.setAttribute("numOfPages", num);
         request.setAttribute("currentPage", pageNumber);
 
         CategoryService categoryService = CategoryServiceImpl.getInstance();
@@ -105,13 +127,4 @@ public class ShopControllerServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
         requestDispatcher.forward(request, response);
     }
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        ProductService productService = ProductServiceImpl.getInstance();
-//        List<ProductDto> productsList = productService.fetchProducts();
-//        System.out.println(productsList.size() + " <--------productsss");
-//        request.setAttribute("products", productsList);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
 }

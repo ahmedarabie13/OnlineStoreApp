@@ -118,10 +118,11 @@
                                                          productImageURL="${product.productImageURL}"
                                                          productPrice="${product.productPrice}"
                                                          productStatus="${product.productStatus}"
+                                                         productId="${product.productID}"
                                         />
                                     </c:forEach>
                                 </div>
-<%--                                <c:out value="${param.page}"/>--%>
+<%--                                <c:out value="${requestScope.numOfPages}"/>--%>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <div class="list-view-box">
@@ -323,14 +324,10 @@
 <%--                                    </div>--%>
 <%--                                </div>--%>
 <%--                            </div>--%>
+                            <a href="shop?page=1" class="list-group-item list-group-item-action">All</a>
                             <c:forEach items="${requestScope.categories}" var="category">
                                 <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action" id="catId" name="${category.id}">${category.name}</a>
                             </c:forEach>
-<%--                            <a href="shop?cat=dairies" class="list-group-item list-group-item-action category"> Dairies </a>--%>
-<%--                            <a href="shop?cat=veges" class="list-group-item list-group-item-action category"> Vegetables </a>--%>
-<%--                            <a href="shop?cat=fruits" class="list-group-item list-group-item-action category"> Fruits </a>--%>
-<%--                            <a href="shop?cat=vegan" class="list-group-item list-group-item-action category"> Vegan </a>--%>
-<%--                            <a href="shop?cat=snacks" class="list-group-item list-group-item-action category"> Snacks</a>--%>
                         </div>
                     </div>
                     <div class="filter-price-left">
@@ -356,26 +353,19 @@
     <div class="col-lg-12">
         <div class="special-menu text-center">
             <div class="button-group">
-                <c:choose>
-                    <c:when test="${requestScope.currentPage == 1}">
-<%--                        <c:if test="${not empty param.cat}">--%>
-<%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop?cat${param.cat}=">1</a>--%>
-<%--                        </c:if>--%>
-<%--                        <c:if test="${empty param.cat}">--%>
-                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>
-<%--                        </c:if>--%>
-                    </c:when>
-                    <c:when test="${requestScope.currentPage != 1}">
-<%--                        <c:if test="${not empty param.cat}">--%>
-<%--                            <a class="submit-button btn hvr-hover" href="shop?cat${param.cat}">1</a>--%>
-<%--                        </c:if>--%>
-<%--                        <c:if test="${empty param.cat}">--%>
-                            <a class="submit-button btn hvr-hover" href="shop">1</a>
-<%--                        </c:if>--%>
-                    </c:when>
-                </c:choose>
-                <c:forEach begin="20" end="${requestScope.totalCount}" step="9" var="pageNumber">
-                    <fmt:parseNumber var="pageNum" value="${pageNumber/9}" integerOnly="true" />
+<%--                <c:choose>--%>
+<%--                    <c:when test="${requestScope.currentPage == 1}">--%>
+<%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
+<%--                    </c:when>--%>
+<%--                    <c:when test="${requestScope.currentPage != 1}">--%>
+<%--                            <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
+<%--                    </c:when>--%>
+<%--                </c:choose>--%>
+<%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">--%>
+<%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/10}" integerOnly="true" />--%>
+                    <c:forEach begin="1" end="${requestScope.numOfPages}" step="1" var="pageNumber">
+                    <fmt:parseNumber var="pageNum" value="${pageNumber}" integerOnly="true" />
+<%--                    <fmt:formatNumber var="pageNum" type="number" maxFractionDigits="2" minFractionDigits="2" value="${pageNumber/10}"/>--%>
                     <c:choose>
                         <c:when test="${requestScope.currentPage == (pageNum)}">
                             <c:if test="${not empty param.cat}">
