@@ -4,10 +4,13 @@ var currentCategory;
 var currentPageNumber;
 
 function setParameters(startPrice, endPrice, category, pageNumber) {
-    console.log(startPrice);
-    console.log(endPrice);
+    // console.log(startPrice);
+    // console.log(endPrice);
+    // console.log(category + " CATTTTTTTTTTTTTTTTTTT");
 
     currentCategory = category;
+    // console.log(currentCategory + " CATTTTTTTTTTTTTTTTTTT22");
+
     if (category != null)
         currentPageNumber = pageNumber;
 
@@ -25,7 +28,7 @@ function setParameters(startPrice, endPrice, category, pageNumber) {
 }
 
 function filter() {
-    debugger
+    // debugger
     console.log("filter");
     console.log($("#slider-range").val());
 

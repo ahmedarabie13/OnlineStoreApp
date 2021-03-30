@@ -16,6 +16,8 @@ public class ProductDto implements Serializable {
     private String productRegion;
     private String productBrand;
     private double productWeight;
+    private String productDescription;
+    private int productQuantity;
 
     public ProductDto() {
     }
@@ -98,5 +100,21 @@ public class ProductDto implements Serializable {
 
     public void setProductWeight(double productWeight) {
         this.productWeight = productWeight;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
     }
 }

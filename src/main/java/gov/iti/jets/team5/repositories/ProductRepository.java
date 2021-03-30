@@ -165,7 +165,7 @@ public class ProductRepository {
     }
     public long fetchNumOfProducts(String categoryId){
         System.out.println("CatID = " + categoryId);
-        if(categoryId == null || categoryId.equals("null")){
+        if(categoryId == null || categoryId.equals("null") || categoryId.equals("")){
             Query q = entityManager.createQuery("select count(*) from Product");
             var productsNum = q.getResultList();
             System.out.println("number of products: " + (long) productsNum.get(0));
@@ -205,6 +205,55 @@ public class ProductRepository {
             }
         } catch (NumberFormatException e){
             return null;
+        }
+    }
+
+    public boolean updateProduct(int id, ProductDto product){
+        try {
+            entityManager.getTransaction().begin();
+            Product productToUpdate = entityManager.find(Product.class, id);
+            productToUpdate.setProductName(product.getProductName());
+            productToUpdate.setProductDescription(product.getProductDescription());
+            productToUpdate.setPrice(BigDecimal.valueOf(product.getProductPrice()));
+            productToUpdate.setQuantity(product.getProductQuantity());
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteProduct(int id) {
+        try {
+            entityManager.getTransaction().begin();
+            Product productToDelete = entityManager.find(Product.class, id);
+            entityManager.remove(productToDelete);
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean addProduct(ProductDto product) {
+        try {
+            entityManager.getTransaction().begin();
+            Product productToAdd = new Product();
+            productToAdd.setProductName(product.getProductName());
+            productToAdd.setProductDescription(product.getProductDescription());
+            productToAdd.setPrice(BigDecimal.valueOf(product.getProductPrice()));
+            productToAdd.setQuantity(product.getProductQuantity());
+            productToAdd.setPhoto("empty");
+            productToAdd.setSellerName("Rivo");
+            productToAdd.setStatus(ProductStatus.NEW.getProductStatus());
+            entityManager.persist(productToAdd);
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
         }
     }
 }
