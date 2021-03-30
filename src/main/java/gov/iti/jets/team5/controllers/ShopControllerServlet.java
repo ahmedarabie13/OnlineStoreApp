@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -33,7 +34,7 @@ public class ShopControllerServlet extends HttpServlet {
         productDto.setProductStatus(ProductStatus.SALE);
 
         for (int i = 0; i < 90; i++) {
-            productDto.setProductPrice(20.5 + i);
+            productDto.setProductPrice(new BigDecimal(20.5 + i));
             products.add(productDto);
         }
     }

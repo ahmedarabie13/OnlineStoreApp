@@ -5,6 +5,7 @@ import gov.iti.jets.team5.models.dto.UserDto;
 import gov.iti.jets.team5.repositories.CartRepository;
 import gov.iti.jets.team5.services.CartService;
 import gov.iti.jets.team5.services.impl.CartServiceImpl;
+import gov.iti.jets.team5.utils.mappers.CartItemDtoMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,11 +29,13 @@ public class CartServlet extends HttpServlet {
         var cartItems = CartRepository.getInstance().getCartItems(currentUserId);
         System.out.println("from servlet cart list : "+ cartItems);
 //        System.out.println("from servlet cart");
-        request.getSession().setAttribute("cartItems",cartItems);
+        CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
+        var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
+        request.getSession().setAttribute("cartItems",cartItemsDto);
         Gson gson = new Gson();
-        var jsonOb=gson.toJson(cartItems);
-        System.out.println("json : "+jsonOb);
-        out.println(jsonOb);
+        var jsonObj=gson.toJson(cartItemsDto);
+        System.out.println("json : "+jsonObj);
+        out.println(jsonObj);
 
     }
 }
