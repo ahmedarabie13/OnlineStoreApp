@@ -144,7 +144,7 @@
                         <c:when test="${sessionScope.currentUser!=null}">
                             <li class="side-menu"><a onclick="fetchCartItems()">
                                 <i class="fa fa-shopping-bag"></i>
-                                <span class="badge">3</span>
+                                <span id="cartSize" class="badge">${sessionScope.cartItems.size()}</span>
                                 <p>My Cart</p>
                             </a></li>
                         </c:when><c:when test="${sessionScope.currentUser==null}">

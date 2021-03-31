@@ -19,6 +19,7 @@ public class AddToCartServlet extends HttpServlet {
         int currentUserId = ((UserDto) request.getSession().getAttribute("currentUser")).getId();
         CartService cartService = new CartServiceImpl();
         cartService.addToCart(productId,currentUserId);
+        request.getSession().setAttribute("totalPrice",cartService.getCartTotalPrice(currentUserId));
     }
 
 }

@@ -19,22 +19,27 @@ import java.io.PrintWriter;
 public class CartServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int currentUserId = ((UserDto) request.getSession().getAttribute("currentUser")).getId();
+        var cartItems = CartRepository.getInstance().getCartItems(currentUserId);
+        CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
+        var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
+        request.getSession().setAttribute("cartItems",cartItemsDto);
+        Double totalPrice = new CartServiceImpl().getCartTotalPrice(currentUserId);
+        request.getSession().setAttribute("totalPrice",totalPrice);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-//        response.setContentType("text");
         int currentUserId = ((UserDto) request.getSession().getAttribute("currentUser")).getId();
         var cartItems = CartRepository.getInstance().getCartItems(currentUserId);
-        System.out.println("from servlet cart list : "+ cartItems);
-//        System.out.println("from servlet cart");
         CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
         var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
+        Double totalPrice = new CartServiceImpl().getCartTotalPrice(currentUserId);
         request.getSession().setAttribute("cartItems",cartItemsDto);
+        request.getSession().setAttribute("totalPrice",totalPrice);
         Gson gson = new Gson();
         var jsonObj=gson.toJson(cartItemsDto);
-        System.out.println("json : "+jsonObj);
         out.println(jsonObj);
 
     }

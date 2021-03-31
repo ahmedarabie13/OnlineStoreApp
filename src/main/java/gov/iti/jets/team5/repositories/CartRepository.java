@@ -89,7 +89,7 @@ public class CartRepository {
             try {
                 Product product = entityManager.find(Product.class, cartItemData.getProductId());
                 if (product != null) {
-                    isSufficient = cartItemData.getCartItemQuantity() < product.getQuantity();
+                    isSufficient = cartItemData.getCartItemQuantity() <= product.getQuantity();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

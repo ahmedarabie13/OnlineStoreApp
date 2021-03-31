@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -95,7 +96,7 @@
                         <tbody>
                         <c:forEach items="${sessionScope.cartItems}" var="cartItem">
 
-                            <tr>
+                            <tr id="product${cartItem.product.productID}">
                                 <td class="thumbnail-img">
                                     <a href="#"><img class="img-fluid" src="${cartItem.product.productImageURL}"
                                                      alt=""/></a>
@@ -109,9 +110,12 @@
                                 <!-- max="" according to the available quantity of the product -->
                                 <td class="quantity-box"><input type="number" size="4" value="${cartItem.quantity}"
                                                                 id="cartItem${cartItem.product.productID}"
-                                                                onclick="setQuantity(${cartItem.product.productID},${cartItem.product.quantity},${cartItem.product.productPrice});"
+                                                                onchange="setQuantity(${cartItem.product.productID},${cartItem.product.quantity},${cartItem.product.productPrice});"
                                                                 min="1"
-                                                                step="1" class="c-input-text qty text"></td>
+                                                                step="1" class="c-input-text qty text">
+                                    <br>
+                                    <span id="productError${cartItem.product.productID}" class="text-danger"></span>
+                                </td>
                                 <!-- should be calculated according to the no. of qunatities chosen -->
                                 <td class="total-pr">
                                     <p id="prodPrice${cartItem.product.productID}">
@@ -120,9 +124,11 @@
                                 <!-- should actually remove the item -->
                                 <!-- also can't find the class "fas fa-times" !! -->
                                 <td class="remove-pr">
-                                    <a onclick="deleteProduct(${cartItem.product.productID});"><i class="fas fa-times"></i></a>
+                                    <a onclick="deleteProduct(${cartItem.product.productID});"><i
+                                            class="fas fa-times"></i></a>
                                 </td>
                             </tr>
+
                         </c:forEach>
 
                         <%--                                <tr>--%>
@@ -168,62 +174,48 @@
             </div>
         </div>
 
-        <div class="row my-5">
-            <div class="col-lg-6 col-sm-6">
-                <div class="coupon-box">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code"
-                               type="text">
-                        <div class="input-group-append">
-                            <button class="btn btn-theme" type="button">Apply Coupon</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-                <div class="update-box">
-                    <input value="Update Cart" type="submit">
-                </div>
-            </div>
-        </div>
+        <form method="post" action="checkout">
 
-        <div class="row my-5">
-            <div class="col-lg-8 col-sm-12"></div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="order-box">
-                    <h3>Order summary</h3>
-                    <div class="d-flex">
-                        <h4>Sub Total</h4>
-                        <div class="ml-auto font-weight-bold"> $ 130</div>
+            <div class="order-box">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-num">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-num" name="cc-num" placeholder="" required>
+                        <small
+                                class="text-muted">Credit card number as displayed on card</small>
+                        <div class="invalid-feedback"> Credit card number is required</div>
                     </div>
-                    <div class="d-flex">
-                        <h4>Discount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 40</div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-cvv">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" name="cc-cvv" placeholder="" required>
+                        <div class="invalid-feedback"> Security code required</div>
                     </div>
-                    <hr class="my-1">
-                    <div class="d-flex">
-                        <h4>Coupon Discount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 10</div>
-                    </div>
-                    <div class="d-flex">
-                        <h4>Tax</h4>
-                        <div class="ml-auto font-weight-bold"> $ 2</div>
-                    </div>
-                    <div class="d-flex">
-                        <h4>Shipping Cost</h4>
-                        <div class="ml-auto font-weight-bold"> Free</div>
-                    </div>
-                    <!-- why no hr my-1 class here!!! -->
-                    <hr>
-                    <div class="d-flex gr-total">
-                        <h5>Grand Total</h5>
-                        <div class="ml-auto h5" id="totalPrice"> $ 388</div>
-                    </div>
-                    <hr>
                 </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-num">Address</label>
+                        <input type="text" class="form-control" id="shippingAddress" name="shippingAddress"
+                               placeholder="" required> <small
+                            class="text-muted">Address of the order to be shipped to</small>
+                        <div class="invalid-feedback"> Invalid Address</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex gr-total">
+                    <h5>Grand Total</h5>
+                    <fmt:formatNumber var="cartTotalPrice"
+                                      value="${sessionScope.totalPrice}"
+                                      maxFractionDigits="2"/>
+                    <div class="ml-auto h5" id="totalPrice"> $ ${cartTotalPrice}</div>
+                </div>
+                <hr>
             </div>
-            <div class="col-12 d-flex shopping-box"><a href="checkout" class="ml-auto btn hvr-hover">Checkout</a></div>
-        </div>
+            <%--            </div>--%>
+            <div class="col-12 d-flex shopping-box"><a type="submit" class="ml-auto btn hvr-hover">Checkout</a>
+            </div>
+        </form>
+        <%--            <div class="col-lg-8 col-sm-12"></div>--%>
+        <%--        </div>--%>
 
     </div>
 </div>
@@ -278,15 +270,20 @@
                 let totalPrice = parseFloat(output.totalPrice).toFixed(2);
                 console.log("totalPrice " + totalPrice);
                 $('#totalPrice').append("$ " + totalPrice);
+                // $('#productError' + productId).empty();
+                $('#cartItem' + productId).css("border-color", "#B0B435");
 
                 console.log("res" + data);
             } else {
-                console.log(data);
+                // $('#productError' + productId).text("invalid Quantity");
+                $('#cartItem' + productId).css("border-color", "#DC3545");
+                console.log("failed: " + data);
             }
             console.log("done");
         }
     }
-    function deleteProduct(productId){
+
+    function deleteProduct(productId) {
         let cartItemData = new Object();
         cartItemData.operation = "deleteCartItem";
         cartItemData.productId = productId;
@@ -296,8 +293,16 @@
 
         function done(data) {
             let response = JSON.parse(data);
-            console.log("deleteCallBack: "+response);
-            window.location.reload(true);
+            $('#product' + productId).remove();
+            $('#productError' + productId).remove();
+            console.log("tor=talPrice: " + response.totalPrice);
+            let cartSize = parseInt($('#cartSize').text()) - 1;
+            console.log("cartSize: " + cartSize);
+            $('#cartSize').text(cartSize);
+            $('#totalPrice').empty();
+            $('#totalPrice').append(response.totalPrice);
+            console.log("deleteCallBack: " + response);
+            // window.location.reload(true);
             //todo: refresh the page
         }
     }

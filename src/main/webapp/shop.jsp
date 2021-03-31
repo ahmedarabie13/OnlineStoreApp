@@ -435,6 +435,8 @@
     function addToCart(productId){
         console.log("added id: "+productId+" to cart");
         let jsonData = {"productId":productId};
+        let cartSize = parseInt($('#cartSize').text()) + 1;
+        $('#cartSize').text(cartSize);
         // $.ajax({
         //     url: 'cart',
         //     type: 'POST',

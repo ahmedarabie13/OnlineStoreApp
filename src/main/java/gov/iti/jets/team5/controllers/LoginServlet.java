@@ -1,9 +1,12 @@
 package gov.iti.jets.team5.controllers;
 
 import gov.iti.jets.team5.models.dto.UserAuthDto;
+import gov.iti.jets.team5.repositories.CartRepository;
 import gov.iti.jets.team5.services.LoginService;
+import gov.iti.jets.team5.services.impl.CartServiceImpl;
 import gov.iti.jets.team5.services.impl.LoginServiceImpl;
 import gov.iti.jets.team5.utils.Cookies;
+import gov.iti.jets.team5.utils.mappers.CartItemDtoMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,6 +29,12 @@ public class LoginServlet extends HttpServlet {
         if (loginService.isUserAuthed(userAuthDto)) {
             request.getSession().setAttribute("currentUser", loginService.getCurrentUserCredentials(userAuthDto.getId()));
             Cookies.addCookie("c_user", String.valueOf(userAuthDto.getId()), MONTH, response);
+            var cartItems = CartRepository.getInstance().getCartItems(userAuthDto.getId());
+            CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
+            var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
+            request.getSession().setAttribute("cartItems",cartItemsDto);
+            Double totalPrice = new CartServiceImpl().getCartTotalPrice(userAuthDto.getId());
+            request.getSession().setAttribute("totalPrice",totalPrice);
             request.getRequestDispatcher("index.jsp").forward(request, response);
 //            response.sendRedirect("main");
         } else {

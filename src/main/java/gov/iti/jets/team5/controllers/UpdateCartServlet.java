@@ -36,6 +36,7 @@ public class UpdateCartServlet extends HttpServlet {
             if (cartService.updateProductQuantity(currentUser.getId(), cartItemData)) {
                 double totalPrice = cartService.getCartTotalPrice(currentUser.getId());
                 System.out.println("from servlet: update succeeded");
+                request.getSession().setAttribute("totalPrice", totalPrice);
                 out.write("{\"status\": \"success\",\n" +
                         "                 \"totalPrice\": " + totalPrice + "}");
 
@@ -46,15 +47,16 @@ public class UpdateCartServlet extends HttpServlet {
                 System.out.println("from servlet: update failed");
             }
         } else if (cartItemData.getOperation().equals("deleteCartItem")) {
-            cartService.deleteCartItem(currentUser.getId(),cartItemData);
+            cartService.deleteCartItem(currentUser.getId(), cartItemData);
             var cartItems = cartService.getCartItems(currentUser.getId());
             CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
             var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
-            request.getSession().setAttribute("cartItems",cartItemsDto);
-            var jsonObj=gson.toJson(cartItemsDto);
+            request.getSession().setAttribute("cartItems", cartItemsDto);
+            double totalPrice = cartService.getCartTotalPrice(currentUser.getId());
+            request.getSession().setAttribute("totalPrice", totalPrice);
             System.out.println("from servlet: delete");
-//            System.out.println("json : "+jsonObj);
-            out.println(jsonObj);
+            out.println("{" +
+                    "\"totalPrice\": " + totalPrice + "}");
         }
     }
 }
