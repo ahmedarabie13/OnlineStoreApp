@@ -32,7 +32,7 @@ public class CheckoutServlet extends HttpServlet {
         if (bankService.isValidCreditCard(creditCardDto)) {
 
             Double totalOrderPrice = orderDto.getProducts().keySet().stream().map(product -> {
-                        return (product.getProductPrice() * orderDto.getProducts().get(product));
+                        return (product.getProductPrice().doubleValue() * orderDto.getProducts().get(product));
                     }
             ).reduce(0.0, Double::sum);
            if( bankService.withdraw(creditCardDto, totalOrderPrice)){

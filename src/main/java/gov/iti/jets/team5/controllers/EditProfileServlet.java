@@ -32,8 +32,8 @@ public class EditProfileServlet extends HttpServlet {
             System.out.println(userDateOfBirth);
             PrintWriter out = response.getWriter();
             UserDto userDto = new UserDto();
-            UserAuthDto userAuthDto = (UserAuthDto) request.getSession().getAttribute("currentUser");
-            int userId = userAuthDto.getId();
+            UserDto userDto1= (UserDto) request.getSession().getAttribute("currentUser");
+            int userId = userDto1.getId();
             userDto.setFirstName(request.getParameter("firstName"));
             userDto.setLastName(request.getParameter("lastName"));
             userDto.setEmail(request.getParameter("email"));
@@ -62,8 +62,8 @@ public class EditProfileServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EditProfileService editProfileService = EditProfileServiceImpl.getInstance();
         response.setContentType("text/html");
-        UserAuthDto userAuthDto = (UserAuthDto) request.getSession().getAttribute("currentUser");
-        int userId = userAuthDto.getId();
+        UserDto userDto1 = (UserDto) request.getSession().getAttribute("currentUser");
+        int userId = userDto1.getId();
         System.out.println("frommmmmm edit profile servleeettt");
         UserDto userDto = editProfileService.getCurrentUser(userId);
         System.out.println("youmnaaaaaaaaaaaaaa" + userId);
