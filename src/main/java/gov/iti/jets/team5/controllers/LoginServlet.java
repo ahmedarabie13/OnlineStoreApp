@@ -16,7 +16,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     private static final int MONTH = 60 * 60 * 24 * 30;
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LoginService loginService = LoginServiceImpl.getInstance();
         UserAuthDto userAuthDto = new UserAuthDto();
@@ -32,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             //todo: redirect with error parameters
 //            request.setAttribute("Error","true");
 //            request.getRequestDispatcher("login.jsp").forward(request,response);
-            response.sendRedirect("login?Error=true");
+              response.sendRedirect("login?Error=true");
         }
     }
 

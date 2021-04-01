@@ -10,7 +10,7 @@ public class UserDto {
     private String email;
     private String phone;
     private String job;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String street;
     private String City;
     private String userRole;
@@ -90,11 +90,11 @@ public class UserDto {
         this.job = job;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
