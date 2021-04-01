@@ -58,7 +58,7 @@
             <name>productId</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>java.lang.Integer</type>
+            <type>int</type>
         </attribute>
     </tag>
 </taglib>

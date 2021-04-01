@@ -121,12 +121,12 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop">Sidebar Shop</a></li>
-                            <li><a href="shopDetail">Shop Detail</a></li>
+                            <li><a href="shop">Shop</a></li>
+<%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
                             <li><a href="cart">Cart</a></li>
                             <li><a href="checkout">Checkout</a></li>
                             <li><a href="myAccount">My Account</a></li>
-                            <li><a href="wishlist">Wishlist</a></li>
+<%--                            <li><a href="wishlist">Wishlist</a></li>--%>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>

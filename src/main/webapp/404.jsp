@@ -65,9 +65,8 @@
             <div class="col-2"></div>
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="offer-box-products">
-                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit">Please
-                        Enable Your Cookies to Continue</p>
-                    <img class="img-fluid" src="images/msgs/cookiess.jpg" alt=""/>
+                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a href="main">BACK TO HOME</a></p>
+                    <img class="img-fluid" src="images/msgs/oops.png" alt=""/>
                 </div>
             </div>
             <div class="col-2"></div>

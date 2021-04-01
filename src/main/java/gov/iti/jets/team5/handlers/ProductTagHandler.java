@@ -32,7 +32,7 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<img src=" + productImageURL + " class=\"img-fluid\" alt=\"Image\">");
         out.println("<div class=\"mask-icon\">");
         out.println("<ul>");
-        out.println("<li><a href=\"#\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"View\"><i class=\"fas fa-eye\"></i></a></li>");
+        out.println("<li><a href=\"shopDetail?id=" + productId + "\"" + "data-toggle=\"tooltip\" data-placement=\"right\" title=\"View\"><i class=\"fas fa-eye\"></i></a></li>");
         out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
         out.println("title = \"Compare\" ><i class=\"fas fa-sync-alt\" ></i ></a ></li >");
         out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
