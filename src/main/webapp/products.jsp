@@ -84,7 +84,7 @@
                     <div class="product-item-filter row">
                         <div class="col-12 col-sm-8 text-center text-sm-left">
                             <div class="toolbar-sorter-right" style="align-items: center">
-                                <a class="btn hvr-hover" data-fancybox-close="" href="addProduct.jsp" style="width:400px;"><b>ADD NEW PRODUCT</b></a>
+                                <a class="btn hvr-hover" data-fancybox-close="" href="addProduct" style="width:400px;"><b>ADD NEW PRODUCT</b></a>
                             </div>
                         </div>
                     </div>

@@ -61,10 +61,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Shop Detail</h2>
+                    <h2>Product Detail</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active">Shop Detail </li>
+                        <li class="breadcrumb-item"><a href="#">Products</a></li>
+                        <li class="breadcrumb-item active">Product Detail </li>
                     </ul>
                 </div>
             </div>
@@ -111,11 +111,13 @@
                                 <label style="display:none;" id="prodId">${requestScope.productObj.id}</label>
                                 <h2 contentEditable="true" id="prodName">${requestScope.productObj.productName}</h2>
                                 <label id="prodPriceL" style="text-space: 50">Price</label>
-                                <input type="text" value="${requestScope.productObj.price}" id="prodPrice" style="margin-left: 40px;">
+                                <input type="text" value="${requestScope.productObj.price}" id="prodPrice" style="margin-left: 40px;" onblur="priceValidator()">
+                                <span id="negPrice" style="display: none; font-size: larger; color: red">Please Enter a Correct Price Number</span>
                                 <br>
                                 <br>
                                 <label id="prodQuanL">Quantity</label>
-                                <input type="text" value="${requestScope.productObj.quantity}" id="prodQuan" style="margin-left: 21px;">
+                                <input type="text" value="${requestScope.productObj.quantity}" id="prodQuan" style="margin-left: 21px;" onblur="quantityValidator()">
+                                <span id="wrongQuan" style="display: none; font-size: larger; color: red">Please Enter a Correct Quantity Number</span>
                                 <h4>Description:</h4>
                                 <p contentEditable="true" id="prodDesc">${requestScope.productObj.productDescription}.</p>
                             </c:when>
@@ -332,6 +334,7 @@
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
     <script src="customValidations/productCruds.js"></script>
+    <script src="customValidations/productValidations.js"></script>
 
     <%--for the error $(...).slider is not a function--%>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

@@ -93,7 +93,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean addProduct(ProductDto product) {
-        return ps.addProduct(product);
+    public boolean addProduct(ProductDto product, String [] cats) {
+        return ps.addProduct(product, cats);
     }
 }

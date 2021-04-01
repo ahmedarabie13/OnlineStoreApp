@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -73,20 +74,26 @@ public class ProductRepository {
     }
 
     public List<ProductDto> fetchCatProducts(String category, int pageNumber){
+        List<ProductDto> theProducts = null;
         try{
+            entityManager.getTransaction().begin();
             int categoryId = Integer.parseInt(category);
             int pageSize = 10;
             Query query = entityManager.createQuery("from Category cat where cat.id = :category")
                     .setParameter("category", categoryId);
             List<Category> returnedCatObj = query.getResultList();
+            entityManager.getTransaction().commit();
             if(returnedCatObj.isEmpty()){
                 return null;
             } else {
+                entityManager.getTransaction().begin();
                 Set<Product> catProducts = returnedCatObj.get(0).getProducts();
+                System.out.println(catProducts.size() + " THE SIZE");
                 List<Product> catProductsList = new ArrayList<>(catProducts);
-                List<ProductDto> theProducts = new ArrayList<>();
+                theProducts = new ArrayList<>();
                 int size = Math.min(pageSize, catProductsList.size());
                 for(int i = (pageNumber - 1) * pageSize; i < size; i++){
+
                     Product item = catProductsList.get(i);
                     ProductDto productDto = new ProductDto();
                     productDto.setProductID(String.valueOf(item.getId()));
@@ -96,10 +103,13 @@ public class ProductRepository {
                     productDto.setProductStatus(ProductStatus.valueOf(item.getStatus()));
                     theProducts.add(productDto);
                 }
-                return theProducts;
+//                return theProducts;
             }
-        } catch (NumberFormatException e ){
-            return null;
+        } catch (Exception e ){
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
+            return theProducts;
         }
     }
 
@@ -134,6 +144,7 @@ public class ProductRepository {
         BigDecimal filterStartDecimal = new BigDecimal(filterStart);
         BigDecimal filterEndDecimal = new BigDecimal(filterEnd);
         try {
+            entityManager.getTransaction().begin();
             int categoryId = Integer.parseInt(category);
             Query query = entityManager.createQuery("from Category cat where cat.id = :category")
                     .setParameter("category", categoryId);
@@ -157,6 +168,7 @@ public class ProductRepository {
                         theProducts.add(productDto);
                     }
                 }
+                entityManager.getTransaction().commit();
                 return theProducts;
             }
         } catch (NumberFormatException e) {
@@ -237,7 +249,7 @@ public class ProductRepository {
         }
     }
 
-    public boolean addProduct(ProductDto product) {
+    public boolean addProduct(ProductDto product, String [] catList) {
         try {
             entityManager.getTransaction().begin();
             Product productToAdd = new Product();
@@ -248,6 +260,10 @@ public class ProductRepository {
             productToAdd.setPhoto("empty");
             productToAdd.setSellerName("Rivo");
             productToAdd.setStatus(ProductStatus.NEW.getProductStatus());
+            if(catList != null){
+                Set<Category> cats = getCats(catList);
+                productToAdd.setCategories(cats);
+            }
             entityManager.persist(productToAdd);
             entityManager.getTransaction().commit();
             return true;
@@ -255,5 +271,14 @@ public class ProductRepository {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Set<Category> getCats(String [] cats){
+        Set<Category> catsList = new HashSet<>();
+        for (String c : cats) {
+            Category cat = entityManager.find(Category.class, Integer.parseInt(c));
+            catsList.add(cat);
+        }
+        return catsList;
     }
 }

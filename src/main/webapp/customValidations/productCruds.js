@@ -1,4 +1,6 @@
 function updateProduct(){
+    let checkVal = checkValidations();
+    if(checkVal === false) return;
     // debugger
     let id = $("#prodId").text()
     let newName = $("#prodName").html()
@@ -7,53 +9,59 @@ function updateProduct(){
     let newDesc = $("#prodDesc").text()
     let product =
         {
-            "update": true,
             "id": id,
             "newName": newName,
             "newPrice": newPrice,
             "newQuantity": newQuantity,
             "newDesc": newDesc,
         }
-    $.post("products", product , productUpdateCallBack);
+    $.post("updateProduct", product , productUpdateCallBack);
     function productUpdateCallBack(responseJson, status, xhr){
         if(status === "success" && responseJson === "true"){
             console.log("updated")
             window.location.href=`productDetail?id=${id}`
-        } else {
+        }
+        else {
             console.log("failed to update")
-            return
+            // window.location.href=`opsUpd.jsp?pid=${id}`
         }
     }
 }
 
 function deleteProduct(){
     let id = $("#prodId").text();
-    let product = {"id": id, "delete": true}
-    $.post("products", product , productUpdateCallBack);
+    let product = {"id": id}
+    $.post("deleteProduct", product , productUpdateCallBack);
     function productUpdateCallBack(responseJson, status, xhr){
         if(status === "success" && responseJson === "true"){
-            console.log("updated")
+            console.log("deleted")
             window.location.href="products"
         } else {
             console.log("failed to update")
-            return
+            // window.location.href=`opsDel.jsp`
         }
     }
 }
 
 function addProduct(){
+    let checkVal = checkValidations();
+    if(checkVal === false) return;
     // debugger
     let newName = $("#prodName").val()
     let newPrice = $("#prodPrice").val()
     let newQuantity = $("#prodQuan").val()
     let newDesc = $("#prodDesc").text()
+    let cats = $("#catList").val();
     let product =
         {
             "name": newName,
             "price": newPrice,
             "quan": newQuantity,
             "desc": newDesc,
+            "cats": cats
         }
+        console.log(product.cats)
+    // product = JSON.stringify(product);
     $.post("products", product , productUpdateCallBack);
     function productUpdateCallBack(responseJson, status, xhr){
         if(status === "success" && responseJson === "true"){
@@ -61,7 +69,18 @@ function addProduct(){
             window.location.href='products'
         } else {
             console.log("failed to add")
-            return
+            window.location.href='opsAdd.jsp'
         }
+    }
+}
+
+function checkValidations(){
+    var validationFailed = false;
+    if($("#negPrice").is(":visible") || $("#wrongQuan").is(":visible")
+        || $("#prodName").val() === "" || $("#prodPrice").val() === "" || $("#prodQuan").val() === ""){
+        validationFailed = true;
+    }
+    if (validationFailed) {
+        return false;
     }
 }

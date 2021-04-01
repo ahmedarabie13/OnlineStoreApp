@@ -22,7 +22,7 @@ public interface ProductService {
     Product fetchProductData(String productId);
     boolean updateProduct(int pid, ProductDto product);
     boolean deleteProduct(int pid);
-    boolean addProduct(ProductDto product);
+    boolean addProduct(ProductDto product, String [] cats);
 
 }
 

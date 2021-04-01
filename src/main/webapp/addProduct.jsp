@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="forms/css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Site CSS -->
@@ -83,15 +84,28 @@
                         <br>
                         <br>
                         <h2 id="prodPriceL" style="text-space: 50">Product Price</h2>
-                        <input type="text" id="prodPrice" placeholder="Enter Product Price Here" style="margin-left: 42px;width: 300px;">
+                        <input type="text" id="prodPrice" placeholder="Enter Product Price Here" style="margin-left: 42px;width: 300px;" onblur="priceValidator()">
+                        <span id="negPrice" style="display: none; font-size: larger; color: red">Negative Prices Are Usually Bad For The Business!</span>
                         <br>
                         <br>
                         <h2 id="prodQuanL">Quantity</h2>
-                        <input type="text" id="prodQuan" placeholder="Enter Product Quantity Here" style="margin-left: 41px; width: 300px;">
+                        <input type="text" id="prodQuan" placeholder="Enter Product Quantity Here" style="margin-left: 41px; width: 300px;" onblur="quantityValidator()">
+                        <span id="wrongQuan" style="display: none; font-size: larger; color: red">Please Enter a Correct Quantity Number</span>
                         <br>
                         <br>
                         <h2>Description</h2>
                         <p contentEditable="true" id="prodDesc" style="border-style: solid; border-radius: 3px; border-color: #777620"></p>
+                        <br>
+                        <label style="font-size: larger">You may click Control (Windows) or click Command (Mac) to select more than one.</label>
+                        <br>
+<%--                        <select id="catList" class="selectpicker show-tick form-control" data-placeholder="$ USD" multiple>--%>
+                        <select id="catList" class="form-select" multiple aria-label="multiple select example" multiple>
+                            <option data-display="Select" value="0" selected disabled>Nothing</option>
+                            <c:forEach items="${requestScope.categories}" var="category">
+                                    <option value="${category.id}">${category.name}</option>
+                            </c:forEach>
+                        </select>
+                        <br>
                         <br>
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
@@ -132,6 +146,7 @@
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
     <script src="customValidations/productCruds.js"></script>
+    <script src="customValidations/productValidations.js"></script>
 
     <%--for the error $(...).slider is not a function--%>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

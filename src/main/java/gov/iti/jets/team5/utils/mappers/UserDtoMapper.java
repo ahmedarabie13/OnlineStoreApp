@@ -15,7 +15,7 @@ public class UserDtoMapper extends AbstractDtoMapper<UserDto, UserData> {
         userDto.setPhone(entity.getPhone());
         userDto.setPassword(entity.getPassword());
         userDto.setCity(entity.getCity());
-        userDto.setDateOfBirth(entity.getBirthdate().toString());
+        //userDto.setDateOfBirth(entity.getBirthdate().toString());
         userDto.setStreet(entity.getStreet());
         userDto.setUserRole(entity.getUserRole());
         return userDto;
