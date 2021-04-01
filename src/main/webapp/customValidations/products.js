@@ -113,6 +113,3 @@ function getProducts() {
     //     }
     // )
 }
-function addToCart(productId){
-    console.log("added id: "+productId+" to cart");
-}

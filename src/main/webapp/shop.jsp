@@ -421,11 +421,13 @@
 <script src="js/custom.js"></script>
 <script>
     function addToCart(productId){
+        debugger
         console.log("added id: "+productId+" to cart");
         let jsonData = {"productId":productId};
+        console.log("sdff");
         let cartSize = parseInt($('#cartSize').text()) + 1;
         $('#cartSize').text(cartSize);
-        $.post("addToCart",jsonData,done);
+        $.post("addToCart", jsonData,done);
         function done(){
             console.log("done");
         }

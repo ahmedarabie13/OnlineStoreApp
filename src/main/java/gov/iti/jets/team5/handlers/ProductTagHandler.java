@@ -9,11 +9,12 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 import java.awt.*;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class ProductTagHandler extends SimpleTagSupport {
     private String productName;
     private String productImageURL;
-    private Double productPrice;
+    private BigDecimal productPrice;
     private ProductStatus productStatus;
     private String productDescription;
     private double productRating;
@@ -38,7 +39,7 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
         out.println("title = \"Add to Wishlist\" ><i class=\"far fa-heart\" ></i ></a ></li >");
         out.println("</ul >");
-        out.println("<a class=\"cart\" href=\"#\" onclick=\"addToCart("+productId+");\"> Add to Cart</a >");
+        out.println("<a class=\"cart\" onclick=\"addToCart("+productId+");\"> Add to Cart</a >");
         out.println("</div >");
         out.println("</div >");
         out.println("<div class=\"why-text\" >");
@@ -68,11 +69,11 @@ public class ProductTagHandler extends SimpleTagSupport {
         this.productImageURL = productImageURL;
     }
 
-    public Double getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Double productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
