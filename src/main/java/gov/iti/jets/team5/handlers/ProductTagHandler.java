@@ -18,7 +18,7 @@ public class ProductTagHandler extends SimpleTagSupport {
     private String productDescription;
     private double productRating;
     private ProductCategory productCategory;
-    private int productId;
+    private Integer productId;
 
     @Override
     public void doTag() throws JspException, IOException {
@@ -38,7 +38,7 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
         out.println("title = \"Add to Wishlist\" ><i class=\"far fa-heart\" ></i ></a ></li >");
         out.println("</ul >");
-        out.println("<a class=\"cart\" href = \"#\" > Add to Cart</a >");
+        out.println("<a class=\"cart\" href=\"#\" onclick=\"addToCart("+productId+");\"> Add to Cart</a >");
         out.println("</div >");
         out.println("</div >");
         out.println("<div class=\"why-text\" >");

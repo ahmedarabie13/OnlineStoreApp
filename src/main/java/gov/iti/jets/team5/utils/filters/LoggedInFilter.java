@@ -1,6 +1,7 @@
 package gov.iti.jets.team5.utils.filters;
 
 import gov.iti.jets.team5.models.dto.UserAuthDto;
+import gov.iti.jets.team5.models.dto.UserDto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public class LoggedInFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("entering the LoggedInFilter filter (1)");
-        UserAuthDto currentUser = (UserAuthDto) ((HttpServletRequest)request).getSession().getAttribute("currentUser");
+        UserDto currentUser = (UserDto) ((HttpServletRequest)request).getSession().getAttribute("currentUser");
         if(currentUser == null){
             System.out.println("no userAuth object on the session scope hence not logged in");
             ((HttpServletResponse) response).sendRedirect("login.jsp");

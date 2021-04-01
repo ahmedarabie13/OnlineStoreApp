@@ -3,6 +3,7 @@ package gov.iti.jets.team5.models.dto;
 import java.util.Date;
 
 public class UserDto {
+    private int id;
     private String userName;
     private String password;
     private String firstName;
@@ -33,6 +34,14 @@ public class UserDto {
     }
 
     public UserDto() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {

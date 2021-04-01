@@ -81,7 +81,14 @@ public class CartItems implements java.io.Serializable {
         this.quantity = quantity;
     }
 
-
+    @Override
+    public String toString() {
+        return "CartItems{" +
+                "id=" + id +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
 
 

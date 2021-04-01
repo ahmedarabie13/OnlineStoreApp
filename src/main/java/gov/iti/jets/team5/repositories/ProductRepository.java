@@ -63,7 +63,7 @@ public class ProductRepository {
             productDto.setProductID(String.valueOf(p.getId()));
             productDto.setProductName(p.getProductName());
             productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(p.getPrice().doubleValue());
+            productDto.setProductPrice(p.getPrice());
             productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
             theProducts.add(productDto);
         }
@@ -121,7 +121,7 @@ public class ProductRepository {
             productDto.setProductID(String.valueOf(p.getId()));
             productDto.setProductName(p.getProductName());
             productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(p.getPrice().doubleValue());
+            productDto.setProductPrice(p.getPrice());
             productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
             theProducts.add(productDto);
         }

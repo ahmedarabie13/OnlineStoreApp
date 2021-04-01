@@ -51,6 +51,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<%--<!--    <script src="customValidations/products.js"></script>-->--%>
     <![endif]-->
 
 </head>
@@ -418,6 +419,18 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<script>
+    function addToCart(productId){
+        console.log("added id: "+productId+" to cart");
+        let jsonData = {"productId":productId};
+        let cartSize = parseInt($('#cartSize').text()) + 1;
+        $('#cartSize').text(cartSize);
+        $.post("addToCart",jsonData,done);
+        function done(){
+            console.log("done");
+        }
+    }
+</script>
 <script src="customValidations/products.js"></script>
 
 
