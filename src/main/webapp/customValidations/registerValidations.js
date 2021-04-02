@@ -46,6 +46,7 @@ function passwordConfirmation(){
 }
 
 function emailValidator(){
+
     let email = $("#email").val()
     var regex =/(^[A-Za-z0-9._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,6}$)| [ \t\n]*/
     if(email.match(regex)) {

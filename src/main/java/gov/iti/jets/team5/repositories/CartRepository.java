@@ -28,8 +28,9 @@ public class CartRepository {
         return instance;
     }
 
-    public void addProductToCart(int productId, int userId) {
+    public String addProductToCart(int productId, int userId) {
         System.out.println(productId + " from cart repo");
+        String status = "";
         try {
             entityManager.getTransaction().begin();
             var list = entityManager.createQuery("from PotentialOrders p where p.userData.id = :user_id and p.active = true")
@@ -39,25 +40,48 @@ public class CartRepository {
                 cartItemsId.setProductId(productId);
                 cartItemsId.setOrderId(((PotentialOrders) list.get(0)).getOrderId());
                 var cartItem = entityManager.find(CartItems.class, cartItemsId);
+                int newCartItemQuantity;
                 if (cartItem != null) {
-                    cartItem.setQuantity(cartItem.getQuantity() + 1);
+                    newCartItemQuantity = cartItem.getQuantity() + 1;
+//                    cartItem.setQuantity(cartItem.getQuantity() + 1);
+                    status = "existed";
                 } else {
                     var product = (Product) entityManager.find(Product.class, productId);
                     cartItem = new CartItems();
                     System.out.println("new CartItem");
                     cartItem.setId(cartItemsId);
-                    cartItem.setQuantity(1);
+//                    cartItem.setQuantity(1);
+                    newCartItemQuantity = 1;
                     cartItem.setProduct(product);
+                    status = "new";
                 }
-                entityManager.persist(cartItem);
-                System.out.println("done");
+                entityManager.getTransaction().commit();
+                if (isQuantityValid(new CartItemData(productId, newCartItemQuantity))) {
+                    try{
+                        entityManager.getTransaction().begin();
+                        cartItem.setQuantity(newCartItemQuantity);
+                        entityManager.persist(cartItem);
+                        System.out.println("done");
+                    }catch (Exception e){
+                        status = "error";
+                        e.printStackTrace();
+                    }finally {
+                        entityManager.getTransaction().commit();
+                    }
+                } else {
+                    System.out.println("error");
+                    status = "error";
+                }
+                entityManager.getTransaction().begin();
             }
         } catch (Exception e) {
             System.out.println("exception thrown");
+            status = "error";
             e.printStackTrace();
         } finally {
             System.out.println("we reached finally");
             entityManager.getTransaction().commit();
+            return status;
         }
     }
 
@@ -84,6 +108,7 @@ public class CartRepository {
 
     public boolean isQuantityValid(CartItemData cartItemData) {
         boolean isSufficient = false;
+        System.out.println("from isQuantityValid cartQuantity: " + cartItemData.getCartItemQuantity());
         if (cartItemData.getCartItemQuantity() > 0) {
             entityManager.getTransaction().begin();
             try {
@@ -128,13 +153,13 @@ public class CartRepository {
                     .setParameter("user_id", userId).getResultList();
             if (carts.size() == 1) {
                 int orderId = ((PotentialOrders) carts.get(0)).getOrderId();
-                var cartItems =(List<CartItems>) entityManager.createQuery("from CartItems c where c.id.orderId = :order_id")
+                var cartItems = (List<CartItems>) entityManager.createQuery("from CartItems c where c.id.orderId = :order_id")
                         .setParameter("order_id", orderId).getResultList();
                 totalPrice = cartItems.stream().map(cartItem -> {
                     var cartItemData = ((CartItems) cartItem);
                     return (Double) (cartItemData.getQuantity() * cartItemData.getProduct().getPrice().doubleValue());
                 }).reduce(0.0, Double::sum);
-                System.out.println("totalPrice: "+totalPrice);
+                System.out.println("totalPrice: " + totalPrice);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,20 +171,20 @@ public class CartRepository {
 
     public void deleteCartItem(int userId, int productId) {
         entityManager.getTransaction().begin();
-        try{
+        try {
             var carts = entityManager.createQuery("from PotentialOrders p where p.userData.id = :user_id and p.active = true")
                     .setParameter("user_id", userId).getResultList();
             if (carts.size() == 1) {
                 int orderId = ((PotentialOrders) carts.get(0)).getOrderId();
                 CartItemsId cartItemId = new CartItemsId(orderId, productId);
                 CartItems cartItem = entityManager.find(CartItems.class, cartItemId);
-                if(cartItem!=null){
+                if (cartItem != null) {
                     entityManager.remove(cartItem);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             entityManager.getTransaction().commit();
             System.out.println("delete done successfully");
         }

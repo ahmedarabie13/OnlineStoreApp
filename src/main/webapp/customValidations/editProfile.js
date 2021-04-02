@@ -3,65 +3,116 @@ var request = null;
 
 function updateProfile() {
     let validData = checkValidations();
-    if(validData ===true ){
-    if (window.XMLHttpRequest)
-        request = new XMLHttpRequest();
-    else if
-    (window.ActiveXObject)
-        request = new ActiveXObject(Microsoft.XMLHTTP);
-    let email = $("#email").val();
-    let password = $("#pass").val();
-    let firstName = $("#fn").val();
-    let lastName = $("#ln").val();
-    let phone = $("#phoneField").val();
-    let job = $("#job").val();
-    let dob = $("#dob").val();
-    let street = $("#street").val();
-    let city = $("#ciTy").val();
-    request.onreadystatechange = handleStateChangee;
-    let jsonObj = {
-        "email": email, "password": password, "firstName": firstName, "lastName": lastName,
-        "phone": phone, "job": job, "dob": dob, "street": street, "city": city
+    if (validData === true) {
+
+        let email = $("#email").val();
+        let password = $("#pass").val();
+        let firstName = $("#fn").val();
+        let lastName = $("#ln").val();
+        let phone = $("#phoneField").val();
+        let job = $("#job").val();
+        let dob = $("#dob").val();
+        let street = $("#street").val();
+        let city = $("#ciTy").val();
+        let jsonObj = {
+            "email": email, "password": password, "firstName": firstName, "lastName": lastName,
+            "phone": phone, "job": job, "dob": dob, "street": street, "city": city
+        };
+
+
+        $.post("editProfile", jsonObj, AjaxCallBack);
+    } else {
+        return false;
     }
-    request.open("Post", "editProfile", true);
-    request.send(jsonObj);
 }
-    else {return false;}}
 
-function handleStateChangee() {
+function AjaxCallBack(responseTxt, statusTxt, xhr) {
     let xmlvalue;
-    if (request.readyState == 4 && request.status == 200) {
-        xmlvalue = request.responseText;
-        if(xmlvalue==="Valid"){
-        $("#updated").show();
-        $("input").prop('disabled', true);
-        return;
-    }
-        else{
+    if (statusTxt == "success") {
+        xmlvalue = responseTxt;
+        if (xmlvalue === "Valid") {
+            $("#updated").show();
+            $("input").prop('disabled', true);
+            return;
+        } else {
             $("#failed").show();
-            return;}
-} }
+            return;
+        }
+    }
+}
 
+// function checkValidations() {
+//
+//     var validationFailed = false;
+//
+//     if ($("#fn").val() === "" || $("#ln").val() === "" || $("#email").val() === ""
+//         || $("#phoneField").val() === "" || $("#pass").val() === "" || $("#passConf").val() === "") {
+//         validationFailed = true;
+//
+//     }
+//     if (validationFailed) {
+//
+//         return false;
+//     }
+//     return true;
+// }
 function checkValidations(){
-
+    //$("form").submit(function (e) {
+    console.log("here1")
     var validationFailed = false;
-
-     if($("#fn").val() === "" || $("#ln").val() === "" || $("#email").val() === ""
+    console.log("here2" + validationFailed)
+    if($("#invalidPhone").is(":visible") || $("#invalidPassword").is(":visible") || $("#invalidConf").is(":visible")
+        || $("#invalidEmail").is(":visible") || $("#emailExist").is(":visible") || $("#shortFnLength").is(":visible") || $("#shortLnLength").is(":visible")){
+        validationFailed = true;
+        console.log("here3" + validationFailed)
+    } else if($("#fn").val() === "" || $("#ln").val() === "" || $("#email").val() === ""
         || $("#phoneField").val() === "" || $("#pass").val() === "" || $("#passConf").val() === ""){
         validationFailed = true;
-
+        console.log("here4" + validationFailed)
     }
     if (validationFailed) {
-
+        console.log("here5" + validationFailed)
+        //$("#regForm").preventDefault();
         return false;
     }
     return true;
+    //});
 }
 
-function disable(){
+function disable() {
     $("input").prop('disabled', true);
 }
 
-function enable(){
+function enable() {
     $("input").prop('disabled', false);
+}
+
+function emailValidate() {
+    let email = $("#email").val();
+    let currentUserEmail = document.getElementById("myEmail").textContent;
+    if(email===currentUserEmail){
+        console.log("same");
+        return
+    }
+    var regex = /(^[A-Za-z0-9._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,6}$)| [ \t\n]*/
+    if (email.match(regex)) {
+        console.log("valid email format");
+        $("#invalidEmail").hide();
+        let jsonEmail = {"email": email}
+        $.post("emailRegistered", jsonEmail, emailCallBack);
+
+        function emailCallBack(responseJson, status, xhr) {
+            if (status === "success" && responseJson === "false") {
+                console.log("email doesn't exist")
+                $("#invalidEmail").hide();
+                $("#emailExist").hide();
+                return
+            } else {
+                console.log("email does exist")
+                $("#invalidEmail").hide();
+                $("#emailExist").show();
+                return
+            }
+        }
+    }
 }
