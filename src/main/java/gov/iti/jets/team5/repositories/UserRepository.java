@@ -47,9 +47,6 @@ public class UserRepository {
         System.out.println("rows.get(0): " + rows.get(0));
         boolean result = (Integer.parseInt(String.valueOf(rows.get(0))) == 0) ? false : true;
         //entityManager.getTransaction().commit();
-        //System.out.println("BOO");
-        //entityManager.close();
-        //System.out.println("WOO");
         System.out.println(result + " The result");
         return result;
 
@@ -76,6 +73,7 @@ public class UserRepository {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            entityManager.getTransaction().commit();
             return false;
         }
     }

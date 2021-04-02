@@ -31,16 +31,21 @@ public class CategoryRepository {
     }
 
     public List<CategoryDto> fetchCategories(){
-        Query query = entityManager.createQuery("from Category");
-        List<Category> categories = query.getResultList();
-        List<CategoryDto> theCategories = new ArrayList<>();
-        for (Category c : categories) {
-            CategoryDto categoryDto = new CategoryDto();
-            categoryDto.setId(c.getId());
-            categoryDto.setName(c.getName());
-            theCategories.add(categoryDto);
+        try{
+            Query query = entityManager.createQuery("from Category");
+            List<Category> categories = query.getResultList();
+            List<CategoryDto> theCategories = new ArrayList<>();
+            for (Category c : categories) {
+                CategoryDto categoryDto = new CategoryDto();
+                categoryDto.setId(c.getId());
+                categoryDto.setName(c.getName());
+                theCategories.add(categoryDto);
+            }
+            System.out.println("Returned Category List Size: " + categories.size());
+            return theCategories;
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
-        System.out.println("Returned Category List Size: " + categories.size());
-        return theCategories;
     }
 }

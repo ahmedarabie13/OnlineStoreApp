@@ -7,7 +7,7 @@
 <!-- Basic -->
 
 <head>
-    <title>Enable Your Cookies</title>
+    <title>Error</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -54,32 +54,22 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .custom{
-            color: #b0b435;
-        }
-        .custom:hover {
-            background-color: #777620;
-            color: white;
-        }
-    </style>
+
 </head>
 <body>
-<jsp:include page="admin-header.jsp"/>
+<jsp:include page="header.jsp"/>
 
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products custom" style="height: 500px; padding: 200px">
-                    <p style="text-align-all: center; font-size: xx-large; align-content: center; font-style: inherit" onclick="window.location.href='products'">Manage Products</p>
+            <div class="col-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="offer-box-products">
+                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a href="productDetail?id=${param.pid}">GO BACK</a></p>
+                    <img class="img-fluid" src="images/msgs/oops.png" alt=""/>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products custom" style="height: 500px; padding: 200px">
-                    <p style="font-size: xx-large; font-style: inherit">View Customers</p>
-                </div>
-            </div>
+            <div class="col-2"></div>
         </div>
     </div>
 </div>

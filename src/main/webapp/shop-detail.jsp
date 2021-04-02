@@ -63,7 +63,7 @@
                 <div class="col-lg-12">
                     <h2>Shop Detail</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item"><a href="shop">Shop</a></li>
                         <li class="breadcrumb-item active">Shop Detail </li>
                     </ul>
                 </div>
@@ -136,22 +136,14 @@
 							<div class="cart-and-bay-btn">
 <%--								<a class="btn hvr-hover" data-fancybox-close="" href="#">Buy New</a>--%>
 <%--                                do the same as the one in the products page--%>
-								<a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                                <c:if test="${requestScope.productObj.quantity == 0}">
+                                    <a class="btn hvr-hover" data-fancybox-close="" style="pointer-events: none"><del>Add to cart</del></a>
+                                </c:if>
+                                <c:if test="${requestScope.productObj.quantity > 0}">
+                                    <a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                                </c:if>
 							</div>
 						</div>
-<%--						<div class="add-to-btn">--%>
-<%--							<div class="add-comp">--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>--%>
-<%--							</div>--%>
-<%--							<div class="share-bar">--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>--%>
-<%--								<a class="btn hvr-hover" href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>--%>
-<%--							</div>--%>
-<%--						</div>--%>
                     </div>
                 </div>
             </div>

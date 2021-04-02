@@ -81,4 +81,19 @@ public class ProductServiceImpl implements ProductService {
     public Product fetchProductData(String productId) {
         return ps.fetchProductData(productId);
     }
+
+    @Override
+    public boolean updateProduct(int pid, ProductDto product) {
+        return ps.updateProduct(pid, product);
+    }
+
+    @Override
+    public boolean deleteProduct(int pid) {
+        return ps.deleteProduct(pid);
+    }
+
+    @Override
+    public boolean addProduct(ProductDto product, String [] cats) {
+        return ps.addProduct(product, cats);
+    }
 }
