@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 
 @WebServlet("/updateProduct")
 public class UpdateProductServlet extends HttpServlet {
@@ -31,7 +32,7 @@ public class UpdateProductServlet extends HttpServlet {
             ProductDto productDto = new ProductDto();
             productDto.setProductName(newName);
             productDto.setProductDescription(newDesc);
-            productDto.setProductPrice(Double.parseDouble(newPrice));
+            productDto.setProductPrice(BigDecimal.valueOf(Double.parseDouble(newPrice)));
             productDto.setProductQuantity(Integer.parseInt(newQuantity));
             ProductStatus productStatus = (status.equals("NEW")) ? ProductStatus.NEW : (status.equals("SOLD_OUT")) ? ProductStatus.SOLD_OUT : ProductStatus.SALE;
             productDto.setProductStatus(productStatus);

@@ -245,7 +245,7 @@ public class ProductRepository {
             Product productToUpdate = entityManager.find(Product.class, id);
             productToUpdate.setProductName(product.getProductName());
             productToUpdate.setProductDescription(product.getProductDescription());
-            productToUpdate.setPrice(BigDecimal.valueOf(product.getProductPrice()));
+            productToUpdate.setPrice(product.getProductPrice());
             productToUpdate.setQuantity(product.getProductQuantity());
             productToUpdate.setStatus(product.getProductStatus().getProductStatus());
             entityManager.getTransaction().commit();
@@ -281,7 +281,7 @@ public class ProductRepository {
             Product productToAdd = new Product();
             productToAdd.setProductName(product.getProductName());
             productToAdd.setProductDescription(product.getProductDescription());
-            productToAdd.setPrice(BigDecimal.valueOf(product.getProductPrice()));
+            productToAdd.setPrice(product.getProductPrice());
             productToAdd.setQuantity(product.getProductQuantity());
             productToAdd.setPhoto("empty");
             productToAdd.setSellerName("Rivo");

@@ -93,7 +93,7 @@ public class ProductsServlet extends HttpServlet {
             ProductDto productDto = new ProductDto();
             productDto.setProductName(name);
             productDto.setProductDescription(desc);
-            productDto.setProductPrice(Double.parseDouble(price));
+            productDto.setProductPrice(BigDecimal.valueOf(Double.parseDouble(price)));
             productDto.setProductQuantity(Integer.parseInt(quan));
             boolean added = productService.addProduct(productDto, cats);
             PrintWriter out = response.getWriter();
@@ -121,7 +121,7 @@ public class ProductsServlet extends HttpServlet {
         ProductDto productDto = new ProductDto();
         productDto.setProductName(newName);
         productDto.setProductDescription(newDesc);
-        productDto.setProductPrice(Double.parseDouble(newPrice));
+        productDto.setProductPrice(BigDecimal.valueOf(Double.parseDouble(newPrice)));
         productDto.setProductQuantity(Integer.parseInt(newQuantity));
         boolean updated = productService.updateProduct(Integer.parseInt(pid), productDto);
         PrintWriter out = response.getWriter();

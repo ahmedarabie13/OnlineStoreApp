@@ -92,7 +92,7 @@
                             <li class="side-menu"><a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
-                                <p>My Cart</p>
+<%--                                <p>My Cart</p>--%>
                             </a></li>
                         </c:when><c:when test="${sessionScope.currentUser==null}">
                             <li class="side"><a href="#">

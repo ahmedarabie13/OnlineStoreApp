@@ -127,7 +127,7 @@
                                 <br>
                                 <br>
                                 <div>
-                                    <select id="statusList" class="form-select" multiple aria-label="multiple select example" style="border-color: #777620; width:200px; border-radius: 10px; ">
+                                    <select id="statusList" style="border-color: #777620; width:200px; border-radius: 10px; ">
                                         <c:if test="${requestScope.productObj.status.equals('NEW')}">
                                             <option value="NEW" selected>NEW</option>
                                             <option value="SALE">SALE</option>
