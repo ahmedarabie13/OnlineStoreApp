@@ -299,7 +299,7 @@
                             <a href="shop?page=1" class="list-group-item list-group-item-action">All</a>
                             <c:forEach items="${requestScope.categories}" var="category">
                                 <%--                                <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action"--%>
-<%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
+                                <%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
                                 <a href="shop?page=1&cat=${category.id}"
                                    class="list-group-item list-group-item-action"
                                    id="catId" name="${category.id}">${category.name}</a>
@@ -420,16 +420,21 @@
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
 <script>
-    function addToCart(productId){
-        debugger
-        console.log("added id: "+productId+" to cart");
-        let jsonData = {"productId":productId};
+    function addToCart(productId) {
+        console.log("added id: " + productId + " to cart");
+        let jsonData = {"productId": productId};
         console.log("sdff");
-        let cartSize = parseInt($('#cartSize').text()) + 1;
-        $('#cartSize').text(cartSize);
-        $.post("addToCart", jsonData,done);
-        function done(){
+        $.post("addToCart", jsonData, done);
+
+        function done(data) {
             console.log("done");
+            let output = JSON.parse(data);
+            if (output.status === "new") {
+                let cartSize = parseInt($('#cartSize').text()) + 1;
+                $('#cartSize').text(cartSize);
+            }else if (output.status ==="error"){
+                $('#quantityError'+productId).text("No Enough Goods");
+            }
         }
     }
 </script>
