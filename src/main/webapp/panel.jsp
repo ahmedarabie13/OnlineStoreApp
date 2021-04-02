@@ -65,14 +65,14 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="admin-header.jsp"/>
 
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="offer-box-products custom" style="height: 500px; padding: 200px">
-                    <p style="text-align-all: center; font-size: xx-large; align-content: center; font-style: inherit">Manage Products</p>
+                    <p style="text-align-all: center; font-size: xx-large; align-content: center; font-style: inherit" onclick="window.location.href='products'">Manage Products</p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">

@@ -20,8 +20,8 @@ public class ProductRepository {
     private static ProductRepository productRepositoryInstance = null;
     private int pageSize = 9;
 
-    EntityManagerFactory entityManagerFactory = AppSessionFactory.getInstance();
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private EntityManagerFactory entityManagerFactory = AppSessionFactory.getInstance();
+    //private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static ProductRepository getInstance() {
         if (productRepositoryInstance == null) {
@@ -51,6 +51,7 @@ public class ProductRepository {
 //        return theProducts;
 //    }
     public List<ProductDto> fetchProducts(int pageNumber) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 //        entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("from Product");
         query.setFirstResult((pageNumber - 1) * pageSize);
@@ -70,10 +71,12 @@ public class ProductRepository {
         }
         System.out.println("Returned Product List Size: " + products.size());
 //        entityManager.getTransaction().commit();
+        entityManager.close();
         return theProducts;
     }
 
     public List<ProductDto> fetchCatProducts(String category, int pageNumber){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<ProductDto> theProducts = null;
         try{
             entityManager.getTransaction().begin();
@@ -82,11 +85,11 @@ public class ProductRepository {
             Query query = entityManager.createQuery("from Category cat where cat.id = :category")
                     .setParameter("category", categoryId);
             List<Category> returnedCatObj = query.getResultList();
-            entityManager.getTransaction().commit();
+//            entityManager.getTransaction().commit();
             if(returnedCatObj.isEmpty()){
                 return null;
             } else {
-                entityManager.getTransaction().begin();
+//                entityManager.getTransaction().begin();
                 Set<Product> catProducts = returnedCatObj.get(0).getProducts();
                 System.out.println(catProducts.size() + " THE SIZE");
                 List<Product> catProductsList = new ArrayList<>(catProducts);
@@ -109,11 +112,13 @@ public class ProductRepository {
             e.printStackTrace();
         } finally {
             entityManager.getTransaction().commit();
+            entityManager.close();
             return theProducts;
         }
     }
 
     public List<ProductDto> fetchProductsByFilter(int pageNumber, int filterStart, int filterEnd) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         BigDecimal filterStartDecimal = new BigDecimal(filterStart);
         BigDecimal filterEndDecimal = new BigDecimal(filterEnd);
         Query query = entityManager.createQuery(
@@ -137,12 +142,15 @@ public class ProductRepository {
         }
         System.out.println("Returned Product List Size: " + products.size());
 //        entityManager.getTransaction().commit();
+        entityManager.close();
         return theProducts;
     }
 
     public List<ProductDto> fetchProductsByFilterAndCategory(int pageNumber, String category, int filterStart, int filterEnd) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         BigDecimal filterStartDecimal = new BigDecimal(filterStart);
         BigDecimal filterEndDecimal = new BigDecimal(filterEnd);
+        List<ProductDto> theProducts = null;
         try {
             entityManager.getTransaction().begin();
             int categoryId = Integer.parseInt(category);
@@ -154,7 +162,7 @@ public class ProductRepository {
             } else {
                 Set<Product> catProducts = returnedCatObj.get(0).getProducts();
                 List<Product> catProductsList = new ArrayList<>(catProducts);
-                List<ProductDto> theProducts = new ArrayList<>();
+                theProducts = new ArrayList<>();
                 int size = Math.min(pageSize, catProductsList.size());
                 for (int i = (pageNumber - 1) * pageSize; i < size; i++) {
                     Product product = catProductsList.get(i);
@@ -168,14 +176,18 @@ public class ProductRepository {
                         theProducts.add(productDto);
                     }
                 }
-                entityManager.getTransaction().commit();
-                return theProducts;
+//                return theProducts;
             }
         } catch (NumberFormatException e) {
-            return null;
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return theProducts;
         }
     }
     public long fetchNumOfProducts(String categoryId){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         System.out.println("CatID = " + categoryId);
         if(categoryId == null || categoryId.equals("null") || categoryId.equals("")){
             Query q = entityManager.createQuery("select count(*) from Product");
@@ -191,6 +203,7 @@ public class ProductRepository {
                 List<Category> cats = q.getResultList();
                 if(cats.isEmpty()){
                     System.out.println("vsvsdvsdvs");
+                    entityManager.close();
                     return -1;
                 }
                 Category theCat = cats.get(0);
@@ -205,22 +218,28 @@ public class ProductRepository {
     }
 
     public Product fetchProductData(String productId) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             int id = Integer.parseInt(productId);
             Query q = entityManager.createQuery("from Product p where p.id = :pid")
                     .setParameter("pid", id);
             List<Product> product = q.getResultList();
             if(product.isEmpty()){
+                entityManager.close();
                 return null;
             } else {
+                entityManager.close();
                 return product.get(0);
             }
         } catch (NumberFormatException e){
+            e.printStackTrace();
+            entityManager.close();
             return null;
         }
     }
 
     public boolean updateProduct(int id, ProductDto product){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
             Product productToUpdate = entityManager.find(Product.class, id);
@@ -228,28 +247,35 @@ public class ProductRepository {
             productToUpdate.setProductDescription(product.getProductDescription());
             productToUpdate.setPrice(BigDecimal.valueOf(product.getProductPrice()));
             productToUpdate.setQuantity(product.getProductQuantity());
+            productToUpdate.setStatus(product.getProductStatus().getProductStatus());
             entityManager.getTransaction().commit();
+            entityManager.close();
             return true;
         } catch (Exception e){
             e.printStackTrace();
+            entityManager.close();
             return false;
         }
     }
 
     public boolean deleteProduct(int id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
             Product productToDelete = entityManager.find(Product.class, id);
             entityManager.remove(productToDelete);
             entityManager.getTransaction().commit();
+            entityManager.close();
             return true;
         } catch (Exception e){
             e.printStackTrace();
+            entityManager.close();
             return false;
         }
     }
 
     public boolean addProduct(ProductDto product, String [] catList) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
             Product productToAdd = new Product();
@@ -266,19 +292,23 @@ public class ProductRepository {
             }
             entityManager.persist(productToAdd);
             entityManager.getTransaction().commit();
+            entityManager.close();
             return true;
         } catch (Exception e){
             e.printStackTrace();
+            entityManager.close();
             return false;
         }
     }
 
     public Set<Category> getCats(String [] cats){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         Set<Category> catsList = new HashSet<>();
         for (String c : cats) {
             Category cat = entityManager.find(Category.class, Integer.parseInt(c));
             catsList.add(cat);
         }
+        entityManager.close();
         return catsList;
     }
 }

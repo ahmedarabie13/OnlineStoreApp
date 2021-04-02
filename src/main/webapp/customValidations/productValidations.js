@@ -9,9 +9,10 @@ function priceValidator(){
 }
 
 function quantityValidator(){
+    // debugger
     let price = $("#prodQuan").val();
     let sign = Math.sign(price);
-    if(sign === -1 || sign === 0 || sign === -0 || isNaN(sign)) {
+    if(sign === -1 || isNaN(sign)) {
         $("#wrongQuan").show();
     } else {
         $("#wrongQuan").hide();

@@ -1,6 +1,7 @@
 package gov.iti.jets.team5.controllers;
 
 import gov.iti.jets.team5.models.dto.ProductDto;
+import gov.iti.jets.team5.models.enums.ProductStatus;
 import gov.iti.jets.team5.services.ProductService;
 import gov.iti.jets.team5.services.impl.ProductServiceImpl;
 import jakarta.servlet.ServletException;
@@ -23,6 +24,8 @@ public class UpdateProductServlet extends HttpServlet {
         String newDesc = request.getParameter("newDesc");
         String newPrice = request.getParameter("newPrice");
         String newQuantity = request.getParameter("newQuantity");
+        String status = request.getParameter("status");
+        System.out.println("STATUS IS: " + status);
         String pid = request.getParameter("id");
         try{
             ProductDto productDto = new ProductDto();
@@ -30,6 +33,8 @@ public class UpdateProductServlet extends HttpServlet {
             productDto.setProductDescription(newDesc);
             productDto.setProductPrice(Double.parseDouble(newPrice));
             productDto.setProductQuantity(Integer.parseInt(newQuantity));
+            ProductStatus productStatus = (status.equals("NEW")) ? ProductStatus.NEW : (status.equals("SOLD_OUT")) ? ProductStatus.SOLD_OUT : ProductStatus.SALE;
+            productDto.setProductStatus(productStatus);
             boolean updated = productService.updateProduct(Integer.parseInt(pid), productDto);
             PrintWriter out = response.getWriter();
             if(updated){

@@ -1,12 +1,13 @@
 function updateProduct(){
-    let checkVal = checkValidations();
-    if(checkVal === false) return;
     // debugger
+    let checkVal = checkValidations();
+    if(checkVal === true) return;
     let id = $("#prodId").text()
     let newName = $("#prodName").html()
     let newPrice = $("#prodPrice").val()
     let newQuantity = $("#prodQuan").val()
     let newDesc = $("#prodDesc").text()
+    let status = $("#statusList").val();
     let product =
         {
             "id": id,
@@ -14,6 +15,7 @@ function updateProduct(){
             "newPrice": newPrice,
             "newQuantity": newQuantity,
             "newDesc": newDesc,
+            "status": status
         }
     $.post("updateProduct", product , productUpdateCallBack);
     function productUpdateCallBack(responseJson, status, xhr){
@@ -77,10 +79,10 @@ function addProduct(){
 function checkValidations(){
     var validationFailed = false;
     if($("#negPrice").is(":visible") || $("#wrongQuan").is(":visible")
-        || $("#prodName").val() === "" || $("#prodPrice").val() === "" || $("#prodQuan").val() === ""){
+        || $("#prodName").text() === "" || $("#prodPrice").val() === "" || $("#prodQuan").val() === "" || $("#prodDesc").text() === ""){
         validationFailed = true;
     }
     if (validationFailed) {
-        return false;
+        return true;
     }
 }

@@ -57,7 +57,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="admin-header.jsp"/>
 
 <!-- Start All Title Box -->
 <div class="all-title-box">
@@ -66,7 +66,7 @@
             <div class="col-lg-12">
                 <h2>Products</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="main">Home</a></li>
+                    <li class="breadcrumb-item"><a href="panel">Home</a></li>
                     <li class="breadcrumb-item active">Manage Products</li>
                 </ul>
             </div>
