@@ -65,7 +65,7 @@ public class ProductRepository {
             productDto.setProductID(String.valueOf(p.getId()));
             productDto.setProductName(p.getProductName());
             productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(p.getPrice().doubleValue());
+            productDto.setProductPrice(p.getPrice());
             productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
             theProducts.add(productDto);
         }
@@ -102,7 +102,7 @@ public class ProductRepository {
                     productDto.setProductID(String.valueOf(item.getId()));
                     productDto.setProductName(item.getProductName());
                     productDto.setProductImageURL("images/products/MeatlessPieces.png");
-                    productDto.setProductPrice(item.getPrice().doubleValue());
+                    productDto.setProductPrice(item.getPrice());
                     productDto.setProductStatus(ProductStatus.valueOf(item.getStatus()));
                     theProducts.add(productDto);
                 }
@@ -136,7 +136,7 @@ public class ProductRepository {
             productDto.setProductID(String.valueOf(p.getId()));
             productDto.setProductName(p.getProductName());
             productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(p.getPrice().doubleValue());
+            productDto.setProductPrice(p.getPrice());
             productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
             theProducts.add(productDto);
         }
@@ -171,7 +171,7 @@ public class ProductRepository {
                         productDto.setProductID(String.valueOf(product.getId()));
                         productDto.setProductName(product.getProductName());
                         productDto.setProductImageURL("images/products/MeatlessPieces.png");
-                        productDto.setProductPrice(product.getPrice().doubleValue());
+                        productDto.setProductPrice(product.getPrice());
                         productDto.setProductStatus(ProductStatus.valueOf(product.getStatus()));
                         theProducts.add(productDto);
                     }

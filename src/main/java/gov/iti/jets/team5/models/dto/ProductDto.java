@@ -4,13 +4,15 @@ import gov.iti.jets.team5.models.enums.ProductCategory;
 import gov.iti.jets.team5.models.enums.ProductStatus;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class ProductDto implements Serializable {
     private String productID;
     private String productName;
-    private double productPrice;
+    private BigDecimal productPrice;
     private ProductCategory productCategory;
     private ProductStatus productStatus;
+    private String productDesc;
     private double productRating;
     private String productImageURL;
     private String productRegion;
@@ -18,8 +20,25 @@ public class ProductDto implements Serializable {
     private double productWeight;
     private String productDescription;
     private int productQuantity;
+    private int quantity;
 
     public ProductDto() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
     }
 
     public String getProductName() {
@@ -30,11 +49,11 @@ public class ProductDto implements Serializable {
         this.productName = productName;
     }
 
-    public double getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
