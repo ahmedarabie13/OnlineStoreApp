@@ -32,9 +32,14 @@ function AjaxCallBack(responseTxt, statusTxt, xhr) {
         xmlvalue = responseTxt;
         if (xmlvalue === "Valid") {
             $("#updated").show();
+            $("#failed").hide();
             $("input").prop('disabled', true);
+            setTimeout(function(){
+                $("#updated").hide();
+            }, 4000);
             return;
         } else {
+            $("#updated").hide();
             $("#failed").show();
             return;
         }
@@ -81,10 +86,14 @@ function checkValidations(){
 
 function disable() {
     $("input").prop('disabled', true);
+    $("#updated").hide();
+    $("#failed").hide();
 }
 
 function enable() {
     $("input").prop('disabled', false);
+    $("#updated").hide();
+    $("#failed").hide();
 }
 
 function emailValidate() {
@@ -92,6 +101,7 @@ function emailValidate() {
     let currentUserEmail = document.getElementById("myEmail").textContent;
     if(email===currentUserEmail){
         console.log("same");
+        $("#invalidEmail").hide();
         return
     }
     var regex = /(^[A-Za-z0-9._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,6}$)| [ \t\n]*/
@@ -114,5 +124,8 @@ function emailValidate() {
                 return
             }
         }
+    } else {
+        console.log("valid email format");
+        $("#invalidEmail").show();
     }
 }

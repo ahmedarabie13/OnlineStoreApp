@@ -28,8 +28,7 @@ public class EditProfileServlet extends HttpServlet {
         String userDateOfBirth = request.getParameter("dob");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date startDate = (Date) df.parse(userDateOfBirth);
-            System.out.println(userDateOfBirth);
+            System.out.println(userDateOfBirth + " userDateOfBirth");
             PrintWriter out = response.getWriter();
             UserDto userDto = new UserDto();
             UserDto userDto1= (UserDto) request.getSession().getAttribute("currentUser");
@@ -42,7 +41,12 @@ public class EditProfileServlet extends HttpServlet {
             userDto.setCity(request.getParameter("city"));
             userDto.setStreet(request.getParameter("street"));
             userDto.setJob(request.getParameter("job"));
-            userDto.setDateOfBirth(startDate);
+            if(!userDateOfBirth.equals("")){
+                Date startDate = (Date) df.parse(userDateOfBirth);
+                System.out.println(startDate + " startDate");
+                System.out.println(userDateOfBirth + " userDateOfBirth");
+                userDto.setDateOfBirth(startDate);
+            }
             System.out.println("from post in edit profile servleeeeet");
             Boolean isUpdated = editProfileService.updateUser(userDto, userId);
 

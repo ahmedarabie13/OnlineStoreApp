@@ -43,7 +43,9 @@ public class ProfileRepository {
             userToUpdate.setPhone(userDto.getPhone());
             userToUpdate.setPassword(userDto.getPassword());
             userToUpdate.setCity(userDto.getCity());
-            userToUpdate.setBirthdate(userDto.getDateOfBirth());
+            if(userDto.getDateOfBirth() == null){
+                userToUpdate.setBirthdate(userDto.getDateOfBirth());
+            }
             userToUpdate.setStreet(userDto.getStreet());
             userToUpdate.setUserRole("user");
             entityManager.merge(userToUpdate);
