@@ -421,14 +421,21 @@
 <script src="js/custom.js"></script>
 <script>
     function addToCart(productId){
-        debugger
         console.log("added id: "+productId+" to cart");
         let jsonData = {"productId":productId};
         console.log("sdff");
-        let cartSize = parseInt($('#cartSize').text()) + 1;
-        $('#cartSize').text(cartSize);
+        // let cartSize = parseInt($('#cartSize').text()) + 1;
+        // $('#cartSize').text(cartSize);
         $.post("addToCart", jsonData,done);
-        function done(){
+        function done(data){
+            console.log(data);
+            let output = JSON.parse(data);
+            if(output.status === "new"){
+                console.log($('#cartSize').text());
+                let cartSize = parseInt($('#cartSize').text()) + 1;
+                console.log("cartSize: " + cartSize);
+                $('#cartSize').text(cartSize);
+            }
             console.log("done");
         }
     }

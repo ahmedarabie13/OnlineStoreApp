@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CartService {
     //todo: get the cart and add the product to it
-    Boolean addToCart(int productId,int userId);
+    String addToCart(int productId,int userId);
 
     boolean updateProductQuantity(int userId, CartItemData cartItemData);
     double getCartTotalPrice(int userId);

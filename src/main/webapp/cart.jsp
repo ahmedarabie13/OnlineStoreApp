@@ -307,7 +307,6 @@
             $('#totalPrice').append(response.totalPrice);
             console.log("deleteCallBack: " + response);
             // window.location.reload(true);
-            //todo: refresh the page
         }
     }
 </script>
