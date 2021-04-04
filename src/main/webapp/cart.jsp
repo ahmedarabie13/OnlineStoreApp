@@ -210,8 +210,12 @@
                 </div>
                 <hr>
             </div>
+            <c:if test="${! empty requestScope.Error}">
+                <span class="text-danger" id="validationSpan">Checkout Failed please enter valid data</span>
+            </c:if>
             <%--            </div>--%>
-            <div class="col-12 d-flex shopping-box"><a type="submit" class="ml-auto btn hvr-hover">Checkout</a>
+            <div class="col-12 d-flex shopping-box"><input type="submit" class="ml-auto btn hvr-hover"
+                                                           value="Checkout"/>
             </div>
         </form>
         <%--            <div class="col-lg-8 col-sm-12"></div>--%>

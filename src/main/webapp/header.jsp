@@ -18,16 +18,24 @@
                 <%--                        <option>€ EUR</option>--%>
                 <%--                    </select>--%>
                 <%--                </div>--%>
-                <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                </div>
-                <div class="our-link">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                    </ul>
-                </div>
+                <%--                <div class="right-phone-box">--%>
+                <%--                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>--%>
+                <%--                </div>  --%>
+                <%--                <div class="our-link">--%>
+                <%--                    <ul>--%>
+                <%--                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>--%>
+                <%--                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>--%>
+                <%--                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>--%>
+                <%--                    </ul>--%>
+                <%--                </div>--%>
+                <c:if test="${! empty sessionScope.currentUser}">
+
+                    <div class="our-link">
+                        <ul>
+                        <a href="myAccount" style="color: white; text-decoration: underline">Welcome ya, ${sessionScope.currentUser.firstName}</a>
+                        </ul>
+                    </div>
+                </c:if>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <c:choose>
@@ -122,11 +130,11 @@
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
                             <li><a href="shop">Shop</a></li>
-<%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
+                            <%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
                             <li><a href="cart">Cart</a></li>
                             <li><a href="checkout">Checkout</a></li>
                             <li><a href="myAccount">My Account</a></li>
-<%--                            <li><a href="wishlist">Wishlist</a></li>--%>
+                            <%--                            <li><a href="wishlist">Wishlist</a></li>--%>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
@@ -248,7 +256,7 @@
 
             $('#cartItems').append("<li class=\"total\">\n" +
                 "                        <a href=\"cart\" class=\"btn btn-default hvr-hover btn-cart\">VIEW CART</a>\n" +
-                "                        <span class=\"float-right\"><strong>Total</strong>: $"+parseFloat(totalPrice.toFixed(2))+"</span>\n" +
+                "                        <span class=\"float-right\"><strong>Total</strong>: $" + parseFloat(totalPrice.toFixed(2)) + "</span>\n" +
                 "                    </li>");
 
             console.log("done fetching");

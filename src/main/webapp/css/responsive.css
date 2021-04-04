@@ -113,7 +113,7 @@
      .custom-select-box{
          display: none;
     }
-     .right-phone-box, .our-link{
+     .right-phone-box, .our-link, .myNav-link{
          float: none;
          text-align: center;
     }
@@ -238,7 +238,7 @@
      .custom-select-box{
          display: none;
     }
-     .right-phone-box, .our-link{
+     .right-phone-box, .our-link, .myNav-link{
          float: none;
          text-align: center;
     }
