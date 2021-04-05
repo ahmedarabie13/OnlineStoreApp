@@ -132,12 +132,12 @@
                             <li><a href="shop">Shop</a></li>
                             <%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
                             <li><a href="cart">Cart</a></li>
-                            <li><a href="checkout">Checkout</a></li>
+<%--                            <li><a href="checkout">Checkout</a></li>--%>
                             <li><a href="myAccount">My Account</a></li>
                             <%--                            <li><a href="wishlist">Wishlist</a></li>--%>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="underDev.jsp">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="contactUs">Contact Us</a></li>
                 </ul>
             </div>
