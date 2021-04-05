@@ -66,7 +66,7 @@
             <div class="col-lg-12">
                 <h2>My Account</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="main">Home</a></li>
                     <li class="breadcrumb-item active">My Account</li>
                 </ul>
             </div>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>
                                     <p></p>
-                                    <button class="btn btn-primary"><b>Upload</b></button>
+                                    <button class="btn btn-primary" href="underDev.jsp"><b>Upload</b></button>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                                         <div class="form-group">
                                             <label for="fn">First Name</label>
                                             <input type="text" class="form-control" name="firstName"
-                                                   placeholder="Enter First name" id="fn" onblur="fnValidator()">
+                                                   value="${requestScope.onlineUser.firstName}" id="fn" onblur="fnValidator()">
                                             <span id="shortFnLength"
                                                   style="display: none; font-size: small; color: red">3 Characters Minimum</span>
                                             <span id="longFnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
@@ -131,7 +131,7 @@
                                         <div class="form-group">
                                             <label for="ln">Last Name</label>
                                             <input type="text" class="form-control" name="lastName"
-                                                   placeholder="Enter Last Name" id="ln" onblur="lnValidator()">
+                                                  value="${requestScope.onlineUser.lastName}" id="ln" onblur="lnValidator()">
                                             <span id="shortLnLength"
                                                   style="display: none; font-size: small; color: red">3 Characters Minimum</span>
                                             <span id="longLnLength" style="display: none; font-size: small; color: red">15 Characters Maximum</span>
@@ -141,8 +141,9 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="email">Email</label>
+                                            <label id="myEmail" style="display: none">${requestScope.onlineUser.email}</label>
                                             <input type="email" class="form-control" name="email"
-                                                   placeholder="Enter email ID" id="email" onblur="emailValidator()">
+                                                   value="${requestScope.onlineUser.email}" id="email" onblur="emailValidate()">
                                             <span id="invalidEmail" style="display: none; font-size: small; color: red">Invalid Email Format</span>
                                             <span id="emailExist" style="display: none; font-size: small; color: red">Email Already Registered</span>
                                         </div>
@@ -151,7 +152,7 @@
                                         <div class="form-group">
                                             <label for="phoneField">Phone</label>
                                             <input type="text" class="form-control" name="phone"
-                                                   placeholder="Enter phone number" id="phoneField"
+                                                   value="${requestScope.onlineUser.phone}" id="phoneField"
                                                    onblur="phoneValidator()">
                                             <span id="invalidPhone" style="display: none; font-size: small; color: red">Must be 11 digits and being with 01</span>
                                         </div>
@@ -160,13 +161,14 @@
                                         <div class="form-group">
                                             <label for="job">Job</label>
                                             <input type="text" class="form-control" name="job" id="job"
-                                                   placeholder="Enter Your Job">
+                                                  value="${requestScope.onlineUser.job}">
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label>Birthday</label>
-                                            <input type="date" name="bod" id="dob" class="form-control">
+                                            <input type="date" name="bod" id="dob" class="form-control" value="${requestScope.onlineUser.dateOfBirth}"
+                                                   min="1940-01-01" max="2010-01-01">
                                         </div>
                                     </div>
                                 </div>
@@ -178,14 +180,14 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="Street">Street</label>
-                                                <input type="name" name="Street" class="form-control" id="Street"
-                                                       placeholder="Enter Street">
+                                                <input type="name" name="street" class="form-control" id="street"
+                                                       value="${requestScope.onlineUser.street}">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="ciTy">City</label>
-                                                <input list="cities" id="ciTy" name="city" class="form-control" placeholder="Enter City"
+                                                <input value="${requestScope.onlineUser.city}" list="cities" id="ciTy" name="city" class="form-control"
                                                        form="edit-form">
                                                 <datalist id="cities">
                                                     <option value="Alexandria">Alexandria</option>
@@ -206,8 +208,8 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="pass">New Password</label>
-                                                <input name="password" type="password" class="form-control" id="pass"
-                                                       placeholder="Enter New Password" onblur="passwordValidator()">
+                                                <input value="${requestScope.onlineUser.password}" name="password" type="password" class="form-control" id="pass"
+                                                        onblur="passwordValidator()">
                                                 <span id="invalidPassword"
                                                       style="display: none; font-size: small; color: red">Min 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character(@$!%*?&)</span>
                                             </div>
@@ -215,8 +217,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="passConf">Confirm New Password</label>
-                                                <input type="password" class="form-control"
-                                                       placeholder="Confirm New Password"
+                                                <input value="${requestScope.onlineUser.password}"  type="password" class="form-control"
                                                        id="passConf" onblur="passwordConfirmation()">
                                                 <span id="invalidConf"
                                                       style="display: none; font-size: small; color: red">Password Doesn't Match</span>

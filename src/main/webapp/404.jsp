@@ -7,7 +7,7 @@
 <!-- Basic -->
 
 <head>
-    <title>Enable Your Cookies</title>
+    <title>Page not Found</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -57,7 +57,17 @@
 
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<c:if test="${empty sessionScope.currentUser}">
+    <jsp:include page="header.jsp"/>
+</c:if>
+<c:if test="${!empty sessionScope.currentUser}">
+    <c:if test="${sessionScope.currentUser.userRole.equals('admin')}">
+        <jsp:include page="admin-header.jsp"/>
+    </c:if>
+    <c:if test="${sessionScope.currentUser.userRole.equals('user')}">
+        <jsp:include page="header.jsp"/>
+    </c:if>
+</c:if>
 
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
@@ -65,7 +75,8 @@
             <div class="col-2"></div>
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="offer-box-products">
-                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a href="main">BACK TO HOME</a></p>
+                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a
+                            href="main">BACK TO HOME</a></p>
                     <img class="img-fluid" src="images/msgs/oops.png" alt=""/>
                 </div>
             </div>

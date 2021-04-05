@@ -3,10 +3,10 @@ package gov.iti.jets.team5.controllers;
 import gov.iti.jets.team5.models.dto.CategoryDto;
 import gov.iti.jets.team5.models.dto.ProductDto;
 import gov.iti.jets.team5.models.dto.UserAuthDto;
-import gov.iti.jets.team5.services.CategoryService;
+import gov.iti.jets.team5.services.CartService;
 import gov.iti.jets.team5.services.LoginService;
 import gov.iti.jets.team5.services.ProductService;
-import gov.iti.jets.team5.services.impl.CategoryServiceImpl;
+import gov.iti.jets.team5.services.impl.CartServiceImpl;
 import gov.iti.jets.team5.services.impl.LoginServiceImpl;
 import gov.iti.jets.team5.services.impl.ProductServiceImpl;
 import gov.iti.jets.team5.utils.Cookies;
@@ -26,8 +26,12 @@ public class MainServlet extends HttpServlet {
         LoginService loginService = new LoginServiceImpl();
         if (!(currentUserId.equals("") || currentUserId == null)) {
             if (loginService.isUserIdExists(Integer.parseInt(currentUserId))) {
-                if (request.getSession().getAttribute("currentUser") == null)
+                if (request.getSession().getAttribute("currentUser") == null){
+                    CartService cartService = new CartServiceImpl();
+                    var cartItemsDto = cartService.getCartItems(Integer.parseInt(currentUserId));
+                    request.getSession().setAttribute("cartItems",cartItemsDto);
                     request.getSession().setAttribute("currentUser", loginService.getCurrentUserCredentials(Integer.parseInt(currentUserId)));
+                }
             }
         }
 

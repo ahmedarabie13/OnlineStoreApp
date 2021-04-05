@@ -20,9 +20,8 @@ public class CartServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int currentUserId = ((UserDto) request.getSession().getAttribute("currentUser")).getId();
-        var cartItems = CartRepository.getInstance().getCartItems(currentUserId);
-        CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
-        var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
+        CartService cartService = new CartServiceImpl();
+        var cartItemsDto = cartService.getCartItems(currentUserId);
         request.getSession().setAttribute("cartItems",cartItemsDto);
         Double totalPrice = new CartServiceImpl().getCartTotalPrice(currentUserId);
         request.getSession().setAttribute("totalPrice",totalPrice);
@@ -32,10 +31,9 @@ public class CartServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         int currentUserId = ((UserDto) request.getSession().getAttribute("currentUser")).getId();
-        var cartItems = CartRepository.getInstance().getCartItems(currentUserId);
-        CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
-        var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
-        Double totalPrice = new CartServiceImpl().getCartTotalPrice(currentUserId);
+        CartService cartService = new CartServiceImpl();
+        Double totalPrice = cartService.getCartTotalPrice(currentUserId);
+        var cartItemsDto = cartService.getCartItems(currentUserId);
         request.getSession().setAttribute("cartItems",cartItemsDto);
         request.getSession().setAttribute("totalPrice",totalPrice);
         Gson gson = new Gson();

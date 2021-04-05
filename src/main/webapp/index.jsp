@@ -67,9 +67,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-<%--                        <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to--%>
-<%--                            see any changes in performance over time.</p>--%>
-<%--                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>--%>
+                        <p><a class="btn hvr-hover" href="shop">Shop Now</a></p>
                     </div>
                 </div>
             </div>
@@ -80,9 +78,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-<%--                        <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to--%>
-<%--                            see any changes in performance over time.</p>--%>
-<%--                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>--%>
+                        <p><a class="btn hvr-hover" href="shop">Shop Now</a></p>
                     </div>
                 </div>
             </div>
@@ -93,9 +89,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-<%--                        <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to--%>
-<%--                            see any changes in performance over time.</p>--%>
-<%--                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>--%>
+                        <p><a class="btn hvr-hover" href="shop">Shop Now</a></p>
                     </div>
                 </div>
             </div>
@@ -115,8 +109,9 @@
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="shop-cat-box">
                     <img class="img-fluid"
-                         src="https://cdn.shopify.com/s/files/1/0448/0371/9326/products/fresh-fruits-box-large.png?v=1596505432" alt=""/>
-                    <a class="btn hvr-hover" href="#">Fruits</a>
+                         src="https://cdn.shopify.com/s/files/1/0448/0371/9326/products/fresh-fruits-box-large.png?v=1596505432"
+                         alt=""/>
+                    <a class="btn hvr-hover" href="shop?page=1&cat=3">Fruits</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -124,7 +119,7 @@
                     <img class="img-fluid"
                          src="https://www.canal-supplier.com/ship/wp-content/uploads/2015/11/FRESH-VEGETABLES-600x600.jpg"
                          alt=""/>
-                    <a class="btn hvr-hover" href="#">Veges</a>
+                    <a class="btn hvr-hover" href="shop?page=1&cat=2">Veges</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -132,7 +127,7 @@
                     <img class="img-fluid"
                          src="https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/2018_sweet-sallty-snack-mix_5817_600x600.jpg?ext=.jpg"
                          alt=""/>
-                    <a class="btn hvr-hover" href="#">Snacks</a>
+                    <a class="btn hvr-hover" href="shop?page=1&cat=5">Snacks</a>
                 </div>
             </div>
         </div>
@@ -140,22 +135,22 @@
 </div>
 <!-- End Categories -->
 
-<div class="box-add-products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/add-img-01.jpg" alt=""/>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/add-img-02.jpg" alt=""/>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="box-add-products">--%>
+<%--    <div class="container">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-lg-6 col-md-6 col-sm-12">--%>
+<%--                <div class="offer-box-products">--%>
+<%--                    <img class="img-fluid" src="images/add-img-01.jpg" alt=""/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-6 col-md-6 col-sm-12">--%>
+<%--                <div class="offer-box-products">--%>
+<%--                    <img class="img-fluid" src="images/add-img-02.jpg" alt=""/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- Start Products  -->
 <div class="products-box">
@@ -187,7 +182,7 @@
 <!-- Start Blog  -->
 <div class="latest-blog">
     <div class="container">
-<%--        <div class="row">--%>
+        <%--        <div class="row">--%>
         <%--            <div class="col-lg-12">--%>
         <%--                <div class="title-all text-center">--%>
         <%--                    <h1>latest blog</h1>--%>
@@ -196,62 +191,62 @@
         <%--            </div>--%>
         <%--        </div>--%>
         <%--        <div class="row">--%>
-            <%--                <div class="col-md-6 col-lg-4 col-xl-4">--%>
-            <%--                    <div class="blog-box">--%>
-            <%--                        <div class="blog-img">--%>
-            <%--                            <img class="img-fluid" src="images/blog-img.jpg" alt="" />--%>
-            <%--                        </div>--%>
-            <%--                        <div class="blog-content">--%>
-            <%--                            <div class="title-blog">--%>
-            <%--                                <h3>Fusce in augue non nisi fringilla</h3>--%>
-            <%--                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>--%>
-            <%--                            </div>--%>
-            <%--                            <ul class="option-blog">--%>
-            <%--                                <li><a href="#"><i class="far fa-heart"></i></a></li>--%>
-            <%--                                <li><a href="#"><i class="fas fa-eye"></i></a></li>--%>
-            <%--                                <li><a href="#"><i class="far fa-comments"></i></a></li>--%>
-            <%--                            </ul>--%>
-            <%--                        </div>--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-            <%--                <div class="col-md-6 col-lg-4 col-xl-4">--%>
-            <%--                    <div class="blog-box">--%>
-            <%--                        <div class="blog-img">--%>
-            <%--                            <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />--%>
-            <%--                        </div>--%>
-            <%--                        <div class="blog-content">--%>
-            <%--                            <div class="title-blog">--%>
-            <%--                                <h3>Fusce in augue non nisi fringilla</h3>--%>
-            <%--                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>--%>
-            <%--                            </div>--%>
-            <%--                            <ul class="option-blog">--%>
-            <%--                                <li><a href="#"><i class="far fa-heart"></i></a></li>--%>
-            <%--                                <li><a href="#"><i class="fas fa-eye"></i></a></li>--%>
-            <%--                                <li><a href="#"><i class="far fa-comments"></i></a></li>--%>
-            <%--                            </ul>--%>
-            <%--                        </div>--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-            <%--                <div class="col-md-6 col-lg-4 col-xl-4">--%>
-            <%--                    <div class="blog-box">--%>
-            <%--                        <div class="blog-img">--%>
-            <%--                            <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />--%>
-            <%--                        </div>--%>
-            <%--                        <div class="blog-content">--%>
-            <%--                            <div class="title-blog">--%>
-            <%--                                <h3>Fusce in augue non nisi fringilla</h3>--%>
-            <%--                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>--%>
-            <%--                            </div>--%>
-            <%--                            <ul class="option-blog">--%>
-            <%--                                <li><a href="#"><i class="far fa-heart"></i></a></li>--%>
-            <%--                                <li><a href="#"><i class="fas fa-eye"></i></a></li>--%>
-            <%--                                <li><a href="#"><i class="far fa-comments"></i></a></li>--%>
-            <%--                            </ul>--%>
-            <%--                        </div>--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-        </div>
+        <%--                <div class="col-md-6 col-lg-4 col-xl-4">--%>
+        <%--                    <div class="blog-box">--%>
+        <%--                        <div class="blog-img">--%>
+        <%--                            <img class="img-fluid" src="images/blog-img.jpg" alt="" />--%>
+        <%--                        </div>--%>
+        <%--                        <div class="blog-content">--%>
+        <%--                            <div class="title-blog">--%>
+        <%--                                <h3>Fusce in augue non nisi fringilla</h3>--%>
+        <%--                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>--%>
+        <%--                            </div>--%>
+        <%--                            <ul class="option-blog">--%>
+        <%--                                <li><a href="#"><i class="far fa-heart"></i></a></li>--%>
+        <%--                                <li><a href="#"><i class="fas fa-eye"></i></a></li>--%>
+        <%--                                <li><a href="#"><i class="far fa-comments"></i></a></li>--%>
+        <%--                            </ul>--%>
+        <%--                        </div>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--                <div class="col-md-6 col-lg-4 col-xl-4">--%>
+        <%--                    <div class="blog-box">--%>
+        <%--                        <div class="blog-img">--%>
+        <%--                            <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />--%>
+        <%--                        </div>--%>
+        <%--                        <div class="blog-content">--%>
+        <%--                            <div class="title-blog">--%>
+        <%--                                <h3>Fusce in augue non nisi fringilla</h3>--%>
+        <%--                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>--%>
+        <%--                            </div>--%>
+        <%--                            <ul class="option-blog">--%>
+        <%--                                <li><a href="#"><i class="far fa-heart"></i></a></li>--%>
+        <%--                                <li><a href="#"><i class="fas fa-eye"></i></a></li>--%>
+        <%--                                <li><a href="#"><i class="far fa-comments"></i></a></li>--%>
+        <%--                            </ul>--%>
+        <%--                        </div>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--                <div class="col-md-6 col-lg-4 col-xl-4">--%>
+        <%--                    <div class="blog-box">--%>
+        <%--                        <div class="blog-img">--%>
+        <%--                            <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />--%>
+        <%--                        </div>--%>
+        <%--                        <div class="blog-content">--%>
+        <%--                            <div class="title-blog">--%>
+        <%--                                <h3>Fusce in augue non nisi fringilla</h3>--%>
+        <%--                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>--%>
+        <%--                            </div>--%>
+        <%--                            <ul class="option-blog">--%>
+        <%--                                <li><a href="#"><i class="far fa-heart"></i></a></li>--%>
+        <%--                                <li><a href="#"><i class="fas fa-eye"></i></a></li>--%>
+        <%--                                <li><a href="#"><i class="far fa-comments"></i></a></li>--%>
+        <%--                            </ul>--%>
+        <%--                        </div>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
     </div>
+</div>
 </div>
 <!-- End Blog  -->
 

@@ -49,9 +49,7 @@ public class UpdateCartServlet extends HttpServlet {
         } else if (cartItemData.getOperation().equals("deleteCartItem")) {
             cartService.deleteCartItem(currentUser.getId(), cartItemData);
             var cartItems = cartService.getCartItems(currentUser.getId());
-            CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
-            var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
-            request.getSession().setAttribute("cartItems", cartItemsDto);
+            request.getSession().setAttribute("cartItems", cartItems);
             double totalPrice = cartService.getCartTotalPrice(currentUser.getId());
             request.getSession().setAttribute("totalPrice", totalPrice);
             System.out.println("from servlet: delete");

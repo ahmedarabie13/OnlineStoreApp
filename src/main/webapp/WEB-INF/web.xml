@@ -33,6 +33,12 @@ metadata-complete= "false">
 		<url-pattern>/checkout</url-pattern>
 		<url-pattern>/myAccount</url-pattern>
 		<url-pattern>/wishlist</url-pattern>
+		<url-pattern>/products</url-pattern>
+		<url-pattern>/panel</url-pattern>
+		<url-pattern>/addProduct</url-pattern>
+		<url-pattern>/products.jsp</url-pattern>
+		<url-pattern>/panel.jsp</url-pattern>
+		<url-pattern>/addProduct.jsp</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>PreventLogInAndRegisterFilter</filter-name>
@@ -43,4 +49,41 @@ metadata-complete= "false">
 		<url-pattern>/login</url-pattern>
 		<url-pattern>/register</url-pattern>
 	</filter-mapping>
+
+<!--	<servlet>-->
+<!--		<servlet-name>PageNotFound</servlet-name>-->
+<!--		<jsp-file>404.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>PageNotFound</servlet-name>-->
+<!--		<url-pattern>/pageNotFound</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>AfterCheckout</servlet-name>-->
+<!--		<jsp-file>afterCheckout.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>AfterCheckout</servlet-name>-->
+<!--		<url-pattern>/afterCheckout</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>UnderDev</servlet-name>-->
+<!--		<jsp-file>underDev.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>UnderDev</servlet-name>-->
+<!--		<url-pattern>/underDev</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>AllowCookies</servlet-name>-->
+<!--		<jsp-file>cookies.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>AllowCookies</servlet-name>-->
+<!--		<url-pattern>/allowCookies</url-pattern>-->
+<!--	</servlet-mapping>-->
+
 </web-app>

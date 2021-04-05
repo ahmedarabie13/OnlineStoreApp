@@ -57,6 +57,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.29.Final</version>
         </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.327</version>
+        </dependency>
     </dependencies>
 
     <build>
