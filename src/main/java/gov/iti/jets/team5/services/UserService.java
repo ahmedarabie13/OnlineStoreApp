@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserService {
     List<UserDto> fetchUsers();
+    UserDto fetchUserByID(int id);
 }

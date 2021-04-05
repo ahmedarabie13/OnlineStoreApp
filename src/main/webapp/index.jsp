@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="Product" uri="/WEB-INF/tlds/ProductTagLib.tld" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -166,7 +167,7 @@
             <div class="col-lg-12">
                 <div class="special-menu text-center">
                     <div class="button-group filter-button-group">
-                        <button class="active" data-filter="*">All</button>
+<%--                        <button class="active" data-filter="*">All</button>--%>
                         <button data-filter=".top-featured">Top featured</button>
                         <button data-filter=".best-seller">Best seller</button>
                     </div>

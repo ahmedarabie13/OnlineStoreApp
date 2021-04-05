@@ -25,4 +25,9 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> fetchUsers() {
         return userRepository.fetchAllUsers();
     }
+
+    @Override
+    public UserDto fetchUserByID(int id) {
+        return userRepository.getUserById(id);
+    }
 }

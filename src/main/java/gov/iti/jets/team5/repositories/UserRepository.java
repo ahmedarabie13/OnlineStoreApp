@@ -100,7 +100,6 @@ public class UserRepository {
     public List<UserDto> fetchAllUsers() {
         List<UserDto> users = new ArrayList<>();
 
-//        entityManager.getTransaction().begin();
         List userDataList = entityManager.createQuery("from UserData").getResultList();
 
         for (int i = 0 ; i < userDataList.size() ; i++) {

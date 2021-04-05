@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +35,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item active">
-            <a class="nav-link disabled" href="customers">
+            <a class="nav-link" href="customers">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
         </li>
@@ -48,13 +47,11 @@
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
     </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
         <!-- Main Content -->
         <div id="content">
             <!-- Begin Page Content -->
@@ -63,55 +60,47 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Customers</h6>
+                        <%--                        <h6 class="m-0 font-weight-bold text-primary">Customer Orders</h6>--%>
+                        <h2 class="m-0 text-primary">${requestScope.userData.firstName} ${requestScope.userData.lastName}'s
+                            orders</h2>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>User name</th>
-                                    <th>Role</th>
-                                    <th>Email</th>
-                                    <th>Phone number</th>
-                                    <th>Password</th>
-                                    <th>Address</th>
-                                    <th>Orders</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>User name</th>
-                                    <th>Role</th>
-                                    <th>Email</th>
-                                    <th>Phone number</th>
-                                    <th>Password</th>
-                                    <th>Address</th>
-                                    <th>Orders</th>
-                                </tr>
-                                </tfoot>
+                            <c:choose>
+                                <c:when test="${requestScope.orders.size() <= 0}">
+                                    <c:out value="has no orders"/>
+                                </c:when>
+                                <c:otherwise>
 
-                                <tbody>
-                                <c:forEach items="${requestScope.users}" var="user">
-                                    <tr>
-                                        <td><c:out value="${user.id}"/></td>
-                                        <td><c:out value="${user.firstName} ${user.lastName}"/></td>
-                                        <td><c:out value="${user.userRole}"/></td>
-                                        <td><c:out value="${user.email}"/></td>
-                                        <td><c:out value="${user.phone}"/></td>
-                                        <td><c:out value="${user.password}"/></td>
-                                        <td><c:out value="${user.city}, ${user.street}"/></td>
-                                        <td>
-                                            <button class="btn btn-primary" type="button"
-                                                    onclick="location.href='customers?id=${user.id}';">Details
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Order date</th>
+                                            <th>total</th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Order date</th>
+                                            <th>total</th>
+                                        </tr>
+                                        </tfoot>
+
+                                        <tbody>
+                                        <c:forEach items="${requestScope.orders}" var="order">
+                                            <tr>
+                                                <td><c:out value="${order.id}"/></td>
+                                                <td><c:out value="${order.orderDate}"/></td>
+                                                <td><c:out value="${order.total}"/></td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -178,7 +167,6 @@
 
 <!-- Page level custom scripts -->
 <script src="datatables/datatables-demo.js"></script>
-
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 </body>
