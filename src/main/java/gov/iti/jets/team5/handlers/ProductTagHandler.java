@@ -45,7 +45,7 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<div class=\"why-text\" >");
         out.println("<h4 >" + productName + "</h4 >");
         out.println("<small class=\"text-danger\" id=\"quantityError"+productId+"\"></small><br>");
-        out.println("<h5 > $" + productPrice + "</h5 >");
+        out.println("<h5 > EGP" + productPrice + "</h5 >");
 //        out.println("<h5 > Rating " + productRating + "</h5 >");
         out.println("</div >");
         out.println("</div >");

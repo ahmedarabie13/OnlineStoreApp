@@ -78,19 +78,22 @@
     <!-- End All Title Box -->
 
     <!-- Start Shop Detail  -->
-    <form action="products" enctype="multipart/form-data" method="post" onsubmit="return checkValidations()">
+    <form action="products" enctype="multipart/form-data" method="post" id="productFormId">
         <div class="shop-detail-box-main">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-7 col-lg-7 col-md-6">
                         <div class="single-product-details">
+                            <c:if test="${not empty requestScope.error}">
+                                <span id="negPrice" style="display: none; font-size: larger; color: red">Something Went Wrong Please Try Again</span>
+                            </c:if>
                             <h2 id="prodNameL" style="text-space: 50">Product Name</h2>
                             <input type="text" id="prodName" name="prodName" placeholder="Enter Product Name Here" style="margin-left: 40px; width: 400px;">
                             <br>
                             <br>
                             <h2 id="prodPriceL" style="text-space: 50">Product Price</h2>
                             <input type="text" id="prodPrice" name="prodPrice" placeholder="Enter Product Price Here" style="margin-left: 42px;width: 300px;" onblur="priceValidator()">
-                            <span id="negPrice" style="display: none; font-size: larger; color: red">Negative Prices Are Usually Bad For The Business!</span>
+                            <span id="negPrice" style="display: none; font-size: medium; color: red">Negative Prices Are Usually Bad For The Business!</span>
                             <br>
                             <br>
                             <h2 id="prodQuanL">Quantity</h2>
@@ -99,7 +102,11 @@
                             <br>
                             <br>
                             <h2>Description</h2>
-                            <p contentEditable="true" id="prodDesc" style="border-style: solid; border-radius: 3px; border-color: #777620"></p>
+<%--                            <p contentEditable="true" id="prodDesc"  style="border-style: solid; border-radius: 3px; border-color: #777620"></p>--%>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="prodDesc" name="desc" onblur="descValidator()"></textarea>
+                                <span id="empDesc" style="display: none; font-size: large; color: red">Please Enter A Description For Your Product</span>
+                            </div>
                             <br>
                             <label style="font-size: larger">You may click Control (Windows) or click Command (Mac) to select more than one.</label>
                             <br>
@@ -121,7 +128,7 @@
                                     </div>
                                     <br>
 <%--                                    <a class="btn hvr-hover" data-fancybox-close="" onclick="addProduct()">Add</a>--%>
-                                    <input type="submit" name="Add" class="btn hvr-hover" data-fancybox-close=""/>
+                                    <input type="submit" onclick="return submitAddProduct()" name="Add" class="btn hvr-hover" data-fancybox-close=""/>
                                 </div>
                             </div>
                         </div>
@@ -158,6 +165,17 @@
 
     <%--for the error $(...).slider is not a function--%>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script>
+        function submitAddProduct(){
+            debugger
+             if(checkValidations() === false){
+                 document.getElementById("productFormId").submit();
+             } else {
+                 return false;
+             }
+        }
+    </script>
 </body>
 
 </html>

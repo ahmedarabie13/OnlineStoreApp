@@ -90,30 +90,29 @@ public class ProductsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             String name = request.getParameter("prodName");
-//            String desc = request.getParameter("desc");
+            String desc = request.getParameter("desc");
             String price = request.getParameter("prodPrice");
             String quan = request.getParameter("prodQuan");
             String [] cats = request.getParameterValues("cats");
             Part filePart = request.getPart("filename");
             System.out.println("product name is: " + name);
-//            System.out.println("product name is: " + desc);
+            System.out.println("product name is: " + desc);
             System.out.println("product price is: " + price);
             System.out.println("product quantity is: " + quan);
-//            System.out.println("product num of categories are: " + cats.length);
             System.out.println("product image file name is: " + filePart.getSubmittedFileName());
             System.out.println("product image file name is: " + filePart.getInputStream());
 
-//            String name = request.getParameter("name");
-//            String desc = request.getParameter("desc");
-//            String price = request.getParameter("price");
-//            String quan = request.getParameter("quan");
-//            String [] cats = request.getParameterValues("cats[]");
+            boolean valid = validateInputs(name, desc, price, quan);
+            if(!valid){
+                request.setAttribute("error", "error");
+                request.getRequestDispatcher("addProduct").forward(request, response);
+            }
 
             String imgURL = S3BucketOperations.uploadFile(filePart);
             if(cats != null) System.out.println(cats.length + " cats are");
             ProductDto productDto = new ProductDto();
             productDto.setProductName(name);
-            productDto.setProductDescription("desc");
+            productDto.setProductDescription(desc);
             productDto.setProductPrice(BigDecimal.valueOf(Double.parseDouble(price)));
             productDto.setProductQuantity(Integer.parseInt(quan));
             productDto.setProductImageURL(imgURL);
@@ -125,14 +124,32 @@ public class ProductsServlet extends HttpServlet {
                 return;
             } else {
                 out.write("false");
-//                response.sendRedirect("addProduct.jsp");
-//                return;
+                request.setAttribute("error", "error");
+                request.getRequestDispatcher("addProduct").forward(request, response);
             }
         } catch (Exception e){
             e.printStackTrace();
-//            response.sendRedirect("addProduct.jsp");
-//            return;
+            request.setAttribute("error", "error");
+            request.getRequestDispatcher("addProduct").forward(request, response);
         }
+    }
+
+    private boolean validateInputs(String name, String desc, String price, String quan) {
+        if(name.equals("") || desc.equals("")){
+            return false;
+        } else {
+            try {
+                BigDecimal p = BigDecimal.valueOf(Double.parseDouble(price));
+                int q = Integer.parseInt(quan);
+                if(p.compareTo(BigDecimal.ZERO) < 0 || p.compareTo(BigDecimal.ZERO) == 0 || q < 0){
+                    return false;
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
