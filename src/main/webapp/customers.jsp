@@ -30,7 +30,9 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion"
+        style="background-image: linear-gradient(180deg, #CBCB80 10%, #B0B436 100%);background-color: #B0B436; background-size: cover"
+        id="accordionSidebar">
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -63,7 +65,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Customers</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #B0B436">Customers</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -104,7 +106,7 @@
                                         <td><c:out value="${user.password}"/></td>
                                         <td><c:out value="${user.city}, ${user.street}"/></td>
                                         <td>
-                                            <button class="btn btn-primary" type="button"
+                                            <button class="btn" style="background-color: #B0B436; color: white" type="button"
                                                     onclick="location.href='customers?id=${user.id}';">Details
                                             </button>
                                         </td>
@@ -173,8 +175,8 @@
 <script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="datatables/jquery.dataTables.min.js"></script>
-<script src="datatables/dataTables.bootstrap4.min.js"></script>
+<%--<script src="datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="datatables/dataTables.bootstrap4.min.js"></script>--%>
 
 <!-- Page level custom scripts -->
 <script src="datatables/datatables-demo.js"></script>

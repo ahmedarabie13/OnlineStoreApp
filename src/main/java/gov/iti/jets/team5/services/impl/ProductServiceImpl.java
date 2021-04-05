@@ -81,4 +81,11 @@ public class ProductServiceImpl implements ProductService {
     public Product fetchProductData(String productId) {
         return ps.fetchProductData(productId);
     }
+
+    @Override
+    public List<ProductDto> fetchLastRecentTenProducts() {
+        return ps.fetchLastRecentTenProducts();
+    }
+
+
 }

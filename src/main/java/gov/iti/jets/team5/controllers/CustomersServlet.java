@@ -27,6 +27,7 @@ public class CustomersServlet extends HttpServlet {
 
         String idStr = request.getParameter("id");
         if (idStr != null) {
+            System.out.println("idStr = " + idStr);
             int id = Integer.parseInt(idStr);
             UserDto userDto = userService.fetchUserByID(id);
 
@@ -34,6 +35,9 @@ public class CustomersServlet extends HttpServlet {
                 // todo don't use repository
                 OrderRepository orderRepository = OrderRepository.getInstance();
                 List<OrderDetailsDto> orders = orderRepository.fetchOrdersByUserId(id);
+
+                System.out.println("Orders size before forward " + orders.size());
+                System.out.println(orders);
 
                 request.setAttribute("userData", userDto);
                 request.setAttribute("orders", orders);

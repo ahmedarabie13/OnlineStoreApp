@@ -33,20 +33,28 @@ public class OrderRepository {
     public List<OrderDetailsDto> fetchOrdersByUserId(int userID) {
         List<OrderDetailsDto> orders = new ArrayList<>();
 
-        List orderList = entityManager.createQuery("from Orders")//" o where o.userId = :userID")
-//                .setParameter("userId", userID)
-                .getResultList();
+        try {
+            entityManager.getTransaction().begin();
+            List orderList = entityManager.createQuery("from Orders o where o.userData.id = :userID")
+                    .setParameter("userID", userID)
+                    .getResultList();
 
-        for (int i = 0 ; i < orderList.size() ; i++) {
-            Orders order = (Orders) orderList.get(i);
-            OrderDetailsDto orderDetailsDto = new OrderDetailsDto();
-            orderDetailsDto.setId(order.getId());
-            orderDetailsDto.setOrderDate(order.getOrderDate());
-            orderDetailsDto.setTotal(order.getTotal());
+            System.out.println("Order sizzzzzze" + orderList.size());
 
-            orders.add(orderDetailsDto);
+            for (int i = 0 ; i < orderList.size() ; i++) {
+                Orders order = (Orders) orderList.get(i);
+                OrderDetailsDto orderDetailsDto = new OrderDetailsDto();
+                orderDetailsDto.setId(order.getId());
+                orderDetailsDto.setOrderDate(order.getOrderDate());
+                orderDetailsDto.setTotal(order.getTotal());
+
+                orders.add(orderDetailsDto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
         }
-
         return orders;
     }
 }

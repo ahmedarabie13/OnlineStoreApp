@@ -29,7 +29,9 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion"
+        style="background-image: linear-gradient(180deg, #CBCB80 10%, #B0B436 100%);background-color: #B0B436; background-size: cover"
+        id="accordionSidebar">
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -61,7 +63,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <%--                        <h6 class="m-0 font-weight-bold text-primary">Customer Orders</h6>--%>
-                        <h2 class="m-0 text-primary">${requestScope.userData.firstName} ${requestScope.userData.lastName}'s
+                        <h2 class="m-0"
+                            style="color: #B0B436">${requestScope.userData.firstName} ${requestScope.userData.lastName}'s
                             orders</h2>
                     </div>
 
@@ -162,8 +165,8 @@
 <script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="datatables/jquery.dataTables.min.js"></script>
-<script src="datatables/dataTables.bootstrap4.min.js"></script>
+<%--<script src="datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="datatables/dataTables.bootstrap4.min.js"></script>--%>
 
 <!-- Page level custom scripts -->
 <script src="datatables/datatables-demo.js"></script>

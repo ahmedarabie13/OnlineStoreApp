@@ -207,4 +207,24 @@ public class ProductRepository {
             return null;
         }
     }
+
+    public List<ProductDto> fetchLastRecentTenProducts() {
+        List<Product> products = entityManager.createQuery(
+                "from Product p ORDER BY id Desc")
+                .setMaxResults(pageSize)
+                .getResultList();
+
+        List<ProductDto> theProducts = new ArrayList<>();
+
+        for (Product p : products) {
+            ProductDto productDto = new ProductDto();
+            productDto.setProductID(String.valueOf(p.getId()));
+            productDto.setProductName(p.getProductName());
+            productDto.setProductImageURL(p.getPhoto());
+            productDto.setProductPrice(p.getPrice());
+            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
+            theProducts.add(productDto);
+        }
+        return theProducts;
+    }
 }
