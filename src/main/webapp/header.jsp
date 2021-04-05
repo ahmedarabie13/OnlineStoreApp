@@ -32,7 +32,7 @@
 
                     <div class="our-link">
                         <ul>
-                        <a href="myAccount" style="color: white; text-decoration: underline">Welcome ya, ${sessionScope.currentUser.firstName}</a>
+                        <a href="myAccount" style="color: white; text-decoration: underline">Welcome Ya, ${sessionScope.currentUser.firstName}</a>
                         </ul>
                     </div>
                 </c:if>

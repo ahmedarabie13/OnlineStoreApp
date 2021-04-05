@@ -53,16 +53,14 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <%--<!--    <script src="customValidations/products.js"></script>-->--%>
     <![endif]-->
+    <%--    <script src="customValidations/products.js"></script>--%>
 
 </head>
-<%--setParameters(${param.filterStart},${param.filterEnd}, ${param.currentCategory}, ${param.currentPage})--%>
 <%--<body onload="setParameters('<%= request.getAttribute("filterStart")%>',--%>
-<body onload="setParameters('<%= request.getAttribute("filterStart")%>',
-        '<%= request.getAttribute("filterEnd")%>' ,
-        '<%= request.getAttribute("currentCategory")%>', '<%= request.getAttribute("currentPage")%>')">
-<%--<body onload="setParameters(${requestScope.filterStart},--%>
-<%--${requestScope.filterEnd} ,--%>
-<%--${requestScope.currentCategory}, ${requestScope.currentPage})">--%>
+<%--        '<%= request.getAttribute("filterEnd")%>' ,--%>
+<%--        '<%= request.getAttribute("currentCategory")%>', '<%= request.getAttribute("currentPage")%>')">--%>
+<body onload="setParameters('${requestScope.filterStart}', '${requestScope.filterEnd}',
+        '${requestScope.currentCategory}', '${requestScope.currentPage}')">
 
 <jsp:include page="header.jsp"/>
 
@@ -88,33 +86,6 @@
         <div class="row">
             <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                 <div class="right-product-box">
-                    <div class="product-item-filter row">
-                        <div class="col-12 col-sm-8 text-center text-sm-left">
-                            <div class="toolbar-sorter-right">
-                                <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Nothing</option>
-                                    <option value="1">Popularity</option>
-                                    <option value="2">High Price → High Price</option>
-                                    <option value="3">Low Price → High Price</option>
-                                    <option value="4">Best Selling</option>
-                                </select>
-                            </div>
-                            <p>Showing all 4 results</p>
-                        </div>
-                        <div class="col-12 col-sm-4 text-center text-sm-right">
-                            <ul class="nav nav-tabs ml-auto">
-                                <li>
-                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i
-                                            class="fa fa-th"></i> </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i
-                                            class="fa fa-list-ul"></i> </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
 
                     <div class="product-categorie-box">
@@ -284,12 +255,6 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                 <div class="product-categori">
-                    <div class="search-product">
-                        <form action="#">
-                            <input class="form-control" placeholder="Search here..." type="text">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
                     <div class="filter-sidebar-left">
                         <div class="title-left">
                             <h3>Categories</h3>
@@ -299,7 +264,7 @@
                             <a href="shop?page=1" class="list-group-item list-group-item-action">All</a>
                             <c:forEach items="${requestScope.categories}" var="category">
                                 <%--                                <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action"--%>
-<%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
+                                <%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
                                 <a href="shop?page=1&cat=${category.id}"
                                    class="list-group-item list-group-item-action"
                                    id="catId" name="${category.id}">${category.name}</a>
@@ -330,42 +295,8 @@
     <div class="col-lg-12">
         <div class="special-menu text-center">
             <div class="button-group">
-                <%--<<<<<<< HEAD--%>
-                <%--                <c:choose>--%>
-                <%--                    <c:when test="${requestScope.currentPage == 1}">--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${not empty param.cat}">&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop?cat${param.cat}=">1</a>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${empty param.cat}">&ndash;%&gt;--%>
-                <%--                        <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                    </c:when>--%>
-                <%--                    <c:when test="${requestScope.currentPage != 1}">--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${not empty param.cat}">&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                            <a class="submit-button btn hvr-hover" href="shop?cat${param.cat}">1</a>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${empty param.cat}">&ndash;%&gt;--%>
-                <%--                        <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                    </c:when>--%>
-                <%--                </c:choose>--%>
-                <%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="9" var="pageNumber">--%>
-                <%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/9}" integerOnly="true"/>--%>
-                <%--=======--%>
-                <%--                <c:choose>--%>
-                <%--                    <c:when test="${requestScope.currentPage == 1}">--%>
-                <%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
-                <%--                    </c:when>--%>
-                <%--                    <c:when test="${requestScope.currentPage != 1}">--%>
-                <%--                            <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
-                <%--                    </c:when>--%>
-                <%--                </c:choose>--%>
-                <%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">--%>
-                <%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/10}" integerOnly="true" />--%>
                 <c:forEach begin="1" end="${requestScope.numOfPages}" step="1" var="pageNumber">
                     <fmt:parseNumber var="pageNum" value="${pageNumber}" integerOnly="true"/>
-                    <%--                    <fmt:formatNumber var="pageNum" type="number" maxFractionDigits="2" minFractionDigits="2" value="${pageNumber/10}"/>--%>
-                    <%-->>>>>>> dev--%>
                     <c:choose>
                         <c:when test="${requestScope.currentPage == (pageNum)}">
                             <c:if test="${not empty param.cat}">
@@ -420,26 +351,26 @@
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
 <script>
-    function addToCart(productId){
-        console.log("added id: "+productId+" to cart");
-        let jsonData = {"productId":productId};
+    function addToCart(productId) {
+        console.log("added id: " + productId + " to cart");
+        let jsonData = {"productId": productId};
         console.log("sdff");
         // let cartSize = parseInt($('#cartSize').text()) + 1;
         // $('#cartSize').text(cartSize);
-        $.post("addToCart", jsonData,done);
-        function done(data){
+        $.post("addToCart", jsonData, done);
+
+        function done(data) {
             console.log(data);
             let output = JSON.parse(data);
-            if(output.status === "new"){
+            if (output.status === "new") {
                 console.log($('#cartSize').text());
                 let cartSize = parseInt($('#cartSize').text()) + 1;
                 console.log("cartSize: " + cartSize);
                 $('#cartSize').text(cartSize);
-            }else if(output.status === "error"){
+            } else if (output.status === "error") {
                 console.log("error");
-                $('#prodError'+productId).text('No Enough Goods');
+                $('#prodError' + productId).text('No Enough Goods');
             }
-            console.log("done");
         }
     }
 </script>

@@ -21,6 +21,9 @@ public interface ProductService {
     List<ProductDto> fetchCatProducts(String category, int pageNumber);
     long fetchNumOfProducts(String categoryId);
     Product fetchProductData(String productId);
+    boolean updateProduct(int pid, ProductDto product);
+    boolean deleteProduct(int pid);
+    boolean addProduct(ProductDto product, String [] cats);
 
 }
 

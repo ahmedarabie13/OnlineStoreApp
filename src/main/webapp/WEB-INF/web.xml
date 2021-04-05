@@ -33,6 +33,12 @@ metadata-complete= "false">
 		<url-pattern>/checkout</url-pattern>
 		<url-pattern>/myAccount</url-pattern>
 		<url-pattern>/wishlist</url-pattern>
+		<url-pattern>/products</url-pattern>
+		<url-pattern>/panel</url-pattern>
+		<url-pattern>/addProduct</url-pattern>
+		<url-pattern>/products.jsp</url-pattern>
+		<url-pattern>/panel.jsp</url-pattern>
+		<url-pattern>/addProduct.jsp</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>PreventLogInAndRegisterFilter</filter-name>

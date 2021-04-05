@@ -7,7 +7,7 @@
 <!-- Basic -->
 
 <head>
-    <title>Under Dev</title>
+    <title>Error</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -20,6 +20,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <%--    <!-- Site Icons -->--%>
+    <%--    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">--%>
+    <%--    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">--%>
+
+    <%--    <!-- Bootstrap CSS -->--%>
+    <%--    <link rel="stylesheet" href="css/bootstrap.min.css">--%>
+    <%--    <!-- Site CSS -->--%>
+    <%--    <link rel="stylesheet" href="css/style.css">--%>
+    <%--    <!-- Responsive CSS -->--%>
+    <%--    <link rel="stylesheet" href="css/responsive.css">--%>
+    <%--    <!-- Custom CSS -->--%>
+    <%--    <link rel="stylesheet" href="css/custom.css">--%>
+    <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
@@ -44,17 +57,7 @@
 
 </head>
 <body>
-<c:if test="${empty sessionScope.currentUser}">
-    <jsp:include page="header.jsp"/>
-</c:if>
-<c:if test="${!empty sessionScope.currentUser}">
-    <c:if test="${sessionScope.currentUser.userRole.equals('admin')}">
-        <jsp:include page="admin-header.jsp"/>
-    </c:if>
-    <c:if test="${sessionScope.currentUser.userRole.equals('user')}">
-        <jsp:include page="header.jsp"/>
-    </c:if>
-</c:if>
+<jsp:include page="header.jsp"/>
 
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
@@ -62,9 +65,8 @@
             <div class="col-2"></div>
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="offer-box-products">
-                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a
-                            href="main">BACK TO HOME</a></p>
-                    <img class="img-fluid" src="images/msgs/under-construction.png" alt=""/>
+                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a href="addProduct.jsp">GO BACK</a></p>
+                    <img class="img-fluid" src="images/msgs/oops.png" alt=""/>
                 </div>
             </div>
             <div class="col-2"></div>
@@ -92,6 +94,7 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<%--for the error $(...).slider is not a function--%>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>
 </html>

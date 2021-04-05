@@ -2,6 +2,7 @@ package gov.iti.jets.team5.services.impl;
 
 import gov.iti.jets.team5.models.ajaxModels.CartItemData;
 import gov.iti.jets.team5.models.dto.CartItemDto;
+
 import gov.iti.jets.team5.repositories.CartRepository;
 import gov.iti.jets.team5.services.CartService;
 import gov.iti.jets.team5.utils.mappers.CartItemDtoMapper;
@@ -45,7 +46,6 @@ public class CartServiceImpl implements CartService {
 
         var cartItems = CartRepository.getInstance().getCartItems(userId);
         CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
-       return cartItemDtoMapper.getListDto(cartItems);
+        return cartItemDtoMapper.getListDto(cartItems);
     }
-//    public CartItems
 }

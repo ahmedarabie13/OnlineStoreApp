@@ -40,6 +40,7 @@ public class CartRepository {
                 cartItemsId.setProductId(productId);
                 cartItemsId.setOrderId(((PotentialOrders) list.get(0)).getOrderId());
                 var cartItem = entityManager.find(CartItems.class, cartItemsId);
+//                int newCartItemQuantity;
                 if (cartItem != null) {
                     var product = cartItem.getProduct();
                     if (product.getQuantity() >= (cartItem.getQuantity() + 1)) {
@@ -55,17 +56,36 @@ public class CartRepository {
                         cartItem.setQuantity(1);
                         cartItem.setProduct(product);
                         status = "new";
+                        entityManager.persist(cartItem);
                     }
                 }
-                entityManager.persist(cartItem);
-                System.out.println("done");
+//                entityManager.getTransaction().commit();
+//                if (isQuantityValid(new CartItemData(productId, newCartItemQuantity))) {
+//                    try{
+//                        entityManager.getTransaction().begin();
+//                        cartItem.setQuantity(newCartItemQuantity);
+//                        entityManager.persist(cartItem);
+//                        System.out.println("done");
+//                    }catch (Exception e){
+//                        status = "error";
+//                        e.printStackTrace();
+//                    }finally {
+//                        entityManager.getTransaction().commit();
+//                    }
+//                } else {
+//                    System.out.println("error");
+//                    status = "error";
+//                }
+//                entityManager.getTransaction().begin();
             }
         } catch (Exception e) {
             System.out.println("exception thrown");
+            status = "error";
             e.printStackTrace();
         } finally {
             System.out.println("we reached finally");
             entityManager.getTransaction().commit();
+//            return status;
         }
         return status;
     }
@@ -93,6 +113,7 @@ public class CartRepository {
 
     public boolean isQuantityValid(CartItemData cartItemData) {
         boolean isSufficient = false;
+        System.out.println("from isQuantityValid cartQuantity: " + cartItemData.getCartItemQuantity());
         if (cartItemData.getCartItemQuantity() > 0) {
             entityManager.getTransaction().begin();
             try {
