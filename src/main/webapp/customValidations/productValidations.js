@@ -18,3 +18,12 @@ function quantityValidator(){
         $("#wrongQuan").hide();
     }
 }
+
+function descValidator(){
+    let quan = $("#prodDesc").val();
+    if(quan === "") {
+        $("#empDesc").show();
+    } else {
+        $("#empDesc").hide();
+    }
+}
