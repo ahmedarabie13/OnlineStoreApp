@@ -46,34 +46,38 @@ function deleteProduct(){
 }
 
 function addProduct(){
+    let imgFile = $("#chosenFile").html()
+    let imgFile1 = $("#chosenFile").files[0]
+    console.log(imgFile)
+    console.log(imgFile1)
     let checkVal = checkValidations();
     if(checkVal === false) return;
     // debugger
-    let newName = $("#prodName").val()
-    let newPrice = $("#prodPrice").val()
-    let newQuantity = $("#prodQuan").val()
-    let newDesc = $("#prodDesc").text()
-    let cats = $("#catList").val();
-    let product =
-        {
-            "name": newName,
-            "price": newPrice,
-            "quan": newQuantity,
-            "desc": newDesc,
-            "cats": cats
-        }
-        console.log(product.cats)
-    // product = JSON.stringify(product);
-    $.post("products", product , productUpdateCallBack);
-    function productUpdateCallBack(responseJson, status, xhr){
-        if(status === "success" && responseJson === "true"){
-            console.log("added")
-            window.location.href='products'
-        } else {
-            console.log("failed to add")
-            window.location.href='opsAdd.jsp'
-        }
-    }
+    // let newName = $("#prodName").val()
+    // let newPrice = $("#prodPrice").val()
+    // let newQuantity = $("#prodQuan").val()
+    // let newDesc = $("#prodDesc").text()
+    // let cats = $("#catList").val();
+    // let product =
+    //     {
+    //         "name": newName,
+    //         "price": newPrice,
+    //         "quan": newQuantity,
+    //         "desc": newDesc,
+    //         "cats": cats
+    //     }
+    //     console.log(product.cats)
+    // // product = JSON.stringify(product);
+    // $.post("products", product , productUpdateCallBack);
+    // function productUpdateCallBack(responseJson, status, xhr){
+    //     if(status === "success" && responseJson === "true"){
+    //         console.log("added")
+    //         window.location.href='products'
+    //     } else {
+    //         console.log("failed to add")
+    //         window.location.href='opsAdd.jsp'
+    //     }
+    // }
 }
 
 function checkValidations(){
@@ -82,7 +86,5 @@ function checkValidations(){
         || $("#prodName").text() === "" || $("#prodPrice").val() === "" || $("#prodQuan").val() === "" || $("#prodDesc").text() === ""){
         validationFailed = true;
     }
-    if (validationFailed) {
-        return true;
-    }
+    return validationFailed
 }

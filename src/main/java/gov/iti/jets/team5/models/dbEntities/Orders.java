@@ -20,6 +20,7 @@ public class Orders implements java.io.Serializable {
     private UserData userData;
     private Date orderDate;
     private long total;
+    private String address;
 
     public Orders() {
     }
@@ -83,7 +84,14 @@ public class Orders implements java.io.Serializable {
         this.total = total;
     }
 
+    @Column(name = "address", nullable = false, length = 45)
+    public String getAddress() {
+        return address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
 
 

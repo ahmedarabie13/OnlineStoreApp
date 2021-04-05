@@ -64,7 +64,7 @@ public class ProductRepository {
             ProductDto productDto = new ProductDto();
             productDto.setProductID(String.valueOf(p.getId()));
             productDto.setProductName(p.getProductName());
-            productDto.setProductImageURL("images/products/MeatlessPieces.png");
+            productDto.setProductImageURL(p.getPhoto());
             productDto.setProductPrice(p.getPrice());
             productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
             theProducts.add(productDto);
@@ -101,7 +101,7 @@ public class ProductRepository {
                     ProductDto productDto = new ProductDto();
                     productDto.setProductID(String.valueOf(item.getId()));
                     productDto.setProductName(item.getProductName());
-                    productDto.setProductImageURL("images/products/MeatlessPieces.png");
+                    productDto.setProductImageURL(item.getPhoto());
                     productDto.setProductPrice(item.getPrice());
                     productDto.setProductStatus(ProductStatus.valueOf(item.getStatus()));
                     theProducts.add(productDto);
@@ -135,7 +135,7 @@ public class ProductRepository {
             ProductDto productDto = new ProductDto();
             productDto.setProductID(String.valueOf(p.getId()));
             productDto.setProductName(p.getProductName());
-            productDto.setProductImageURL("images/products/MeatlessPieces.png");
+            productDto.setProductImageURL(p.getPhoto());
             productDto.setProductPrice(p.getPrice());
             productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
             theProducts.add(productDto);
@@ -170,7 +170,7 @@ public class ProductRepository {
                         ProductDto productDto = new ProductDto();
                         productDto.setProductID(String.valueOf(product.getId()));
                         productDto.setProductName(product.getProductName());
-                        productDto.setProductImageURL("images/products/MeatlessPieces.png");
+                        productDto.setProductImageURL(product.getPhoto());
                         productDto.setProductPrice(product.getPrice());
                         productDto.setProductStatus(ProductStatus.valueOf(product.getStatus()));
                         theProducts.add(productDto);
@@ -283,9 +283,10 @@ public class ProductRepository {
             productToAdd.setProductDescription(product.getProductDescription());
             productToAdd.setPrice(product.getProductPrice());
             productToAdd.setQuantity(product.getProductQuantity());
-            productToAdd.setPhoto("empty");
+//            productToAdd.setPhoto("empty");
             productToAdd.setSellerName("Rivo");
             productToAdd.setStatus(ProductStatus.NEW.getProductStatus());
+            productToAdd.setPhoto(product.getProductImageURL());
             if(catList != null){
                 Set<Category> cats = getCats(catList);
                 productToAdd.setCategories(cats);
