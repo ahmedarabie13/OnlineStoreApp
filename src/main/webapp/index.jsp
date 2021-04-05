@@ -68,7 +68,7 @@
                         <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
                         <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to
                             see any changes in performance over time.</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                        <p><a class="btn hvr-hover" href="shop">Shop Now</a></p>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                         <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
                         <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to
                             see any changes in performance over time.</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                        <p><a class="btn hvr-hover" href="shop">Shop Now</a></p>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                         <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
                         <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to
                             see any changes in performance over time.</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                        <p><a class="btn hvr-hover" href="shop">Shop Now</a></p>
                     </div>
                 </div>
             </div>
@@ -134,22 +134,22 @@
 </div>
 <!-- End Categories -->
 
-<div class="box-add-products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/add-img-01.jpg" alt=""/>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/add-img-02.jpg" alt=""/>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="box-add-products">--%>
+<%--    <div class="container">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-lg-6 col-md-6 col-sm-12">--%>
+<%--                <div class="offer-box-products">--%>
+<%--                    <img class="img-fluid" src="images/add-img-01.jpg" alt=""/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-6 col-md-6 col-sm-12">--%>
+<%--                <div class="offer-box-products">--%>
+<%--                    <img class="img-fluid" src="images/add-img-02.jpg" alt=""/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- Start Products  -->
 <div class="products-box">

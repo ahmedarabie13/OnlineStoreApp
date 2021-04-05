@@ -30,7 +30,7 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<div class=\"type-lb\">");
         out.println("<p class=\"new\">" + productStatus + "</p>");
         out.println("</div>");
-        out.println("<img src=" + productImageURL + " class=\"img-fluid\" alt=\"Image\">");
+        out.println("<img src=" + productImageURL + " style=\"height:200px\" class=\"img-fluid\" alt=\"Image\">");
         out.println("<div class=\"mask-icon\">");
         out.println("<ul>");
         out.println("<li><a href=\"shopDetail?id=" + productId + "\"" + "data-toggle=\"tooltip\" data-placement=\"right\" title=\"View\"><i class=\"fas fa-eye\"></i></a></li>");
@@ -44,7 +44,8 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("</div >");
         out.println("<div class=\"why-text\" >");
         out.println("<h4 >" + productName + "</h4 >");
-        out.println("<small class=\"text-danger\" id=\"quantityError"+productId+"\"></small><br>");
+        out.println(" <small class=\"text-danger\" id=\"prodError"+productId+"\"></small>\n" +
+                "<br>");
         out.println("<h5 > EGP" + productPrice + "</h5 >");
 //        out.println("<h5 > Rating " + productRating + "</h5 >");
         out.println("</div >");

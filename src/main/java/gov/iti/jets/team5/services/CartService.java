@@ -2,6 +2,10 @@ package gov.iti.jets.team5.services;
 
 import gov.iti.jets.team5.models.ajaxModels.CartItemData;
 import gov.iti.jets.team5.models.dbEntities.CartItems;
+import gov.iti.jets.team5.models.dto.CartItemDto;
+import gov.iti.jets.team5.models.dto.ProductDto;
+import gov.iti.jets.team5.models.dto.UserDto;
+
 
 import java.util.List;
 
@@ -14,5 +18,5 @@ public interface CartService {
 
     void deleteCartItem(int userId, CartItemData cartItemData);
 
-    List<CartItems> getCartItems(int userId);
+    List<CartItemDto> getCartItems(int userId);
 }
