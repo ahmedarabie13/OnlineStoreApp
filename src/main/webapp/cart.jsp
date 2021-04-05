@@ -180,14 +180,17 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="cc-num">Credit card number</label>
-                        <input type="text" class="form-control" id="cc-num" name="cc-num" placeholder="" required>
+                        <input type="text" class="form-control" id="cc-num" name="cc-num" placeholder="" required onblur="cnumValidator()">
+                        <span id="num" style="display: none; font-size: medium; color: red">Please Enter a Correct Card Number</span>
+                        <br>
                         <small
                                 class="text-muted">Credit card number as displayed on card</small>
                         <div class="invalid-feedback"> Credit card number is required</div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="cc-cvv">CVV</label>
-                        <input type="text" class="form-control" id="cc-cvv" name="cc-cvv" placeholder="" required>
+                        <input type="text" class="form-control" id="cc-cvv" name="cc-cvv" placeholder="" required onblur="cvvValidator()">
+                        <span id="cvv" style="display: none; font-size: medium; color: red">Please Enter a Correct CVV Number</span>
                         <div class="invalid-feedback"> Security code required</div>
                     </div>
                 </div>
@@ -246,6 +249,7 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+<script src="customValidations/cardValidations.js"></script>
 <script>
     function setQuantity(productId, productQuantity, productPrice) {
         let newVal = $('#cartItem' + productId).val();
