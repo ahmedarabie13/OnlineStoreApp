@@ -66,7 +66,7 @@
             <div class="col-lg-12">
                 <h2>My Account</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="main">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="main">Home</a></li>
                     <li class="breadcrumb-item active">My Account</li>
                 </ul>
             </div>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="pl-sm-4 pl-2" id="img-section"><b>Profile Photo</b>
                                     <p></p>
-                                    <button class="btn btn-primary"><b>Upload</b></button>
+                                    <button class="btn btn-primary" href="underDev.jsp"><b>Upload</b></button>
                                 </div>
                             </div>
                         </div>

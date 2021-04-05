@@ -7,7 +7,7 @@
 <!-- Basic -->
 
 <head>
-    <title>Page not Found</title>
+    <title>Checkout Succeeded</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -19,7 +19,33 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
 
+        .myNav-link{
+            /*float: left;*/
+        }
+        .myNav-link ul li{
+            display: inline-block;
+            border-right: 1px solid #ffffff;
+            padding: 0px 10px;
+            line-height: 14px;
+        }
+        .myNav-link ul{
+            line-height: 30px;
+        }
+        .myNav-link ul li a{
+            color: #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .myNav-link ul li a:hover{
+            color: #b0b435;
+        }
+        .myNav-link ul li:last-child{
+            border: none;
+        }
+    </style>
     <%--    <!-- Site Icons -->--%>
     <%--    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">--%>
     <%--    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">--%>
@@ -40,6 +66,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="forms/css/style.css">
+<%--    <link rel="stylesheet" href="css/custom.css">--%>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -48,7 +75,6 @@
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -57,17 +83,7 @@
 
 </head>
 <body>
-<c:if test="${empty sessionScope.currentUser}">
-    <jsp:include page="header.jsp"/>
-</c:if>
-<c:if test="${!empty sessionScope.currentUser}">
-    <c:if test="${sessionScope.currentUser.userRole.equals('admin')}">
-        <jsp:include page="admin-header.jsp"/>
-    </c:if>
-    <c:if test="${sessionScope.currentUser.userRole.equals('user')}">
-        <jsp:include page="header.jsp"/>
-    </c:if>
-</c:if>
+<jsp:include page="header.jsp"/>
 
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
@@ -75,9 +91,22 @@
             <div class="col-2"></div>
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="offer-box-products">
-                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit"><a
-                            href="main">BACK TO HOME</a></p>
-                    <img class="img-fluid" src="images/msgs/oops.png" alt=""/>
+
+                    <p style="font-size: xx-large; color: #b0b435; align-content: center; font-style: inherit">
+                        Checkout Done successfully <br>
+                    <div class="myNav-link">
+                        <ul>
+                            <li><a href="main">BACK TO HOME</a></li>
+                            <li><a href="shop">BACK TO SHOP</a></li>
+                        </ul>
+                    </div>
+<%--                    <a href="main">BACK TO HOME</a>--%>
+<%--                    <br>--%>
+<%--                    &lt;%&ndash;                    <li style="display:inline;"><a href="main">BACK TO HOME</a></li>&ndash;%&gt;--%>
+<%--                    <a href="shop">BACK TO SHOP</a>--%>
+                    </p>
+                    <br>
+                    <img class="img-fluid" src="images/msgs/checkout.png" alt=""/>
                 </div>
             </div>
             <div class="col-2"></div>

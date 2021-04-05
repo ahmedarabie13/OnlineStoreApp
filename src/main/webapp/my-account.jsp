@@ -81,7 +81,7 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                                    <a href="underDev.jsp"> <i class="fa fa-gift"></i> </a>
                                 </div>
                                 <div class="service-desc">
                                     <h4>Your Orders</h4>
@@ -107,7 +107,7 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-credit-card"></i> </a>
+                                    <a href="underDev.jsp"> <i class="fa fa-credit-card"></i> </a>
                                 </div>
                                 <div class="service-desc">
                                     <h4>Payment options</h4>

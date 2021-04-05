@@ -30,7 +30,7 @@ public class CartRepository {
 
     public String addProductToCart(int productId, int userId) {
         System.out.println(productId + " from cart repo");
-        String status = "";
+        String status = "error";
         try {
             entityManager.getTransaction().begin();
             var list = entityManager.createQuery("from PotentialOrders p where p.userData.id = :user_id and p.active = true")
@@ -40,39 +40,43 @@ public class CartRepository {
                 cartItemsId.setProductId(productId);
                 cartItemsId.setOrderId(((PotentialOrders) list.get(0)).getOrderId());
                 var cartItem = entityManager.find(CartItems.class, cartItemsId);
-                int newCartItemQuantity;
+//                int newCartItemQuantity;
                 if (cartItem != null) {
-                    newCartItemQuantity = cartItem.getQuantity() + 1;
-//                    cartItem.setQuantity(cartItem.getQuantity() + 1);
-                    status = "existed";
+                    var product = cartItem.getProduct();
+                    if (product.getQuantity() >= (cartItem.getQuantity() + 1)) {
+                        cartItem.setQuantity(cartItem.getQuantity() + 1);
+                        status = "existing";
+                    }
                 } else {
                     var product = (Product) entityManager.find(Product.class, productId);
                     cartItem = new CartItems();
                     System.out.println("new CartItem");
-                    cartItem.setId(cartItemsId);
-//                    cartItem.setQuantity(1);
-                    newCartItemQuantity = 1;
-                    cartItem.setProduct(product);
-                    status = "new";
-                }
-                entityManager.getTransaction().commit();
-                if (isQuantityValid(new CartItemData(productId, newCartItemQuantity))) {
-                    try{
-                        entityManager.getTransaction().begin();
-                        cartItem.setQuantity(newCartItemQuantity);
+                    if (product.getQuantity() >= 1) {
+                        cartItem.setId(cartItemsId);
+                        cartItem.setQuantity(1);
+                        cartItem.setProduct(product);
+                        status = "new";
                         entityManager.persist(cartItem);
-                        System.out.println("done");
-                    }catch (Exception e){
-                        status = "error";
-                        e.printStackTrace();
-                    }finally {
-                        entityManager.getTransaction().commit();
                     }
-                } else {
-                    System.out.println("error");
-                    status = "error";
                 }
-                entityManager.getTransaction().begin();
+//                entityManager.getTransaction().commit();
+//                if (isQuantityValid(new CartItemData(productId, newCartItemQuantity))) {
+//                    try{
+//                        entityManager.getTransaction().begin();
+//                        cartItem.setQuantity(newCartItemQuantity);
+//                        entityManager.persist(cartItem);
+//                        System.out.println("done");
+//                    }catch (Exception e){
+//                        status = "error";
+//                        e.printStackTrace();
+//                    }finally {
+//                        entityManager.getTransaction().commit();
+//                    }
+//                } else {
+//                    System.out.println("error");
+//                    status = "error";
+//                }
+//                entityManager.getTransaction().begin();
             }
         } catch (Exception e) {
             System.out.println("exception thrown");
@@ -81,8 +85,9 @@ public class CartRepository {
         } finally {
             System.out.println("we reached finally");
             entityManager.getTransaction().commit();
-            return status;
+//            return status;
         }
+        return status;
     }
 
     public List<CartItems> getCartItems(int userId) {

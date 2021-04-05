@@ -4,5 +4,5 @@ import gov.iti.jets.team5.models.dto.CreditCardDto;
 
 public interface BankService {
     Boolean isValidCreditCard(CreditCardDto creditCardDto);
-    Boolean withdraw(CreditCardDto creditCardDto, Double totalPrice);
+    Boolean withdraw(CreditCardDto creditCardDto, Long totalPrice);
 }

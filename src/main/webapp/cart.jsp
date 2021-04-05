@@ -66,7 +66,7 @@
             <div class="col-lg-12">
                 <h2>Cart</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="shop">Shop</a></li>
                     <li class="breadcrumb-item active">Cart</li>
                 </ul>
             </div>
@@ -210,8 +210,12 @@
                 </div>
                 <hr>
             </div>
+            <c:if test="${! empty requestScope.Error}">
+                <span class="text-danger" id="validationSpan">Checkout Failed please enter valid data</span>
+            </c:if>
             <%--            </div>--%>
-            <div class="col-12 d-flex shopping-box"><a type="submit" class="ml-auto btn hvr-hover">Checkout</a>
+            <div class="col-12 d-flex shopping-box"><input type="submit" class="ml-auto btn hvr-hover"
+                                                           value="Checkout"/>
             </div>
         </form>
         <%--            <div class="col-lg-8 col-sm-12"></div>--%>
@@ -303,7 +307,6 @@
             $('#totalPrice').append(response.totalPrice);
             console.log("deleteCallBack: " + response);
             // window.location.reload(true);
-            //todo: refresh the page
         }
     }
 </script>

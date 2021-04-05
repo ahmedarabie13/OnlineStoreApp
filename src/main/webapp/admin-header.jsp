@@ -60,7 +60,7 @@
                         aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="main"><img src="images/logo.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="panel"><img src="images/logo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
@@ -76,36 +76,35 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="addProduct">Add Product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactUs">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="underDev.jsp">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
 
-            <!-- Start Atribute Navigation -->
-            <div class="attr-nav">
-                <ul>
-                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                    <c:choose>
+<%--            <!-- Start Atribute Navigation -->--%>
+<%--            <div class="attr-nav">--%>
+<%--                <ul>--%>
+<%--                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>--%>
+<%--                    <c:choose>--%>
 
-                        <c:when test="${sessionScope.currentUser!=null}">
-                            <li class="side-menu"><a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge">3</span>
-<%--                                <p>My Cart</p>--%>
-                            </a></li>
-                        </c:when><c:when test="${sessionScope.currentUser==null}">
-                            <li class="side"><a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span class="badge"></span>
-<%--                                <p>My Cart</p>--%>
-                            </a></li>
-                        </c:when>
-                    </c:choose>
+<%--                        <c:when test="${sessionScope.currentUser!=null}">--%>
+<%--                            <li class="side-menu"><a href="#">--%>
+<%--                                <i class="fa fa-shopping-bag"></i>--%>
+<%--                                <span class="badge">3</span>--%>
+<%--&lt;%&ndash;                                <p>My Cart</p>&ndash;%&gt;--%>
+<%--                            </a></li>--%>
+<%--                        </c:when><c:when test="${sessionScope.currentUser==null}">--%>
+<%--                            <li class="side"><a href="#">--%>
+<%--                                <i class="fa fa-shopping-bag"></i>--%>
+<%--                                <span class="badge"></span>--%>
+<%--&lt;%&ndash;                                <p>My Cart</p>&ndash;%&gt;--%>
+<%--                            </a></li>--%>
+<%--                        </c:when>--%>
+<%--                    </c:choose>--%>
 
-                </ul>
-            </div>
-            <!-- End Atribute Navigation -->
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--            <!-- End Atribute Navigation -->--%>
         </div>
     </nav>
     <!-- End Navigation -->
