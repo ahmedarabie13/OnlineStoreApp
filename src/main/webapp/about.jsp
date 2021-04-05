@@ -81,20 +81,11 @@
             </div>
             <div class="col-lg-6">
                 <h2 class="noo-sh-title-top">We are <span>Freshshop</span></h2>
-                <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo. Nemo enim ipsam
-                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-                    qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit,
-                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                    voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                    laboriosam, nisi ut aliquid ex ea commodi consequatur?
-                    Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-                    consequatur.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
+                <p>We got faster orders. Our ability to promote the items we choose
+                    increased significantly. In some food categories, we have around 60-70% jump.
+                    Plus, no more paper printing and design costs.
+                    We change anything we want, anytime by ourselves on our tablet menu..</p>
+                <p>Freshshop is the #1 App that helps you to increase your revenue by digitizing the dining, delivery & pick-up experience..</p>
                 <a class="btn hvr-hover" href="#">Read More</a>
             </div>
         </div>
@@ -102,22 +93,23 @@
             <div class="col-sm-6 col-lg-4">
                 <div class="service-block-inner">
                     <h3>We are Trusted</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. </p>
+                    <p>Our mission is to be Earth's most customer-centric company.
+                        FreshShop is guided by four principles: customer obsession rather than competitor focus, passion for invention,
+                        commitment to operational excellence, and long-term thinking. . </p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-4">
                 <div class="service-block-inner">
                     <h3>We are Professional</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. </p>
+                    <p>Freshshop's mission is to deliver anything you need, fast!
+                        And today we’re raising the bar with some new improvements.. </p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-4">
                 <div class="service-block-inner">
                     <h3>We are Expert</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. </p>
+                    <p>We are honored to be recognized for the work we do on behalf of our customers,
+                        employees, and communities every day. </p>
                 </div>
             </div>
         </div>
@@ -147,9 +139,8 @@
                         <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut
-                            ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique
-                            purus turpis. Maecenas vulputate. </p>
+                        <p>When we were creating an "our team" page optimized for attracting top talent, we drew inspiration from some awesome websites.
+                            Here's our round-up of our top 4 favorite team members.  </p>
                     </div>
                     <hr class="my-0">
                 </div>
@@ -176,9 +167,8 @@
                         <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut
-                            ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique
-                            purus turpis. Maecenas vulputate. </p>
+                        <p>When we were creating an "our team" page optimized for attracting top talent, we drew inspiration from some awesome websites.
+                            Here's our round-up of our top 4 favorite team members. </p>
                     </div>
                     <hr class="my-0">
                 </div>
@@ -205,9 +195,8 @@
                         <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut
-                            ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique
-                            purus turpis. Maecenas vulputate. </p>
+                        <p>When we were creating an "our team" page optimized for attracting top talent, we drew inspiration from some awesome websites.
+                            Here's our round-up of our top 4 favorite team members.  </p>
                     </div>
                     <hr class="my-0">
                 </div>
@@ -234,9 +223,8 @@
                         <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut
-                            ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique
-                            purus turpis. Maecenas vulputate. </p>
+                        <p>When we were creating an "our team" page optimized for attracting top talent, we drew inspiration from some awesome websites.
+                            Here's our round-up of our top 4 favorite team members.   </p>
                     </div>
                     <hr class="my-0">
                 </div>
