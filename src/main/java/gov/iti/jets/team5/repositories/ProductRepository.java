@@ -208,24 +208,35 @@ public class ProductRepository {
         }
     }
     public List<ProductDto> searchForProducts(String productName){
-        System.out.println(productName);
-        String productNameLike = "%" + productName + "%";
-        String queryString = "from Product p WHERE p.productName LIKE :name";
-        Query q = entityManager.createQuery(queryString).setParameter("name",productNameLike);
-        List<Product> products = q.getResultList();
-        List<ProductDto> theProducts = new ArrayList<>();
-        System.out.println(products);
-        for (Product p : products) {
-            ProductDto productDto = new ProductDto();
-            productDto.setProductID(String.valueOf(p.getId()));
-            productDto.setProductName(p.getProductName());
-            productDto.setProductImageURL("images/products/MeatlessPieces.png");
-            productDto.setProductPrice(p.getPrice());
-            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
-            theProducts.add(productDto);
+        List<ProductDto> theProducts =null;
+        try {
+
+            entityManager.getTransaction().begin();
+            System.out.println(productName);
+            String productNameLike = "%" + productName + "%";
+            String queryString = "from Product p WHERE p.productName LIKE :name";
+            Query q = entityManager.createQuery(queryString).setParameter("name", productNameLike);
+            List<Product> products = q.getResultList();
+            theProducts = new ArrayList<>();
+            System.out.println(products);
+            for (Product p : products) {
+                ProductDto productDto = new ProductDto();
+                productDto.setProductID(String.valueOf(p.getId()));
+                productDto.setProductName(p.getProductName());
+                productDto.setProductImageURL("images/products/MeatlessPieces.png");
+                productDto.setProductPrice(p.getPrice());
+                productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
+                theProducts.add(productDto);
+            }
+            System.out.println("Returned Product List Size: " + products.size());
+
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        System.out.println("Returned Product List Size: " + products.size());
-//        entityManager.getTransaction().commit();
+        finally {
+            entityManager.getTransaction().commit();
+
+        }
         return theProducts;
 
 
