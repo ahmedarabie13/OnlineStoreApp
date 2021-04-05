@@ -27,7 +27,8 @@ public class ProductTagHandler2 extends SimpleTagSupport {
         out.println("<div class=\"type-lb\">");
         out.println("<p class=\"new\">" + productStatus + "</p>");
         out.println("</div>");
-        out.println("<img src=" + productImageURL + " class=\"img-fluid\" alt=\"Image\">");
+        out.println("<img src=" + productImageURL + " style=\"height:200px\" class=\"img-fluid\" alt=\"Image\">");
+//        out.println("<img src=" + productImageURL + "\" style=\"height:200px\" class=\"img-fluid\" alt=\"Image\">");
         out.println("<div class=\"mask-icon\">");
         out.println("<ul>");
         out.println("<li><a href=\"productDetail?id=" + productId + "\"" + "data-toggle=\"tooltip\" data-placement=\"right\" title=\"View\"><i class=\"fas fa-eye\"></i></a></li>");
