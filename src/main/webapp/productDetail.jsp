@@ -138,7 +138,7 @@
                                 <label style="display:none;" id="prodId">${requestScope.productObj.id}</label>
                                 <h2 contentEditable="true" id="prodName">${requestScope.productObj.productName}</h2>
                                 <label id="prodPriceL" style="text-space: 50">Price</label>
-                                <input type="text" value="EGP${requestScope.productObj.price}" id="prodPrice" style="margin-left: 40px;" onblur="priceValidator()">
+                                <input type="text" value="${requestScope.productObj.price}" id="prodPrice" style="margin-left: 40px;" onblur="priceValidator()">
                                 <span id="negPrice" style="display: none; font-size: larger; color: red">Please Enter a Correct Price Number</span>
                                 <br>
                                 <br>

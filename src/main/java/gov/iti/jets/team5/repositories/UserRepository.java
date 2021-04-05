@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
@@ -92,6 +93,26 @@ public class UserRepository {
         return userAuthDto;
 
 
+    }
+
+    public List<UserDto> fetchAllUsers() {
+        List<UserDto> users = new ArrayList<>();
+
+        List userDataList = entityManager.createQuery("from UserData").getResultList();
+
+        for (int i = 0 ; i < userDataList.size() ; i++) {
+            UserData userData = (UserData) userDataList.get(i);
+            UserDto userDto = new UserDto(userData.getFirstName(), userData.getLastName(), userData.getEmail(),
+                    userData.getPhone(), userData.getPassword());
+            userDto.setId(userData.getId());
+            userDto.setStreet(userData.getStreet());
+            userDto.setCity(userData.getCity());
+            userDto.setUserRole(userData.getUserRole());
+
+            users.add(userDto);
+        }
+
+        return users;
     }
 
     public UserDto getUserById(int id) {

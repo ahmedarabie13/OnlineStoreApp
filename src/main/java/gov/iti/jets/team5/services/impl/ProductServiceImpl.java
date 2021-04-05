@@ -72,6 +72,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+
+    public List<ProductDto> fetchLastRecentTenProducts() {
+        return ps.fetchLastRecentTenProducts();
+    }
+
+
     public boolean updateProduct(int pid, ProductDto product) {
         return ps.updateProduct(pid, product);
     }
@@ -82,7 +88,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean addProduct(ProductDto product, String [] cats) {
+    public boolean addProduct(ProductDto product, String[] cats) {
         return ps.addProduct(product, cats);
     }
+
 }

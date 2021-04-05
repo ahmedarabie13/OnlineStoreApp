@@ -1,6 +1,6 @@
 function updateProduct(){
     // debugger
-    let checkVal = checkValidations();
+    let checkVal = checkValidationsForUpdate();
     if(checkVal === true) return;
     let id = $("#prodId").text()
     let newName = $("#prodName").html()
@@ -82,6 +82,21 @@ function addProduct(){
 
 function checkValidations(){
     var validationFailed = false;
+    console.log($("#prodName").text() + "Text");
+    console.log($("#prodName").val() + "Val");
+    console.log($("#prodName").html() + "html");
+    if($("#negPrice").is(":visible") || $("#wrongQuan").is(":visible")
+        || $("#prodName").val() === "" || $("#prodPrice").val() === "" || $("#prodQuan").val() === "" || $("#prodDesc").val() === ""){
+        validationFailed = true;
+    }
+    return validationFailed
+}
+
+function checkValidationsForUpdate(){
+    var validationFailed = false;
+    console.log($("#prodName").text() + "Text");
+    console.log($("#prodName").val() + "Val");
+    console.log($("#prodName").html() + "html");
     if($("#negPrice").is(":visible") || $("#wrongQuan").is(":visible")
         || $("#prodName").text() === "" || $("#prodPrice").val() === "" || $("#prodQuan").val() === "" || $("#prodDesc").text() === ""){
         validationFailed = true;

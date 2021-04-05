@@ -246,6 +246,7 @@ public class ProductRepository {
         }
     }
 
+
     public void updateProductAfterCheckout(CartItemDto cartItem) {
         try {
             entityManager.getTransaction().begin();
@@ -311,7 +312,7 @@ public class ProductRepository {
             productToAdd.setSellerName("Rivo");
             productToAdd.setStatus(ProductStatus.NEW.getProductStatus());
             productToAdd.setPhoto(product.getProductImageURL());
-            if(catList != null){
+            if (catList != null) {
                 Set<Category> cats = getCats(catList);
                 productToAdd.setCategories(cats);
             }
@@ -335,5 +336,25 @@ public class ProductRepository {
         }
         entityManager.close();
         return catsList;
+    }
+
+    public List<ProductDto> fetchLastRecentTenProducts() {
+        List<Product> products = entityManager.createQuery(
+                "from Product p ORDER BY id Desc")
+                .setMaxResults(pageSize)
+                .getResultList();
+
+        List<ProductDto> theProducts = new ArrayList<>();
+
+        for (Product p : products) {
+            ProductDto productDto = new ProductDto();
+            productDto.setProductID(String.valueOf(p.getId()));
+            productDto.setProductName(p.getProductName());
+            productDto.setProductImageURL(p.getPhoto());
+            productDto.setProductPrice(p.getPrice());
+            productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
+            theProducts.add(productDto);
+        }
+        return theProducts;
     }
 }

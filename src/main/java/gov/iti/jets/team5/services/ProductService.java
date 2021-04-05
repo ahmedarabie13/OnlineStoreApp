@@ -9,7 +9,7 @@ import gov.iti.jets.team5.models.dto.ProductDto;
 import java.util.List;
 
 public interface ProductService {
-//    isOrder
+    //    isOrder
     Boolean updateProductsAfterCheckout(List<CartItemDto> cartItemList);
 //    List<ProductDto> fetchProducts();
 
@@ -18,12 +18,20 @@ public interface ProductService {
     List<ProductDto> fetchProductsByFilter(int pageNumber, int filterStart, int filterEnd);
 
     List<ProductDto> fetchProductsByFilterAndCategory(int pageNumber, String category, int filterStart, int filterEnd);
+
     List<ProductDto> fetchCatProducts(String category, int pageNumber);
+
     long fetchNumOfProducts(String categoryId);
+
     Product fetchProductData(String productId);
+
+    List<ProductDto> fetchLastRecentTenProducts();
+
     boolean updateProduct(int pid, ProductDto product);
+
     boolean deleteProduct(int pid);
-    boolean addProduct(ProductDto product, String [] cats);
+
+    boolean addProduct(ProductDto product, String[] cats);
 
 }
 
