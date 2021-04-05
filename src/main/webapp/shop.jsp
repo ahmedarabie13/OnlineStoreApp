@@ -53,16 +53,14 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <%--<!--    <script src="customValidations/products.js"></script>-->--%>
     <![endif]-->
+    <%--    <script src="customValidations/products.js"></script>--%>
 
 </head>
-<%--setParameters(${param.filterStart},${param.filterEnd}, ${param.currentCategory}, ${param.currentPage})--%>
 <%--<body onload="setParameters('<%= request.getAttribute("filterStart")%>',--%>
-<body onload="setParameters('<%= request.getAttribute("filterStart")%>',
-        '<%= request.getAttribute("filterEnd")%>' ,
-        '<%= request.getAttribute("currentCategory")%>', '<%= request.getAttribute("currentPage")%>')">
-<%--<body onload="setParameters(${requestScope.filterStart},--%>
-<%--${requestScope.filterEnd} ,--%>
-<%--${requestScope.currentCategory}, ${requestScope.currentPage})">--%>
+<%--        '<%= request.getAttribute("filterEnd")%>' ,--%>
+<%--        '<%= request.getAttribute("currentCategory")%>', '<%= request.getAttribute("currentPage")%>')">--%>
+<body onload="setParameters('${requestScope.filterStart}', '${requestScope.filterEnd}',
+        '${requestScope.currentCategory}', '${requestScope.currentPage}')">
 
 <jsp:include page="header.jsp"/>
 
@@ -88,33 +86,6 @@
         <div class="row">
             <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
                 <div class="right-product-box">
-                    <div class="product-item-filter row">
-                        <div class="col-12 col-sm-8 text-center text-sm-left">
-                            <div class="toolbar-sorter-right">
-                                <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Nothing</option>
-                                    <option value="1">Popularity</option>
-                                    <option value="2">High Price → High Price</option>
-                                    <option value="3">Low Price → High Price</option>
-                                    <option value="4">Best Selling</option>
-                                </select>
-                            </div>
-                            <p>Showing all 4 results</p>
-                        </div>
-                        <div class="col-12 col-sm-4 text-center text-sm-right">
-                            <ul class="nav nav-tabs ml-auto">
-                                <li>
-                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i
-                                            class="fa fa-th"></i> </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i
-                                            class="fa fa-list-ul"></i> </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
 
                     <div class="product-categorie-box">
@@ -133,13 +104,13 @@
                                 </div>
                                 <c:if test="${empty requestScope.products && requestScope.nothing ==false }">
                                     <span id="emptyList"
-                                          style="font-size:larger; color: black;" > Your search for "${requestScope.searchFor}" did not yield any results.</span>
+                                          style="font-size:larger; color: black;"> Your search for "${requestScope.searchFor}" did not yield any results.</span>
                                 </c:if>
 
                                 <c:if test="${ requestScope.nothing ==true}">
                                 <span id="emptyList"
                                       style="font-size:larger; color: black;"> Please enter the name of product you search for </span>
-                                      </c:if>
+                                </c:if>
 
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
@@ -340,42 +311,8 @@
     <div class="col-lg-12">
         <div class="special-menu text-center">
             <div class="button-group">
-                <%--<<<<<<< HEAD--%>
-                <%--                <c:choose>--%>
-                <%--                    <c:when test="${requestScope.currentPage == 1}">--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${not empty param.cat}">&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop?cat${param.cat}=">1</a>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${empty param.cat}">&ndash;%&gt;--%>
-                <%--                        <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                    </c:when>--%>
-                <%--                    <c:when test="${requestScope.currentPage != 1}">--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${not empty param.cat}">&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                            <a class="submit-button btn hvr-hover" href="shop?cat${param.cat}">1</a>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                        <c:if test="${empty param.cat}">&ndash;%&gt;--%>
-                <%--                        <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
-                <%--                        &lt;%&ndash;                        </c:if>&ndash;%&gt;--%>
-                <%--                    </c:when>--%>
-                <%--                </c:choose>--%>
-                <%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="9" var="pageNumber">--%>
-                <%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/9}" integerOnly="true"/>--%>
-                <%--=======--%>
-                <%--                <c:choose>--%>
-                <%--                    <c:when test="${requestScope.currentPage == 1}">--%>
-                <%--                            <a class="submit-button btn hvr-hover" style="background-color: #856404" href="shop">1</a>--%>
-                <%--                    </c:when>--%>
-                <%--                    <c:when test="${requestScope.currentPage != 1}">--%>
-                <%--                            <a class="submit-button btn hvr-hover" href="shop">1</a>--%>
-                <%--                    </c:when>--%>
-                <%--                </c:choose>--%>
-                <%--                <c:forEach begin="20" end="${requestScope.totalCount}" step="10" var="pageNumber">--%>
-                <%--                    <fmt:parseNumber var="pageNum" value="${pageNumber/10}" integerOnly="true" />--%>
                 <c:forEach begin="1" end="${requestScope.numOfPages}" step="1" var="pageNumber">
                     <fmt:parseNumber var="pageNum" value="${pageNumber}" integerOnly="true"/>
-                    <%--                    <fmt:formatNumber var="pageNum" type="number" maxFractionDigits="2" minFractionDigits="2" value="${pageNumber/10}"/>--%>
-                    <%-->>>>>>> dev--%>
                     <c:choose>
                         <c:when test="${requestScope.currentPage == (pageNum)}">
                             <c:if test="${not empty param.cat}">
@@ -431,16 +368,26 @@
 <script src="js/custom.js"></script>
 <script>
     function addToCart(productId) {
-        debugger
+
         console.log("added id: " + productId + " to cart");
         let jsonData = {"productId": productId};
         console.log("sdff");
-        let cartSize = parseInt($('#cartSize').text()) + 1;
-        $('#cartSize').text(cartSize);
+        // let cartSize = parseInt($('#cartSize').text()) + 1;
+        // $('#cartSize').text(cartSize);
         $.post("addToCart", jsonData, done);
 
-        function done() {
-            console.log("done");
+        function done(data) {
+            console.log(data);
+            let output = JSON.parse(data);
+            if (output.status === "new") {
+                console.log($('#cartSize').text());
+                let cartSize = parseInt($('#cartSize').text()) + 1;
+                console.log("cartSize: " + cartSize);
+                $('#cartSize').text(cartSize);
+            } else if (output.status === "error") {
+                console.log("error");
+                $('#prodError' + productId).text('No Enough Goods');
+            }
         }
     }
 </script>

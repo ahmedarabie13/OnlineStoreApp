@@ -31,6 +31,7 @@ public class UserData implements java.io.Serializable {
     private String userRole;
     private Set<Orders> orderses = new HashSet<Orders>(0);
     private Set<PotentialOrders> potentialOrderses = new HashSet<PotentialOrders>(0);
+    private String job;
 
     public UserData() {
     }
@@ -191,7 +192,14 @@ public class UserData implements java.io.Serializable {
         this.potentialOrderses = potentialOrderses;
     }
 
+    @Column(name = "job", length = 45)
+    public String getJob() {
+        return job;
+    }
 
+    public void setJob(String job) {
+        this.job = job;
+    }
 }
 
 

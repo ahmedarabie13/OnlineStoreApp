@@ -41,125 +41,13 @@ public class ShopControllerServlet extends HttpServlet {
         }
     }
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        ProductService productService = ProductServiceImpl.getInstance();
-//        List<ProductDto> productsList;
-//        String pageNumberStr = request.getParameter("page");
-//
-//        int pageNumber = 1;
-//        if (pageNumberStr != null) {
-//            System.out.println(pageNumberStr);
-//            pageNumber = Integer.parseInt(pageNumberStr);
-//
-//            productsList = productService.fetchProducts(pageNumber);
-//            System.out.println(productsList.size() + " <--------productsss");
-//        } else {
-//            productsList = productService.fetchProducts(1);
-//        }
-//
-//        request.setAttribute("products", productsList);
-//        request.setAttribute("totalCount", productsCount);
-//        request.setAttribute("currentPage", pageNumber);
-//
-//        CategoryService categoryService = CategoryServiceImpl.getInstance();
-//        List<CategoryDto> categoryList = categoryService.fetchCategories();
-//        request.setAttribute("categories", categoryList);
-//
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
-
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-//        ProductService productService = ProductServiceImpl.getInstance();
-//        List<ProductDto> productsList;
-//
-//        String pageNumberStr = request.getParameter("page");
-//        String category = request.getParameter("cat");
-//        System.out.println(category + " <--------categoryId");
-//        int pageNumber = 1;
-//        if (pageNumberStr != null) {
-//            if(category != null){
-//                pageNumber = Integer.parseInt(pageNumberStr);
-//                productsList = productService.fetchCatProducts(Integer.parseInt(category), pageNumber);
-//                System.out.println(productsList.size() + " <--------productsssCategoriesss");
-//            }else {
-//                System.out.println(pageNumberStr);
-//                pageNumber = (int) Double.parseDouble(pageNumberStr);
-//
-//                productsList = productService.fetchProducts(pageNumber);
-//                System.out.println(productsList.size() + " <--------productsss");
-//            }
-//        } else {
-//            productsList = productService.fetchProducts(1);
-//        }
-//
-//        request.setAttribute("products", productsList);
-//        //todo actual products count
-//        long productsCount = productService.fetchNumOfProducts();
-//        request.setAttribute("totalCount", productsCount);
-//        request.setAttribute("currentPage", pageNumber);
-//
-//
-//        CategoryService categoryService = CategoryServiceImpl.getInstance();
-//        List<CategoryDto> categoryList = categoryService.fetchCategories();
-//        request.setAttribute("categories", categoryList);
-//
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        ProductService productService = ProductServiceImpl.getInstance();
-//        List<ProductDto> productsList = productService.fetchProducts();
-//        System.out.println(productsList.size() + " <--------productsss");
-//        request.setAttribute("products", productsList);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         ProductService productService = ProductServiceImpl.getInstance();
         List<ProductDto> productsList;
 
         String pageNumberStr = request.getParameter("page");
-//<<<<<<< HEAD
-//        String categoryStr = request.getParameter("cat");
-//        String filterStartStr = request.getParameter("filterStart");
-//        String filterEndStr = request.getParameter("filterEnd");
-//
-//        System.out.println("Start = " + filterStartStr + "  End = " + filterEndStr);
-//        if (filterStartStr == null) {
-//            filterStartStr = "0";
-//        }
-//        if (filterEndStr == null) {
-//            filterEndStr = "4000";
-//        }
-//        if (pageNumberStr == null) {
-//            pageNumberStr = "1";
-//        }
-//
-//        filterStart = Integer.parseInt(filterStartStr);
-//        filterEnd = Integer.parseInt(filterEndStr);
-//        pageNumber = Integer.parseInt(pageNumberStr);
 
-//        System.out.println(categoryStr + " <--------categoryId");
-
-//        if (categoryStr != null && !categoryStr.equals("null")) {
-//            productsList = productService.fetchProductsByFilterAndCategory(pageNumber, categoryStr, filterStart, filterEnd);
-//            System.out.println(productsList.size() + " <--------productsssCategoriesss");
-//        } else {
-//            productsList = productService.fetchProductsByFilter(pageNumber, filterStart, filterEnd);
-//            System.out.println(productsList.size() + " <--------productsss");
-//        }
-//
-//        request.setAttribute("products", productsList);
-//        //todo actual products count
-//        long productsCount = productService.fetchNumOfProducts();
-//
-//=======
         String category = request.getParameter("cat");
         System.out.println(category + " <--------categoryId");
         long productsCount = productService.fetchNumOfProducts(category);
@@ -169,6 +57,7 @@ public class ShopControllerServlet extends HttpServlet {
             response.sendRedirect("404.jsp");
             return;
         }
+        int num = (int) (Math.round((productsCount / 9) + 0.5));
         String categoryStr = request.getParameter("cat");
         String filterStartStr = request.getParameter("filterStart");
         String filterEndStr = request.getParameter("filterEnd");
@@ -192,12 +81,13 @@ public class ShopControllerServlet extends HttpServlet {
         if (pageNumberStr != null) {
             try {
                 pageNumber = Integer.parseInt(pageNumberStr);
-//                if(pageNumber > productsCount || pageNumber < 1){
-//                    System.out.println("if(pageNumber > productsCount || pageNumber < 1){");
-//                    response.sendRedirect("404.jsp");
-//                    return;
-//                }
-                if (categoryStr != null && !categoryStr.equals("null")) {
+
+                if (pageNumber > num || pageNumber < 1) {
+                    System.out.println("if(pageNumber > productsCount || pageNumber < 1){");
+                    response.sendRedirect("404.jsp");
+                    return;
+                }
+                if (categoryStr != null && !categoryStr.equals("null") && !categoryStr.equals("")) {
 //                    productsList = productService.fetchCatProducts(category, pageNumber);
                     productsList = productService.fetchProductsByFilterAndCategory(pageNumber, categoryStr, filterStart, filterEnd);
                     if (productsList == null) {
@@ -231,8 +121,6 @@ public class ShopControllerServlet extends HttpServlet {
             response.sendRedirect("404.jsp");
             return;
         }
-        int num = (int) (Math.round((productsCount / 9) + 0.5));
-//>>>>>>> dev
         request.setAttribute("totalCount", productsCount);
         request.setAttribute("numOfPages", num);
         request.setAttribute("currentPage", pageNumber);
@@ -240,6 +128,7 @@ public class ShopControllerServlet extends HttpServlet {
         request.setAttribute("filterEnd", filterEnd);
         System.out.println("After");
         System.out.println("Start = " + filterStart + "  End = " + filterEnd);
+        System.out.println(categoryStr + " LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL");
         request.setAttribute("currentCategory", categoryStr);
 
 
@@ -257,47 +146,48 @@ public class ShopControllerServlet extends HttpServlet {
         ProductService productService = ProductServiceImpl.getInstance();
         List<ProductDto> productsList;
         productsList = productService.searchForProducts(searchFor);
-        System.out.println("product list"+productsList);
+        System.out.println("product list" + productsList);
         CategoryService categoryService = CategoryServiceImpl.getInstance();
         List<CategoryDto> categoryList = categoryService.fetchCategories();
         long productsCount = productsList.toArray().length;
-        System.out.println("producct count is" +productsCount);
-    //    if (productsCount != 0) {
-            System.out.println(productsCount);
-            int num = (int) (Math.round((productsCount / 9) + 0.5));
-            request.setAttribute("categories", categoryList);
-            request.setAttribute("numOfPages", num);
-            request.setAttribute("products", productsList);
+        System.out.println("producct count is" + productsCount);
+        //    if (productsCount != 0) {
+        System.out.println(productsCount);
+        int num = (int) (Math.round((productsCount / 9) + 0.5));
+        request.setAttribute("categories", categoryList);
+        request.setAttribute("numOfPages", num);
+        request.setAttribute("products", productsList);
 
-            String categoryStr = request.getParameter("cat");
-            String filterStartStr = request.getParameter("filterStart");
-            String filterEndStr = request.getParameter("filterEnd");
+        String categoryStr = request.getParameter("cat");
+        String filterStartStr = request.getParameter("filterStart");
+        String filterEndStr = request.getParameter("filterEnd");
 
-            System.out.println("Start = " + filterStartStr + "  End = " + filterEndStr);
-            if (filterStartStr == null) {
-                filterStartStr = "0";
-            }
-            if (filterEndStr == null) {
-                filterEndStr = "4000";
-            }
-
-
-            filterStart = Integer.parseInt(filterStartStr);
-            filterEnd = Integer.parseInt(filterEndStr);
-            request.setAttribute("filterStart", filterStart);
-            request.setAttribute("filterEnd", filterEnd);
-            request.setAttribute("searchFor",searchFor);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
-            requestDispatcher.forward(request, response);
+        System.out.println("Start = " + filterStartStr + "  End = " + filterEndStr);
+        if (filterStartStr == null) {
+            filterStartStr = "0";
+        }
+        if (filterEndStr == null) {
+            filterEndStr = "4000";
+        }
 
 
-     //   }
-       // else {
+        filterStart = Integer.parseInt(filterStartStr);
+        filterEnd = Integer.parseInt(filterEndStr);
+        request.setAttribute("filterStart", filterStart);
+        request.setAttribute("filterEnd", filterEnd);
+        request.setAttribute("searchFor", searchFor);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
+        requestDispatcher.forward(request, response);
+
+
+        //   }
+        // else {
 
 //            System.out.println("if(productsCount < 0 ){");
 //            response.sendRedirect("404.jsp");
 //            return;
-    //    }
+        //    }
 
 
-    } }
+    }
+}

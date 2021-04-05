@@ -20,16 +20,24 @@
                 <%--                        <option>€ EUR</option>--%>
                 <%--                    </select>--%>
                 <%--                </div>--%>
-                <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                </div>
-                <div class="our-link">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                    </ul>
-                </div>
+                <%--                <div class="right-phone-box">--%>
+                <%--                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>--%>
+                <%--                </div>  --%>
+                <%--                <div class="our-link">--%>
+                <%--                    <ul>--%>
+                <%--                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>--%>
+                <%--                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>--%>
+                <%--                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>--%>
+                <%--                    </ul>--%>
+                <%--                </div>--%>
+                <c:if test="${! empty sessionScope.currentUser}">
+
+                    <div class="our-link">
+                        <ul>
+                        <a href="myAccount" style="color: white; text-decoration: underline">Welcome Ya, ${sessionScope.currentUser.firstName}</a>
+                        </ul>
+                    </div>
+                </c:if>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <c:choose>
@@ -119,19 +127,19 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item"><a class="nav-link" href="main">Home</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
                             <li><a href="shop">Shop</a></li>
                             <%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
                             <li><a href="cart">Cart</a></li>
-                            <li><a href="checkout">Checkout</a></li>
+<%--                            <li><a href="checkout">Checkout</a></li>--%>
                             <li><a href="myAccount">My Account</a></li>
                             <%--                            <li><a href="wishlist">Wishlist</a></li>--%>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="underDev.jsp">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="contactUs">Contact Us</a></li>
                 </ul>
             </div>

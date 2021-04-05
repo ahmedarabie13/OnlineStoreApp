@@ -8,6 +8,11 @@ public class CartItemData {
     public CartItemData() {
     }
 
+    public CartItemData(int productId, int cartItemQuantity) {
+        this.productId = productId;
+        this.cartItemQuantity = cartItemQuantity;
+    }
+
     public int getProductId() {
         return productId;
     }

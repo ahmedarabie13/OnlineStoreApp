@@ -1,9 +1,7 @@
 package gov.iti.jets.team5.services.impl;
 
-import gov.iti.jets.team5.dao.ProductDao;
-import gov.iti.jets.team5.dao.daoImpl.ProductDaoImpl;
 import gov.iti.jets.team5.models.dbEntities.Product;
-import gov.iti.jets.team5.models.dto.OrderDto;
+import gov.iti.jets.team5.models.dto.CartItemDto;
 import gov.iti.jets.team5.models.dto.ProductDto;
 import gov.iti.jets.team5.repositories.ProductRepository;
 import gov.iti.jets.team5.services.ProductService;
@@ -28,17 +26,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Boolean updateProductsAfterCheckout(OrderDto orderDto) {
+    public Boolean updateProductsAfterCheckout(List<CartItemDto> cartItemList) {
         //todo: subtract the order products amounts from the db products amounts
-        var products = orderDto.getProducts().keySet();
-        products.stream().forEach((productDto) -> {
-            Integer productQuantityInOrder = orderDto.getProducts().get(productDto);
-            ProductDao productDao = ProductDaoImpl.getInstance();
 
-            Integer storedQuantity = 12;
-//                    productDao.getProductQuantity(productDto);
-            Integer newAmount = storedQuantity - productQuantityInOrder;
-            //todo : update the db with the product new quantity
+        cartItemList.stream().forEach((cartItem) -> {
+            ProductRepository.getInstance().updateProductAfterCheckout(cartItem);
         });
 
         return true;
@@ -83,6 +75,25 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> searchForProducts(String productName) {
         return ps.searchForProducts(productName);
+    }
+
+    public List<ProductDto> fetchLastRecentTenProducts() {
+        return ps.fetchLastRecentTenProducts();
+    }
+
+
+    public boolean updateProduct(int pid, ProductDto product) {
+        return ps.updateProduct(pid, product);
+    }
+
+    @Override
+    public boolean deleteProduct(int pid) {
+        return ps.deleteProduct(pid);
+    }
+
+    @Override
+    public boolean addProduct(ProductDto product, String[] cats) {
+        return ps.addProduct(product, cats);
     }
 
 }

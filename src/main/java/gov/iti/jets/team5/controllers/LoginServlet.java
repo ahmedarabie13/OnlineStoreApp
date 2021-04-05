@@ -14,12 +14,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "Login", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
     private static final int MONTH = 60 * 60 * 24 * 30;
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LoginService loginService = LoginServiceImpl.getInstance();
         UserAuthDto userAuthDto = new UserAuthDto();
@@ -31,6 +31,9 @@ public class LoginServlet extends HttpServlet {
             Cookies.addCookie("c_user", String.valueOf(userAuthDto.getId()), MONTH, response);
             var cartItems = CartRepository.getInstance().getCartItems(userAuthDto.getId());
             CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
+            if(cartItems == null){
+                cartItems = new ArrayList<>();
+            }
             var cartItemsDto = cartItemDtoMapper.getListDto(cartItems);
             request.getSession().setAttribute("cartItems",cartItemsDto);
             Double totalPrice = new CartServiceImpl().getCartTotalPrice(userAuthDto.getId());
@@ -41,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             //todo: redirect with error parameters
 //            request.setAttribute("Error","true");
 //            request.getRequestDispatcher("login.jsp").forward(request,response);
-            response.sendRedirect("login?Error=true");
+              response.sendRedirect("login?Error=true");
         }
     }
 

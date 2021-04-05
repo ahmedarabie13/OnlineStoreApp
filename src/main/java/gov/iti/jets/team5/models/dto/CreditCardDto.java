@@ -1,8 +1,8 @@
 package gov.iti.jets.team5.models.dto;
 
 public class CreditCardDto {
-    public String creditCardNumber;
-    public String cvv;
+    private String creditCardNumber;
+    private String cvv;
 
     public CreditCardDto(String creditCardNumber, String cvv) {
         this.creditCardNumber = creditCardNumber;

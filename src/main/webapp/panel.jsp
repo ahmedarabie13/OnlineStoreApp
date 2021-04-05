@@ -7,7 +7,7 @@
 <!-- Basic -->
 
 <head>
-    <title>Enable Your Cookies</title>
+    <title>Admin Panel</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -55,9 +55,10 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        .custom{
+        .custom {
             color: #b0b435;
         }
+
         .custom:hover {
             background-color: #777620;
             color: white;
@@ -65,18 +66,19 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="admin-header.jsp"/>
 
 <div class="box-add-products" align="center" style="align-self: center">
     <div class="container" align="center">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12" onclick="window.location.href='products'">
                 <div class="offer-box-products custom" style="height: 500px; padding: 200px">
-                    <p style="text-align-all: center; font-size: xx-large; align-content: center; font-style: inherit">Manage Products</p>
+                    <p style="text-align-all: center; font-size: xx-large; align-content: center; font-style: inherit" >Manage Products</p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products custom" style="height: 500px; padding: 200px">
+                <div class="offer-box-products custom" onclick="location.href='customers';"
+                     style="height: 500px; padding: 200px">
                     <p style="font-size: xx-large; font-style: inherit">View Customers</p>
                 </div>
             </div>

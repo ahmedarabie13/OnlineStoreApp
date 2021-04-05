@@ -33,11 +33,11 @@ public class CookiesFilter implements Filter {
             if(extension.length > 0){
                 if(extension[extension.length-1].equals("jsp")){
                     //System.out.println("-------------------> " + extension[extension.length-1]);
-                    if (request.getParameter("checkCookie") == null) {
-                        //System.out.println("checkCookie is null hence the 1nd visit");
+                    if (request.getParameter("cookie") == null) {
+                        //System.out.println("cookie is null hence the 1nd visit");
                         ((HttpServletResponse) response).addCookie(cookie);
                         //System.out.println(((HttpServletRequest) request).getRequestURL().toString());
-                        ((HttpServletResponse) response).sendRedirect(path+"?checkCookie=true");
+                        ((HttpServletResponse) response).sendRedirect(path+"?cookie=true");
                         return;
                     } else {
                         if (((HttpServletRequest) request).getCookies() == null) {
