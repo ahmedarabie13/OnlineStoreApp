@@ -5,10 +5,8 @@ import gov.iti.jets.team5.dao.daoImpl.ProductDaoImpl;
 import gov.iti.jets.team5.models.dbEntities.Product;
 import gov.iti.jets.team5.models.dto.OrderDto;
 import gov.iti.jets.team5.models.dto.ProductDto;
-import gov.iti.jets.team5.repositories.CategoryRepository;
 import gov.iti.jets.team5.repositories.ProductRepository;
 import gov.iti.jets.team5.services.ProductService;
-import gov.iti.jets.team5.services.RegisterService;
 
 import java.util.List;
 
@@ -35,11 +33,11 @@ public class ProductServiceImpl implements ProductService {
         var products = orderDto.getProducts().keySet();
         products.stream().forEach((productDto) -> {
             Integer productQuantityInOrder = orderDto.getProducts().get(productDto);
-            ProductDao productDao= ProductDaoImpl.getInstance();
+            ProductDao productDao = ProductDaoImpl.getInstance();
 
             Integer storedQuantity = 12;
 //                    productDao.getProductQuantity(productDto);
-            Integer newAmount= storedQuantity - productQuantityInOrder;
+            Integer newAmount = storedQuantity - productQuantityInOrder;
             //todo : update the db with the product new quantity
         });
 
@@ -81,4 +79,10 @@ public class ProductServiceImpl implements ProductService {
     public Product fetchProductData(String productId) {
         return ps.fetchProductData(productId);
     }
+
+    @Override
+    public List<ProductDto> searchForProducts(String productName) {
+        return ps.searchForProducts(productName);
+    }
+
 }

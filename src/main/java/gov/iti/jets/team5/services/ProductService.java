@@ -20,6 +20,7 @@ public interface ProductService {
     List<ProductDto> fetchCatProducts(String category, int pageNumber);
     long fetchNumOfProducts(String categoryId);
     Product fetchProductData(String productId);
+    List <ProductDto> searchForProducts(String productName);
 
 }
 

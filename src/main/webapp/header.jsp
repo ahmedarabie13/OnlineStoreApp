@@ -1,9 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<!-- <%@ page import="gov.iti.jets.team5.controllers.SearchServlet" %> -->--%>
 <%--<html>--%>
 <%--<head>--%>
-<%--    <title>Title</title>--%>
+
+<%--    <script src="customValidations/search.js"></script>--%>
 <%--</head>--%>
 <%--<body>--%>
 <!-- Start Main Top -->
@@ -122,11 +124,11 @@
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
                             <li><a href="shop">Shop</a></li>
-<%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
+                            <%--                            <li><a href="shopDetail">Shop Detail</a></li>--%>
                             <li><a href="cart">Cart</a></li>
                             <li><a href="checkout">Checkout</a></li>
                             <li><a href="myAccount">My Account</a></li>
-<%--                            <li><a href="wishlist">Wishlist</a></li>--%>
+                            <%--                            <li><a href="wishlist">Wishlist</a></li>--%>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
@@ -203,17 +205,36 @@
 <!-- End Main Top -->
 
 <!-- Start Top Search -->
+<%--<div class="top-search">--%>
+<%--    <div class="container">--%>
+<%--        <div class="input-group">--%>
+<%--            <form action="search" method="post" class="form-control">--%>
+<%--                &lt;%&ndash;      <span class="input-group-addon"><i class="fa fa-search"></i></span>&ndash;%&gt;--%>
+<%--              <button value="submit" class="searchButton"> <i class="fas fa-search"></i> </button>--%>
+<%--                <input type="text" id="searchFor" class="searchTerm"  placeholder="Search" name="searchFor">--%>
+<%--                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>--%>
+
+<%--            </form>--%>
+<form action="search" method="post" id="searchForm">
 <div class="top-search">
     <div class="container">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+
+                <span class="input-group-addon">  <i class="fa fa-search" onclick="submitSearch()"></i></span>
+                <input type="text" class="form-control" name="searchFor" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
         </div>
     </div>
 </div>
+</form>
+
+</div>
+</div>
+</div>
 
 <script>
+    var request = null;
+
     function fetchCartItems() {
         console.log("fetching cart Items")
         let jsonData = {};
@@ -248,12 +269,17 @@
 
             $('#cartItems').append("<li class=\"total\">\n" +
                 "                        <a href=\"cart\" class=\"btn btn-default hvr-hover btn-cart\">VIEW CART</a>\n" +
-                "                        <span class=\"float-right\"><strong>Total</strong>: $"+parseFloat(totalPrice.toFixed(2))+"</span>\n" +
+                "                        <span class=\"float-right\"><strong>Total</strong>: $" + parseFloat(totalPrice.toFixed(2)) + "</span>\n" +
                 "                    </li>");
 
             console.log("done fetching");
         }
     }
+    function submitSearch(){
+        document.getElementById("searchForm").submit();
+    }
+
+
 </script>
 <!-- End Top Search -->
 

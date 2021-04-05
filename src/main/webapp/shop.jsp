@@ -120,6 +120,7 @@
                     <div class="product-categorie-box">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+
                                 <div class="row container special-list" id="productsDiv">
                                     <c:forEach items="${requestScope.products}" var="product">
                                         <Product:Product productName="${product.productName}"
@@ -130,6 +131,15 @@
                                         />
                                     </c:forEach>
                                 </div>
+                                <c:if test="${empty requestScope.products && requestScope.nothing ==false }">
+                                    <span id="emptyList"
+                                          style="font-size:larger; color: black;" > Your search for "${requestScope.searchFor}" did not yield any results.</span>
+                                </c:if>
+
+                                <c:if test="${ requestScope.nothing ==true}">
+                                <span id="emptyList"
+                                      style="font-size:larger; color: black;"> Please enter the name of product you search for </span>
+                                      </c:if>
 
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
@@ -285,8 +295,8 @@
             <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                 <div class="product-categori">
                     <div class="search-product">
-                        <form action="#">
-                            <input class="form-control" placeholder="Search here..." type="text">
+                        <form action="search" method="post">
+                            <input name="searchFor" class="form-control" placeholder="Search here..." type="text">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -299,7 +309,7 @@
                             <a href="shop?page=1" class="list-group-item list-group-item-action">All</a>
                             <c:forEach items="${requestScope.categories}" var="category">
                                 <%--                                <a href="shop?page=1&cat=${category.id}" class="list-group-item list-group-item-action"--%>
-<%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
+                                <%--                                <a href="shop?page=${requestScope.currentPage}&cat=${category.id}&filterStart=${requestScope.filterStart}&filterEnd=${requestScope.filterEnd}"--%>
                                 <a href="shop?page=1&cat=${category.id}"
                                    class="list-group-item list-group-item-action"
                                    id="catId" name="${category.id}">${category.name}</a>
@@ -420,15 +430,16 @@
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
 <script>
-    function addToCart(productId){
+    function addToCart(productId) {
         debugger
-        console.log("added id: "+productId+" to cart");
-        let jsonData = {"productId":productId};
+        console.log("added id: " + productId + " to cart");
+        let jsonData = {"productId": productId};
         console.log("sdff");
         let cartSize = parseInt($('#cartSize').text()) + 1;
         $('#cartSize').text(cartSize);
-        $.post("addToCart", jsonData,done);
-        function done(){
+        $.post("addToCart", jsonData, done);
+
+        function done() {
             console.log("done");
         }
     }
