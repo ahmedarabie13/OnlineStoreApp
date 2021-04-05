@@ -125,7 +125,7 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item"><a class="nav-link" href="main">Home</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about">About Us</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">

@@ -4,6 +4,7 @@ package gov.iti.jets.team5.controllers;
 import gov.iti.jets.team5.models.dto.UserDto;
 import gov.iti.jets.team5.services.CartService;
 import gov.iti.jets.team5.services.impl.CartServiceImpl;
+import gov.iti.jets.team5.utils.mappers.CartItemDtoMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,6 +27,8 @@ public class AddToCartServlet extends HttpServlet {
         System.out.println("from servlet: "+status);
         PrintWriter out = response.getWriter();
         out.println("{\"status\": \"" + status + "\"}");
+        var cartItems = cartService.getCartItems(currentUserId);
+        request.getSession().setAttribute("cartItems", cartItems);
         request.getSession().setAttribute("totalPrice", cartService.getCartTotalPrice(currentUserId));
     }
 

@@ -1,11 +1,10 @@
 package gov.iti.jets.team5.services.impl;
 
 import gov.iti.jets.team5.models.ajaxModels.CartItemData;
-import gov.iti.jets.team5.models.dbEntities.CartItems;
-import gov.iti.jets.team5.models.dto.ProductDto;
-import gov.iti.jets.team5.models.dto.UserDto;
+import gov.iti.jets.team5.models.dto.CartItemDto;
 import gov.iti.jets.team5.repositories.CartRepository;
 import gov.iti.jets.team5.services.CartService;
+import gov.iti.jets.team5.utils.mappers.CartItemDtoMapper;
 
 import java.util.List;
 
@@ -42,8 +41,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartItems> getCartItems(int userId) {
-        return CartRepository.getInstance().getCartItems(userId);
+    public List<CartItemDto> getCartItems(int userId) {
+
+        var cartItems = CartRepository.getInstance().getCartItems(userId);
+        CartItemDtoMapper cartItemDtoMapper = new CartItemDtoMapper();
+       return cartItemDtoMapper.getListDto(cartItems);
     }
 //    public CartItems
 }
