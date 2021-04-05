@@ -435,6 +435,9 @@
                 let cartSize = parseInt($('#cartSize').text()) + 1;
                 console.log("cartSize: " + cartSize);
                 $('#cartSize').text(cartSize);
+            }else if(output.status === "error"){
+                console.log("error");
+                $('#prodError'+productId).text('No Enough Goods');
             }
             console.log("done");
         }

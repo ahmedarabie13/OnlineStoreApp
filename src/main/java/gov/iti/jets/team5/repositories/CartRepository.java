@@ -41,16 +41,21 @@ public class CartRepository {
                 cartItemsId.setOrderId(((PotentialOrders) list.get(0)).getOrderId());
                 var cartItem = entityManager.find(CartItems.class, cartItemsId);
                 if (cartItem != null) {
-                    cartItem.setQuantity(cartItem.getQuantity() + 1);
-                    status = "existing";
+                    var product = cartItem.getProduct();
+                    if (product.getQuantity() >= (cartItem.getQuantity() + 1)) {
+                        cartItem.setQuantity(cartItem.getQuantity() + 1);
+                        status = "existing";
+                    }
                 } else {
                     var product = (Product) entityManager.find(Product.class, productId);
                     cartItem = new CartItems();
                     System.out.println("new CartItem");
-                    cartItem.setId(cartItemsId);
-                    cartItem.setQuantity(1);
-                    cartItem.setProduct(product);
-                    status = "new";
+                    if (product.getQuantity() >= 1) {
+                        cartItem.setId(cartItemsId);
+                        cartItem.setQuantity(1);
+                        cartItem.setProduct(product);
+                        status = "new";
+                    }
                 }
                 entityManager.persist(cartItem);
                 System.out.println("done");
@@ -132,13 +137,13 @@ public class CartRepository {
                     .setParameter("user_id", userId).getResultList();
             if (carts.size() == 1) {
                 int orderId = ((PotentialOrders) carts.get(0)).getOrderId();
-                var cartItems =(List<CartItems>) entityManager.createQuery("from CartItems c where c.id.orderId = :order_id")
+                var cartItems = (List<CartItems>) entityManager.createQuery("from CartItems c where c.id.orderId = :order_id")
                         .setParameter("order_id", orderId).getResultList();
                 totalPrice = cartItems.stream().map(cartItem -> {
                     var cartItemData = ((CartItems) cartItem);
                     return (Double) (cartItemData.getQuantity() * cartItemData.getProduct().getPrice().doubleValue());
                 }).reduce(0.0, Double::sum);
-                System.out.println("totalPrice: "+totalPrice);
+                System.out.println("totalPrice: " + totalPrice);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,20 +155,20 @@ public class CartRepository {
 
     public void deleteCartItem(int userId, int productId) {
         entityManager.getTransaction().begin();
-        try{
+        try {
             var carts = entityManager.createQuery("from PotentialOrders p where p.userData.id = :user_id and p.active = true")
                     .setParameter("user_id", userId).getResultList();
             if (carts.size() == 1) {
                 int orderId = ((PotentialOrders) carts.get(0)).getOrderId();
                 CartItemsId cartItemId = new CartItemsId(orderId, productId);
                 CartItems cartItem = entityManager.find(CartItems.class, cartItemId);
-                if(cartItem!=null){
+                if (cartItem != null) {
                     entityManager.remove(cartItem);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             entityManager.getTransaction().commit();
             System.out.println("delete done successfully");
         }
