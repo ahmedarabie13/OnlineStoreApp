@@ -5,6 +5,10 @@ xsi:schemaLocation= "https://jakarta.ee/xml/ns/jakartaee
 https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
 version= "5.0"
 metadata-complete= "false">
+	<welcome-file-list>
+		<welcome-file>main</welcome-file>
+<!--		<welcome-file>Main</welcome-file>-->
+	</welcome-file-list>
 	<servlet>
 		<servlet-name>MyServletName</servlet-name>
 		<servlet-class>gov.iti.jets.team5.Main</servlet-class>

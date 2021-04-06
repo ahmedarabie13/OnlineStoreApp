@@ -263,6 +263,31 @@
 <jsp:include page="footer.jsp"/>
 
 <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+<script>
+    function addToCart(productId) {
+
+        console.log("added id: " + productId + " to cart");
+        let jsonData = {"productId": productId};
+        console.log("sdff");
+        // let cartSize = parseInt($('#cartSize').text()) + 1;
+        // $('#cartSize').text(cartSize);
+        $.post("addToCart", jsonData, done);
+
+        function done(data) {
+            console.log(data);
+            let output = JSON.parse(data);
+            if (output.status === "new") {
+                console.log($('#cartSize').text());
+                let cartSize = parseInt($('#cartSize').text()) + 1;
+                console.log("cartSize: " + cartSize);
+                $('#cartSize').text(cartSize);
+            } else if (output.status === "error") {
+                console.log("error");
+                $('#prodError' + productId).text('No Enough Goods');
+            }
+        }
+    }
+</script>
 
 <!-- ALL JS FILES -->
 <script src="js/jquery-3.2.1.min.js"></script>
