@@ -58,9 +58,11 @@ public class CookiesFilter implements Filter {
                     }
                 } else {
                     Cookie [] cookiesList = ((HttpServletRequest) request).getCookies();
-                    for (Cookie c: cookiesList) {
-                        if(c.getName().equals("test")){
-                            c.setMaxAge(0);
+                    if(cookiesList != null){
+                        for (Cookie c: cookiesList) {
+                            if(c.getName().equals("test")){
+                                c.setMaxAge(0);
+                            }
                         }
                     }
                     chain.doFilter(request, response);

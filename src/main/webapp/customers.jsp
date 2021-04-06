@@ -98,7 +98,6 @@
                                     <th>Role</th>
                                     <th>Email</th>
                                     <th>Phone number</th>
-                                    <th>Password</th>
                                     <th>Address</th>
                                     <th>Orders</th>
                                 </tr>
@@ -110,7 +109,6 @@
                                     <th>Role</th>
                                     <th>Email</th>
                                     <th>Phone number</th>
-                                    <th>Password</th>
                                     <th>Address</th>
                                     <th>Orders</th>
                                 </tr>
@@ -124,7 +122,6 @@
                                         <td><c:out value="${user.userRole}"/></td>
                                         <td><c:out value="${user.email}"/></td>
                                         <td><c:out value="${user.phone}"/></td>
-                                        <td><c:out value="${user.password}"/></td>
                                         <td><c:out value="${user.city}, ${user.street}"/></td>
                                         <td>
                                             <button class="btn" style="background-color: #B0B436; color: white" type="button"
