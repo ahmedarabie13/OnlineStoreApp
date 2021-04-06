@@ -262,7 +262,7 @@ public class ProductRepository {
                 ProductDto productDto = new ProductDto();
                 productDto.setProductID(String.valueOf(p.getId()));
                 productDto.setProductName(p.getProductName());
-                productDto.setProductImageURL("images/products/MeatlessPieces.png");
+                productDto.setProductImageURL(p.getPhoto());
                 productDto.setProductPrice(p.getPrice());
                 productDto.setProductStatus(ProductStatus.valueOf(p.getStatus()));
                 theProducts.add(productDto);

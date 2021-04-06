@@ -168,7 +168,7 @@
 
     <script>
         function submitAddProduct(){
-            debugger
+            // debugger
              if(checkValidations() === false){
                  document.getElementById("productFormId").submit();
              } else {
