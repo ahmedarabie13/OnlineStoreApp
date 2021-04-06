@@ -41,21 +41,29 @@ public class UserRepository {
 
 
     public boolean isRegistered(String enteredEmail) {
-        //entityManager.getTransaction().begin();
-        Query q = entityManager.createQuery("select count(*) from UserData u where u.email = :email")
-                .setParameter("email", enteredEmail);
-        List<Integer> rows = q.getResultList();
-        System.out.println("rows.get(0): " + rows.get(0));
-        boolean result = (Integer.parseInt(String.valueOf(rows.get(0))) == 0) ? false : true;
-        //entityManager.getTransaction().commit();
+        boolean result = false;
+        try {
+            //entityManager.getTransaction().begin();
+            Query q = entityManager.createQuery("select count(*) from UserData u where u.email = :email")
+                    .setParameter("email", enteredEmail);
+            List<Integer> rows = q.getResultList();
+            System.out.println("rows.get(0): " + rows.get(0));
+            result = (Integer.parseInt(String.valueOf(rows.get(0))) == 0) ? false : true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            //entityManager.getTransaction().commit();
+        }
         System.out.println(result + " The result");
         return result;
 
     }
 
     public boolean registerUser(UserDto userDto) {
-        entityManager.getTransaction().begin();
         try {
+            entityManager.getTransaction().begin();
             UserData userToRegister = new UserData();
             userToRegister.setFirstName(userDto.getFirstName());
             userToRegister.setLastName(userDto.getLastName());
@@ -70,71 +78,92 @@ public class UserRepository {
             userActiveCart.setUserData(userToRegister);
             userActiveCart.setActive(true);
             entityManager.persist(userActiveCart);
-            entityManager.getTransaction().commit();
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            entityManager.getTransaction().commit();
             return false;
+        } finally {
+            entityManager.getTransaction().commit();
         }
+        return true;
     }
 
     public UserAuthDto getUserAuth(String email) {
-        entityManager.getTransaction().begin();
-        var list = entityManager.createQuery("from UserData u where u.email = :email")
-                .setParameter("email", email).getResultList();
         UserAuthDto userAuthDto = null;
-        if (list.size() == 1) {
-            UserData userData = (UserData) list.get(0);
-            System.out.println(userData);
-            userAuthDto = new UserAuthDto(userData.getEmail(), userData.getPassword(), userData.getId());
+        try {
+            entityManager.getTransaction().begin();
+            var list = entityManager.createQuery("from UserData u where u.email = :email")
+                    .setParameter("email", email).getResultList();
+            if (list.size() == 1) {
+                UserData userData = (UserData) list.get(0);
+                System.out.println(userData);
+                userAuthDto = new UserAuthDto(userData.getEmail(), userData.getPassword(), userData.getId());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
         }
-        entityManager.getTransaction().commit();
         return userAuthDto;
 
 
     }
 
     public List<UserDto> fetchAllUsers() {
-        List<UserDto> users = new ArrayList<>();
+        List<UserDto> users = null;
+        try {
+            entityManager.getTransaction().begin();
+            List userDataList = entityManager.createQuery("from UserData").getResultList();
+            users = new ArrayList<>();
+            for (int i = 0; i < userDataList.size(); i++) {
+                UserData userData = (UserData) userDataList.get(i);
+                UserDto userDto = new UserDto(userData.getFirstName(), userData.getLastName(), userData.getEmail(),
+                        userData.getPhone(), userData.getPassword());
+                userDto.setId(userData.getId());
+                userDto.setStreet(userData.getStreet());
+                userDto.setCity(userData.getCity());
+                userDto.setUserRole(userData.getUserRole());
 
-        List userDataList = entityManager.createQuery("from UserData").getResultList();
-
-        for (int i = 0 ; i < userDataList.size() ; i++) {
-            UserData userData = (UserData) userDataList.get(i);
-            UserDto userDto = new UserDto(userData.getFirstName(), userData.getLastName(), userData.getEmail(),
-                    userData.getPhone(), userData.getPassword());
-            userDto.setId(userData.getId());
-            userDto.setStreet(userData.getStreet());
-            userDto.setCity(userData.getCity());
-            userDto.setUserRole(userData.getUserRole());
-
-            users.add(userDto);
+                users.add(userDto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
         }
-
         return users;
     }
 
     public UserDto getUserById(int id) {
-        entityManager.getTransaction().begin();
-        UserData userData = entityManager.find(UserData.class, id);
         UserDto userDto = null;
-        if (userData != null) {
-            UserDtoMapper userDtoMapper = new UserDtoMapper();
-            userDto = userDtoMapper.getDto(userData);
+        try {
+            entityManager.getTransaction().begin();
+            UserData userData = entityManager.find(UserData.class, id);
+            if (userData != null) {
+                UserDtoMapper userDtoMapper = new UserDtoMapper();
+                userDto = userDtoMapper.getDto(userData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
         }
-        entityManager.getTransaction().commit();
         return userDto;
     }
 
     public Boolean isUserExist(int id) {
-        entityManager.getTransaction().begin();
-        UserData userData = entityManager.find(UserData.class, id);
-        entityManager.getTransaction().commit();
+        UserData userData = null;
+        try {
+            entityManager.getTransaction().begin();
+            userData = entityManager.find(UserData.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.getTransaction().commit();
+        }
         if (userData != null) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

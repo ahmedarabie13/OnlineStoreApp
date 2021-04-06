@@ -56,8 +56,17 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
-
+<c:if test="${empty sessionScope.currentUser}">
+    <jsp:include page="header.jsp"/>
+</c:if>
+<c:if test="${!empty sessionScope.currentUser}">
+    <c:if test="${sessionScope.currentUser.userRole.equals('admin')}">
+        <jsp:include page="admin-header.jsp"/>
+    </c:if>
+    <c:if test="${sessionScope.currentUser.userRole.equals('user')}">
+        <jsp:include page="header.jsp"/>
+    </c:if>
+</c:if>
 <!-- Start Slider -->
 <div id="slides-shop" class="cover-slides">
     <ul class="slides-container">
