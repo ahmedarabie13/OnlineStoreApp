@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Boolean updateProductsAfterCheckout(List<CartItemDto> cartItemList) {
         //todo: subtract the order products amounts from the db products amounts
+
         cartItemList.stream().forEach((cartItem) -> {
             ProductRepository.getInstance().updateProductAfterCheckout(cartItem);
         });
@@ -72,6 +73,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductDto> searchForProducts(String productName) {
+        return ps.searchForProducts(productName);
+    }
 
     public List<ProductDto> fetchLastRecentTenProducts() {
         return ps.fetchLastRecentTenProducts();

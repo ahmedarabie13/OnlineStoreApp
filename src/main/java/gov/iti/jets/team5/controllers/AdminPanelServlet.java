@@ -1,6 +1,8 @@
 package gov.iti.jets.team5.controllers;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +14,11 @@ import java.io.IOException;
 public class AdminPanelServlet extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("panel.jsp").forward(request,response);
+    public  void service(ServletRequest request , ServletResponse response) throws ServletException, IOException {
+        (request).getRequestDispatcher("panel.jsp").forward(request,response);
     }
+//    @Override
+//    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        request.getRequestDispatcher("panel.jsp").forward(request,response);
+//    }
 }

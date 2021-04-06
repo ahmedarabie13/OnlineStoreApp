@@ -1,6 +1,5 @@
 package gov.iti.jets.team5.controllers;
 
-import gov.iti.jets.team5.models.dbEntities.Product;
 import gov.iti.jets.team5.models.dto.CategoryDto;
 import gov.iti.jets.team5.models.dto.ProductDto;
 import gov.iti.jets.team5.models.enums.ProductStatus;
@@ -15,7 +14,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -54,12 +52,12 @@ public class ShopControllerServlet extends HttpServlet {
         System.out.println(category + " <--------categoryId");
         long productsCount = productService.fetchNumOfProducts(category);
         System.out.println("productsCount = " + productsCount);
-        if(productsCount < 0){
+        if (productsCount < 0) {
             System.out.println("if(productsCount < 0){");
             response.sendRedirect("404.jsp");
             return;
         }
-        int num = (int) (Math.round((productsCount/9) + 0.5));
+        int num = (int) (Math.round((productsCount / 9) + 0.5));
         String categoryStr = request.getParameter("cat");
         String filterStartStr = request.getParameter("filterStart");
         String filterEndStr = request.getParameter("filterEnd");
@@ -83,21 +81,22 @@ public class ShopControllerServlet extends HttpServlet {
         if (pageNumberStr != null) {
             try {
                 pageNumber = Integer.parseInt(pageNumberStr);
-                if(pageNumber > num || pageNumber < 1){
+
+                if (pageNumber > num || pageNumber < 1) {
                     System.out.println("if(pageNumber > productsCount || pageNumber < 1){");
                     response.sendRedirect("404.jsp");
                     return;
                 }
-                if(categoryStr != null && !categoryStr.equals("null") && !categoryStr.equals("")){
+                if (categoryStr != null && !categoryStr.equals("null") && !categoryStr.equals("")) {
 //                    productsList = productService.fetchCatProducts(category, pageNumber);
                     productsList = productService.fetchProductsByFilterAndCategory(pageNumber, categoryStr, filterStart, filterEnd);
-                    if(productsList == null){
+                    if (productsList == null) {
                         System.out.println("f(productsList == null){");
                         response.sendRedirect("404.jsp");
                         return;
                     }
                     request.setAttribute("products", productsList);
-                }else {
+                } else {
                     System.out.println(pageNumberStr);
                     pageNumber = (int) Double.parseDouble(pageNumberStr);
 
@@ -106,7 +105,7 @@ public class ShopControllerServlet extends HttpServlet {
                     System.out.println(productsList.size() + " <--------productsss/catss");
                     request.setAttribute("products", productsList);
                 }
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 e.printStackTrace();
                 response.sendRedirect("404.jsp");
                 return;
@@ -117,12 +116,11 @@ public class ShopControllerServlet extends HttpServlet {
 
             request.setAttribute("products", productsList);
         }
-        if(productsCount < 0 ){
+        if (productsCount < 0) {
             System.out.println("if(productsCount < 0 ){");
             response.sendRedirect("404.jsp");
             return;
         }
-
         request.setAttribute("totalCount", productsCount);
         request.setAttribute("numOfPages", num);
         request.setAttribute("currentPage", pageNumber);
@@ -140,5 +138,56 @@ public class ShopControllerServlet extends HttpServlet {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
         requestDispatcher.forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String searchFor = (String) request.getAttribute("search");
+        System.out.println("from post in shop servleeeeeeeeeeeet");
+        ProductService productService = ProductServiceImpl.getInstance();
+        List<ProductDto> productsList;
+        productsList = productService.searchForProducts(searchFor);
+        System.out.println("product list" + productsList);
+        CategoryService categoryService = CategoryServiceImpl.getInstance();
+        List<CategoryDto> categoryList = categoryService.fetchCategories();
+        long productsCount = productsList.toArray().length;
+        System.out.println("producct count is" + productsCount);
+        //    if (productsCount != 0) {
+        System.out.println(productsCount);
+        int num = (int) (Math.round((productsCount / 9) + 0.5));
+        request.setAttribute("categories", categoryList);
+        request.setAttribute("numOfPages", num);
+        request.setAttribute("products", productsList);
+
+        String categoryStr = request.getParameter("cat");
+        String filterStartStr = request.getParameter("filterStart");
+        String filterEndStr = request.getParameter("filterEnd");
+
+        System.out.println("Start = " + filterStartStr + "  End = " + filterEndStr);
+        if (filterStartStr == null) {
+            filterStartStr = "0";
+        }
+        if (filterEndStr == null) {
+            filterEndStr = "4000";
+        }
+
+
+        filterStart = Integer.parseInt(filterStartStr);
+        filterEnd = Integer.parseInt(filterEndStr);
+        request.setAttribute("filterStart", filterStart);
+        request.setAttribute("filterEnd", filterEnd);
+        request.setAttribute("searchFor", searchFor);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shop.jsp");
+        requestDispatcher.forward(request, response);
+
+
+        //   }
+        // else {
+
+//            System.out.println("if(productsCount < 0 ){");
+//            response.sendRedirect("404.jsp");
+//            return;
+        //    }
+
+
     }
 }

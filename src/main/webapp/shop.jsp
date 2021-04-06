@@ -91,6 +91,7 @@
                     <div class="product-categorie-box">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+
                                 <div class="row container special-list" id="productsDiv">
                                     <c:forEach items="${requestScope.products}" var="product">
                                         <Product:Product productName="${product.productName}"
@@ -101,6 +102,15 @@
                                         />
                                     </c:forEach>
                                 </div>
+                                <c:if test="${empty requestScope.products && requestScope.nothing ==false }">
+                                    <span id="emptyList"
+                                          style="font-size:larger; color: black;"> Your search for "${requestScope.searchFor}" did not yield any results.</span>
+                                </c:if>
+
+                                <c:if test="${ requestScope.nothing ==true}">
+                                <span id="emptyList"
+                                      style="font-size:larger; color: black;"> Please enter the name of product you search for </span>
+                                </c:if>
 
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
@@ -255,6 +265,12 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                 <div class="product-categori">
+                    <div class="search-product">
+                        <form action="search" method="post">
+                            <input name="searchFor" class="form-control" placeholder="Search here..." type="text">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
                     <div class="filter-sidebar-left">
                         <div class="title-left">
                             <h3>Categories</h3>
@@ -352,6 +368,7 @@
 <script src="js/custom.js"></script>
 <script>
     function addToCart(productId) {
+
         console.log("added id: " + productId + " to cart");
         let jsonData = {"productId": productId};
         console.log("sdff");

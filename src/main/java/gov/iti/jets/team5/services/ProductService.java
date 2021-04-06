@@ -24,6 +24,7 @@ public interface ProductService {
     long fetchNumOfProducts(String categoryId);
 
     Product fetchProductData(String productId);
+    List <ProductDto> searchForProducts(String productName);
 
     List<ProductDto> fetchLastRecentTenProducts();
 

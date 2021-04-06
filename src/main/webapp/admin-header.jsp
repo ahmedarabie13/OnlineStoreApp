@@ -69,10 +69,10 @@
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item"><a class="nav-link" href="panel">Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">DISPLAY</a>
+                        <a href="#" class="nav-link arrow" data-toggle="dropdown">DISPLAY</a>
                         <ul class="dropdown-menu">
                             <li><a href="products">Products</a></li>
-                            <li><a href="#">Customers</a></li>
+                            <li><a href="customers">Customers</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="addProduct">Add Product</a></li>

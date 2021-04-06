@@ -43,8 +43,26 @@ public class MainServlet extends HttpServlet {
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String currentUserId = Cookies.getCookie("c_user", request);
+        LoginService loginService = new LoginServiceImpl();
+        if (!(currentUserId.equals("") || currentUserId == null)) {
+            if (loginService.isUserIdExists(Integer.parseInt(currentUserId))) {
+                if (request.getSession().getAttribute("currentUser") == null){
+                    CartService cartService = new CartServiceImpl();
+                    var cartItemsDto = cartService.getCartItems(Integer.parseInt(currentUserId));
+                    request.getSession().setAttribute("cartItems",cartItemsDto);
+                    request.getSession().setAttribute("currentUser", loginService.getCurrentUserCredentials(Integer.parseInt(currentUserId)));
+                }
+            }
+        }
 
+        ProductService productService = ProductServiceImpl.getInstance();
+        List<ProductDto> products = productService.fetchLastRecentTenProducts();
+
+        request.setAttribute("lastRecentProducts", products);
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 }
