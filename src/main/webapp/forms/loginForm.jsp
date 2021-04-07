@@ -13,6 +13,7 @@
 
 <%--</head>--%>
 <%--<body>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="ftco-section">
     <div class="container">
         <%--        <div class="row justify-content-center">--%>
@@ -36,16 +37,19 @@
 <%--                            </p>--%>
 <%--                        </div>--%>
                     </div>
-                    <form action="#" class="login-form">
+                    <form action="login" class="login-form" method="post" onsubmit="return checkLogValidations()">
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span
-                                    class="fa fa-user"></span></div>
-                            <input type="text" name="userName" style="padding-left: 60px" class="form-control rounded-left" placeholder="Username" required>
+                                    class="fa fa-envelope"></span></div>
+                            <input type="text" name="email" style="padding-left: 60px" class="form-control rounded-left" placeholder="Email" id="logEmail" onblur="loginEmailVal()">
+                            <span id="blankEmail" style="display: none; font-size: small; color: red">Please Enter Your Email</span>
+                            <span id="invalidEmail" style="display: none; font-size: small; color: red">Invalid Email Format</span>
                         </div>
                         <div class="form-group">
                             <div class="icon d-flex align-items-center justify-content-center"><span
                                     class="fa fa-lock"></span></div>
-                            <input type="password" name="password" style="padding-left: 60px" class="form-control rounded-left" placeholder="Password" required>
+                            <input type="password" name="password" style="padding-left: 60px" class="form-control rounded-left" placeholder="Password" id="logPass" onblur="loginPassVal()">
+                            <span id="blankPass" style="display: none; font-size: small; color: red">Please Enter Your Password</span>
                         </div>
                         <div class="form-group d-flex align-items-center">
                             <div class="w-100">
@@ -58,12 +62,20 @@
                                 <button type="submit" class="btn btn-primary rounded submit">Login</button>
                             </div>
                         </div>
+                        <c:if test="${!empty requestScope.Error}">
+                            <div class="form-group mt-4">
+                                <div class="w-100 text-danger text-center">
+                                    <p class="mb-1">Invalid Email or Password</p>
+                                </div>
+                            </div>
+                        </c:if>
                         <div class="form-group mt-4">
                             <div class="w-100 text-center">
-                                <p class="mb-1">Don't have an account? <a href="#">Sign Up</a></p>
+                                <p class="mb-1">Don't have an account? <a href="registration.jsp">Sign Up</a></p>
 <%--                                <p><a href="#">Forgot Password</a></p>--%>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

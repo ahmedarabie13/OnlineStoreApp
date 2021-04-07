@@ -20,7 +20,7 @@
     <%--  login form links   --%>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="login/css/style.css">
+    <link rel="stylesheet" href="forms/css/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -30,11 +30,18 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
+<%--    <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>--%>
+<%--    <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>--%>
+<%--    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>--%>
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="customValidations/registerValidations.js"></script>
 
 </head>
 
@@ -63,10 +70,10 @@
 
 <jsp:include page="footer.jsp"/>
 
-<script src="login/js/jquery.min.js"></script>
-<script src="login/js/popper.js"></script>
-<script src="login/js/bootstrap.min.js"></script>
-<script src="login/js/main.js"></script>
+<script src="forms/js/jquery.min.js"></script>
+<script src="forms/js/popper.js"></script>
+<script src="forms/js/bootstrap.min.js"></script>
+<script src="forms/js/main.js"></script>
 <!-- ALL JS FILES -->
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -83,6 +90,9 @@
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+
+<%--for the error $(...).slider is not a function--%>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </body>
 </html>

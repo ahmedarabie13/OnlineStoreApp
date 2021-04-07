@@ -77,7 +77,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="contact-form-right">
                         <h2>GET IN TOUCH</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
+                        <p>Our customer support team is available 24/7.How can we help?</p>
                         <form id="contactForm">
                             <div class="row">
                                 <div class="col-md-12">
@@ -116,7 +116,8 @@
 				<div class="col-lg-4 col-sm-12">
                     <div class="contact-info-left">
                         <h2>CONTACT INFO</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                        <p>If you have trouble placing your order, please call us on the following number:
+                            15204 </p>
                         <ul>
                             <li>
                                 <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 9000 <br>Preston Street Wichita,<br> KS 87213 </p>
@@ -154,6 +155,9 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+
+    <%--for the error $(...).slider is not a function--%>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>
 
 </html>

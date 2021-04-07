@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "Register", urlPatterns = "/register")
+@WebServlet(name = "register", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,7 +22,22 @@ public class RegisterServlet extends HttpServlet {
         userDto.setEmail(request.getParameter("email"));
         userDto.setPassword(request.getParameter("password"));
         userDto.setPhone(request.getParameter("phone"));
+        System.out.println(userDto.toString());
 
-        Boolean registered = registerService.registerUser(userDto);
+        Boolean userRegistered = registerService.registerUser(userDto);
+
+        if(userRegistered){
+            response.sendRedirect("login");
+            //System.out.println("Inside the servlet");
+        } else {
+            //System.out.println("Here!!!");
+            //todo: a db failure/connection maybe dunno why it would be false yet!!
+            request.setAttribute("RegistrationFailed","true");
+            request.getRequestDispatcher("registration.jsp").forward(request,response);
+        }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("registration.jsp").forward(request,response);
     }
 }

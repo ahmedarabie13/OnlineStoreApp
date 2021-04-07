@@ -4,7 +4,11 @@ xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation= "https://jakarta.ee/xml/ns/jakartaee
 https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
 version= "5.0"
-metadata-complete= "true">
+metadata-complete= "false">
+	<welcome-file-list>
+		<welcome-file>main</welcome-file>
+<!--		<welcome-file>Main</welcome-file>-->
+	</welcome-file-list>
 	<servlet>
 		<servlet-name>MyServletName</servlet-name>
 		<servlet-class>gov.iti.jets.team5.Main</servlet-class>
@@ -13,4 +17,113 @@ metadata-complete= "true">
 		<servlet-name>MyServletName</servlet-name>
 		<url-pattern>/MyServletUrl</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>CookiesFilter</filter-name>
+		<filter-class>gov.iti.jets.team5.utils.filters.CookiesFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CookiesFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>LoggedInFilter</filter-name>
+		<filter-class>gov.iti.jets.team5.utils.filters.LoggedInFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoggedInFilter</filter-name>
+		<url-pattern>/cart</url-pattern>
+		<url-pattern>/checkout</url-pattern>
+		<url-pattern>/myAccount</url-pattern>
+		<url-pattern>/wishlist</url-pattern>
+		<url-pattern>/products</url-pattern>
+		<url-pattern>/panel</url-pattern>
+		<url-pattern>/addProduct</url-pattern>
+		<url-pattern>/products.jsp</url-pattern>
+		<url-pattern>/panel.jsp</url-pattern>
+		<url-pattern>/addProduct.jsp</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>PreventLogInAndRegisterFilter</filter-name>
+		<filter-class>gov.iti.jets.team5.utils.filters.PreventLogInAndRegisterFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PreventLogInAndRegisterFilter</filter-name>
+		<url-pattern>/login</url-pattern>
+		<url-pattern>/register</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>AdminLoginFilter</filter-name>
+		<filter-class>gov.iti.jets.team5.utils.filters.AdminRedirectionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdminLoginFilter</filter-name>
+		<url-pattern>/panel</url-pattern>
+		<url-pattern>/addProduct</url-pattern>
+		<url-pattern>/products.jsp</url-pattern>
+		<url-pattern>/products</url-pattern>
+		<url-pattern>/panel.jsp</url-pattern>
+		<url-pattern>/addProduct.jsp</url-pattern>
+		<url-pattern>/customers</url-pattern>
+		<url-pattern>/customers.jsp</url-pattern>
+		<url-pattern>/customerDetails.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>UserLoginFilter</filter-name>
+		<filter-class>gov.iti.jets.team5.utils.filters.UserRedirectionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UserLoginFilter</filter-name>
+		<url-pattern>/cart</url-pattern>
+		<url-pattern>/checkout</url-pattern>
+<!--		<url-pattern>/shop</url-pattern>-->
+<!--		<url-pattern>/about</url-pattern>-->
+		<url-pattern>/addToCart</url-pattern>
+		<url-pattern>/myAccount</url-pattern>
+		<url-pattern>/editProfile</url-pattern>
+<!--		<url-pattern>/gallery</url-pattern>-->
+<!--		<url-pattern>/search</url-pattern>-->
+<!--		<url-pattern>/shopDetail</url-pattern>-->
+		<url-pattern>/updateCart</url-pattern>
+	</filter-mapping>
+
+<!--	<servlet>-->
+<!--		<servlet-name>PageNotFound</servlet-name>-->
+<!--		<jsp-file>404.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>PageNotFound</servlet-name>-->
+<!--		<url-pattern>/pageNotFound</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>AfterCheckout</servlet-name>-->
+<!--		<jsp-file>afterCheckout.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>AfterCheckout</servlet-name>-->
+<!--		<url-pattern>/afterCheckout</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>UnderDev</servlet-name>-->
+<!--		<jsp-file>underDev.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>UnderDev</servlet-name>-->
+<!--		<url-pattern>/underDev</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>AllowCookies</servlet-name>-->
+<!--		<jsp-file>cookies.jsp</jsp-file>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>AllowCookies</servlet-name>-->
+<!--		<url-pattern>/allowCookies</url-pattern>-->
+<!--	</servlet-mapping>-->
+
 </web-app>
