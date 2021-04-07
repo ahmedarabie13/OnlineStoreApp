@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet("/addProduct")
 public class AddProduct extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CategoryService categoryService = CategoryServiceImpl.getInstance();
         List<CategoryDto> categories = categoryService.fetchCategories();
         request.setAttribute("categories", categories);

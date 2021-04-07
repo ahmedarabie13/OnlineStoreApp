@@ -214,7 +214,7 @@
                 <hr>
             </div>
             <c:if test="${! empty requestScope.Error}">
-                <span class="text-danger" id="validationSpan">Checkout Failed please enter valid data</span>
+                <span class="text-danger" id="validationSpan">Checkout Failed please enter valid data and check that you have enough balance in your card</span>
             </c:if>
             <%--            </div>--%>
             <div class="col-12 d-flex shopping-box"><input type="submit" class="ml-auto btn hvr-hover"

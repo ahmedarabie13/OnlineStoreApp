@@ -79,14 +79,14 @@ metadata-complete= "false">
 		<filter-name>UserLoginFilter</filter-name>
 		<url-pattern>/cart</url-pattern>
 		<url-pattern>/checkout</url-pattern>
-		<url-pattern>/shop</url-pattern>
-		<url-pattern>/about</url-pattern>
+<!--		<url-pattern>/shop</url-pattern>-->
+<!--		<url-pattern>/about</url-pattern>-->
 		<url-pattern>/addToCart</url-pattern>
 		<url-pattern>/myAccount</url-pattern>
 		<url-pattern>/editProfile</url-pattern>
-		<url-pattern>/gallery</url-pattern>
-		<url-pattern>/search</url-pattern>
-		<url-pattern>/shopDetail</url-pattern>
+<!--		<url-pattern>/gallery</url-pattern>-->
+<!--		<url-pattern>/search</url-pattern>-->
+<!--		<url-pattern>/shopDetail</url-pattern>-->
 		<url-pattern>/updateCart</url-pattern>
 	</filter-mapping>
 

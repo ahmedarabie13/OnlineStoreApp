@@ -34,10 +34,10 @@ public class ProductTagHandler extends SimpleTagSupport {
         out.println("<div class=\"mask-icon\">");
         out.println("<ul>");
         out.println("<li><a href=\"shopDetail?id=" + productId + "\"" + "data-toggle=\"tooltip\" data-placement=\"right\" title=\"View\"><i class=\"fas fa-eye\"></i></a></li>");
-        out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
-        out.println("title = \"Compare\" ><i class=\"fas fa-sync-alt\" ></i ></a ></li >");
-        out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
-        out.println("title = \"Add to Wishlist\" ><i class=\"far fa-heart\" ></i ></a ></li >");
+//        out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
+//        out.println("title = \"Compare\" ><i class=\"fas fa-sync-alt\" ></i ></a ></li >");
+//        out.println("<li ><a href = \"#\" data - toggle = \"tooltip\" data - placement = \"right");
+//        out.println("title = \"Add to Wishlist\" ><i class=\"far fa-heart\" ></i ></a ></li >");
         out.println("</ul >");
         out.println("<a class=\"cart\" onclick=\"addToCart("+productId+");\"> Add to Cart</a >");
         out.println("</div >");

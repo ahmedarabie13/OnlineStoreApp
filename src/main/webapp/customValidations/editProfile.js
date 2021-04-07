@@ -36,7 +36,7 @@ function AjaxCallBack(responseTxt, statusTxt, xhr) {
             $("input").prop('disabled', true);
             setTimeout(function(){
                 $("#updated").hide();
-            }, 4000);
+            }, 3000);
             return;
         } else {
             $("#updated").hide();

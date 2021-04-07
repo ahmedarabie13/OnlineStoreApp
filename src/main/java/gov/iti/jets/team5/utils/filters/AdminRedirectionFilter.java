@@ -12,11 +12,15 @@ public class AdminRedirectionFilter implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = ((HttpServletRequest) request);
         UserDto currentUser =(UserDto) httpServletRequest.getSession().getAttribute("currentUser");
-        if(currentUser.getUserRole().equals("admin")){
-            chain.doFilter(request,response);
-        }else {
+        if(currentUser != null){
+            if(currentUser.getUserRole().equals("admin")){
+                chain.doFilter(request,response);
+            }else {
+                ((HttpServletResponse) response).sendRedirect("404.jsp");
+                return;
+            }
+        } else {
             ((HttpServletResponse) response).sendRedirect("404.jsp");
-            return;
         }
     }
 }

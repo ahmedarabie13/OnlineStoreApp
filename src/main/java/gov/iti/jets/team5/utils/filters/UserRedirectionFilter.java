@@ -12,11 +12,15 @@ public class UserRedirectionFilter implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = ((HttpServletRequest) request);
         UserDto currentUser =(UserDto) httpServletRequest.getSession().getAttribute("currentUser");
-        if(currentUser.getUserRole().equals("user")){
+        if(currentUser != null){
+            if(currentUser.getUserRole().equals("user")){
+                chain.doFilter(request,response);
+            }else {
+                ((HttpServletResponse) response).sendRedirect("404.jsp");
+                return;
+            }
+        } else {
             chain.doFilter(request,response);
-        }else {
-            ((HttpServletResponse) response).sendRedirect("404.jsp");
-            return;
         }
     }
 }
